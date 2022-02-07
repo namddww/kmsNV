@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    jdbc-url: jdbc:mysql://192.168.50.110:13306/admin?serverTimezone=UTC&characterEncoding=UTF-8
+    username: admin
+    password: admin.123qwe
+
+  messages:
+    basename: classpath:messages/message
+    encoding: utf-8
+  devtools:
+    livereload:
+      enabled: true
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+mybatis:
+  type-aliases-package: com.hbl.kms.app.**.model
+  mapper-locations: mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    use-actual-param-name: true
+    call-setters-on-nulls: true
+    jdbc-type-for-null: null
