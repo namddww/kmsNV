@@ -52,5 +52,17 @@ public class DeviceDto {
      * 좌표2 (경도)
      */
     private String point2;
+    /**
+     * 한페이지 노출 시작 번호
+     */
+    int pageNum = 1;
+    /**
+     * 한페이지 노출 종료 번호
+     */
+    int pageSize = 5;
+    /**
+     * 한페이지 노출 갯수
+     */
+    int NavigatePages = 10;
     // TODO : BANG 지역, 메모 누락
 }

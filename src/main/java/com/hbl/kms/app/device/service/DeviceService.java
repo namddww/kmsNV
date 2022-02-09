@@ -1,5 +1,7 @@
 package com.hbl.kms.app.device.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.hbl.kms.app.device.mapper.DeviceMapper;
 import com.hbl.kms.app.device.model.DeviceDto;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +15,13 @@ public class DeviceService {
 
     private final DeviceMapper deviceMapper;
 
-    public int deviceInsert(DeviceDto deviceDto) {
-        return deviceMapper.deviceInsert(deviceDto);
+    public PageInfo<?> selectBuildingInfoList(DeviceDto deviceDto) {
+        PageHelper.startPage(deviceDto);
+        return PageInfo.of(deviceMapper.selectBuildingInfoList(deviceDto), deviceDto.getNavigatePages());
     }
+
+    public int insertDevice(DeviceDto deviceDto) {
+        return deviceMapper.insertDevice(deviceDto);
+    }
+
 }

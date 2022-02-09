@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hbl.kms.app.device.mapper.DeviceMapper">
+
+    <!-- 건물정보 조회 -->
+    <select id="selectBuildingInfoList" resultType="buildingInfoList">
+        SELECT
+            BUILD_SEQ
+            , BUILD_NAME
+            , '지역컬럼 미존재'
+            , CONCAT(ADDR1, ' ', ADDR2) AS ADDRESS
+            , GROUND_FLOOR
+            , BASE_FLOOR
+            , REG_DATE
+            , REG_USER
+        FROM t_building
+    </select>
+
+    <!-- 자산정보 저장 -->
+    <insert id="insertDevice">
+
+    </insert>
+
+</mapper>

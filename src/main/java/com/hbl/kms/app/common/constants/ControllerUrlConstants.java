@@ -16,6 +16,7 @@ public class ControllerUrlConstants {
     // 자산관련 URL
     public interface DeviceUrl {
         interface Device {
+            String SAVE_FORM = "/device/saveForm";
             String DEFAULT = "/device/list";
             String SAVE = "/device/save";
         }
