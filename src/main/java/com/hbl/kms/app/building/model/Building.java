@@ -1,6 +1,7 @@
 package com.hbl.kms.app.building.model;
 
 import lombok.*;
+import org.apache.ibatis.type.Alias;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -10,6 +11,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Alias("building")
 public class Building {
     /**
      * 빌딩 SEQ
