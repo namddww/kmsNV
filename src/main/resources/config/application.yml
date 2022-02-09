@@ -25,6 +25,9 @@ pagehelper:
   helper-dialect: mysql
   reasonable: true
 
+logging:
+  config: classpath:config/logback/logback.xml
+
 mybatis:
   type-aliases-package: com.hbl.kms.app.**.model
   mapper-locations: mapper/**/*.xml
@@ -33,3 +36,7 @@ mybatis:
     use-actual-param-name: true
     call-setters-on-nulls: true
     jdbc-type-for-null: null
+
+kms:
+  logging:
+    dir: C:\\logs\\logback

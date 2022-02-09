@@ -9,6 +9,7 @@ public class ControllerUrlConstants {
     public interface BuildingUrl {
         interface Building {
             String DEFAULT = "/building/list";
+            String SEARCH = "/building/search";
         }
 
     }

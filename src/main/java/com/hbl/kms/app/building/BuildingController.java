@@ -2,6 +2,7 @@ package com.hbl.kms.app.building;
 
 import com.hbl.kms.app.building.model.BuildingDto;
 import com.hbl.kms.app.building.service.BuildingService;
+import com.hbl.kms.app.common.constants.ControllerUrlConstants;
 import com.hbl.kms.app.common.model.Result;
 import com.hbl.kms.app.common.model.utils.ResponseUtil;
 import lombok.RequiredArgsConstructor;
@@ -18,14 +19,15 @@ public class BuildingController {
 
     private final BuildingService buildingService;
 
-    @GetMapping("/buildingList")
+    // 건물 조회 화면
+    @GetMapping(ControllerUrlConstants.BuildingUrl.Building.DEFAULT)
     public ModelAndView buildingList(ModelAndView mav) {
         mav.setViewName("building/buildingList");
         return mav;
     }
 
-    // 건물 조회
-    @GetMapping("/buildingListData")
+    // 건물 조회 데이터
+    @GetMapping(ControllerUrlConstants.BuildingUrl.Building.SEARCH)
     @ResponseBody
     public Result buildingListData(@ModelAttribute BuildingDto buildingDto) {
         return ResponseUtil.process(buildingService.selectBuildingList(buildingDto));
