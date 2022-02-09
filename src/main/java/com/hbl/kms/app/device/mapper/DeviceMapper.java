@@ -1,4 +1,4 @@
-package com.hbl.kms.app.building.model.mapper;
+package com.hbl.kms.app.device.mapper;
 
 import com.hbl.kms.app.device.model.DeviceDto;
 import org.apache.ibatis.annotations.Mapper;
