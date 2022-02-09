@@ -4,6 +4,7 @@ spring:
     jdbc-url: jdbc:mysql://192.168.50.110:13306/admin?serverTimezone=UTC&characterEncoding=UTF-8
     username: admin
     password: admin.123qwe
+    mapper: classpath:mapper/**/*.xml
 
   messages:
     basename: classpath:messages/message
@@ -19,6 +20,10 @@ spring:
     multipart:
       max-file-size: 100MB
       max-request-size: 100MB
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
 
 mybatis:
   type-aliases-package: com.hbl.kms.app.**.model

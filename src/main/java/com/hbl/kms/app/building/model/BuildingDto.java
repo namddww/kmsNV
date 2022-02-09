@@ -78,4 +78,8 @@ public class BuildingDto {
      * 층별 정보
      */
     private List<FloorInfo> floorInfo;
+
+    int pageNum = 1;
+    int pageSize = 5;
+    int NavigatePages = 10;
 }
