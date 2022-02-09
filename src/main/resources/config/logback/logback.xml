@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="5 seconds">
+    <springProperty scope="context" name="LOG_DIR" source="kms.logging.dir"/>
+
+    <!-- 콘솔에 로그 기록 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%-5level] %logger{36} - %msg%n
+            </Pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- 파일에 로그 기록 (rolling) -->
+    <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/kms-%d{yyyy-MM-dd}.%i.log.zip</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>1024MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] %logger{36} - %msg%n
+            </Pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- jdbc -->
+    <logger name="jdbc.connection" level="WARN" additivity="false">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="ROLLING" />
+    </logger>
+    <logger name="jdbc.audit" level="WARN" additivity="false">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="ROLLING" />
+    </logger>
+    <logger name="jdbc.sqlonly" level="WARN" additivity="false">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="ROLLING" />
+    </logger>
+    <logger name="jdbc.sqltiming" level="INFO" additivity="false">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="ROLLING" />
+    </logger>
+    <logger name="jdbc.resultset" level="WARN" additivity="false">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="ROLLING" />
+    </logger>
+    <logger name="jdbc.resultsettable" level="WARN" additivity="false">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="ROLLING" />
+    </logger>
+
+    <logger name="com.zaxxer.hikari" level="WARN"/>
+    <logger name="com.zaxxer.hikari.HikariConfig" level="WARN"/>
+    <!--// jdbc -->
+
+    <root level="debug">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="ROLLING" />
+    </root>
+
+</configuration>
