@@ -16,12 +16,13 @@ public class BuildingService {
 
     private final BuildingMapper buildingMapper;
 
-    public int buildingInsert(BuildingDto buildingDto) {
-        return buildingMapper.buildingInsert(buildingDto);
-    }
-
     public PageInfo<Building> selectBuildingList(BuildingDto buildingDto) {
         PageHelper.startPage(buildingDto);
         return PageInfo.of(buildingMapper.selectBuildingList(buildingDto), buildingDto.getNavigatePages());
     }
+
+    public int insertBuilding(BuildingDto buildingDto) {
+        return buildingMapper.insertBuilding(buildingDto);
+    }
+
 }

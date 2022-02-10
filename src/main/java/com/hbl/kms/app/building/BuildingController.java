@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,10 +34,25 @@ public class BuildingController {
         return ResponseUtil.process(buildingService.selectBuildingList(buildingDto));
     }
 
+    // 건물 등록 화면
+    @GetMapping(ControllerUrlConstants.BuildingUrl.Building.SAVE_FORM)
+    public ModelAndView buildingSaveForm(ModelAndView mav) {
+        mav.setViewName("building/saveForm");
+        return mav;
+    }
+
+    // 건물 등록 좌표등록 팝업
+    @GetMapping(ControllerUrlConstants.BuildingUrl.Building.POINT_POPUP)
+    public ModelAndView pointPopup(ModelAndView mav) {
+        mav.setViewName("building/pointPopup");
+        return mav;
+    }
 
     // 건물 등록
-    public Result buildingInsert(BuildingDto buildingDto) {
-        return ResponseUtil.process(buildingService.buildingInsert(buildingDto));
+    @PostMapping(ControllerUrlConstants.BuildingUrl.Building.SAVE)
+    @ResponseBody
+    public Result insertBuilding(BuildingDto buildingDto) {
+        return ResponseUtil.process(buildingService.insertBuilding(buildingDto));
     }
 
 }
