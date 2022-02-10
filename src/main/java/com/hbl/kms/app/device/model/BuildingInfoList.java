@@ -26,6 +26,10 @@ public class BuildingInfoList {
      */
     private String address;
     /**
+     * 좌표 (기준좌표1 + 기준좌표2)
+     */
+    private String point;
+    /**
      * 지상층
      */
     private int groundFloor;

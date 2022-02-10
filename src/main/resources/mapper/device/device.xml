@@ -12,6 +12,7 @@
             , CONCAT(ADDR1, ' ', ADDR2) AS ADDRESS
             , GROUND_FLOOR
             , BASE_FLOOR
+            , CONCAT(STD_POINT1, ' / ', STD_POINT2) AS POINT
             , REG_DATE
             , REG_USER
         FROM t_building

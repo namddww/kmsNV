@@ -17,8 +17,7 @@ jQuery(function ($) {
         changeYear: true,
         changeMonth: true,
         showOn: 'button',
-        // buttonImage: '../img/ico_calender.png',
-        buttonImage: '../',
+        buttonImage: '/assets/img/ico_calender.png',
         buttonImageOnly: true
     };
     $.datepicker.setDefaults($.datepicker.regional['ko']);

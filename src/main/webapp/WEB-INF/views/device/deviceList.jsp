@@ -70,10 +70,10 @@
                         <table class="link ">
                             <colgroup>
                                 <col style="width:5%">
-                                <col style="width:5%">
+                                <col style="width:10%">
                                 <col style="width:5%">
                                 <col style="width:25%">
-                                <col style="width:15%">
+<%--                                <col style="width:15%">--%>
                                 <col style="width:5%">
                                 <col style="width:30%">
                                 <col style="width:10%">
@@ -85,7 +85,7 @@
                                 <th>건물명</th>
                                 <th>지역</th>
                                 <th>상세주소1</th>
-                                <th>상세주소2</th>
+<%--                                <th>상세주소2</th>--%>
                                 <th>층수</th>
                                 <th>좌표</th>
                                 <th>등록 일자</th>
@@ -98,7 +98,7 @@
                                 <td onClick="#">휴빌론</td>
                                 <td>서울</td>
                                 <td>서울 서초구 강남대로 291 남강빌딩</td>
-                                <td>5층 휴빌론</td>
+<%--                                <td>5층 휴빌론</td>--%>
                                 <td>5</td>
                                 <td>127.03122777241998	/ 37.48893200242128</td>
                                 <td>2022-02-10 17:00</td>
@@ -112,4 +112,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="/assets/js/device/saveForm.js"></script>
+<script type="text/javascript" src="/assets/js/device/deviceList.js"></script>
