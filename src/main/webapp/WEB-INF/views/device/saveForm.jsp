@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="../../views/common/include/common.jsp" %>
 
 <h1>자산 > 자산등록</h1>
 <div id="build-info" style="height: auto; width: 100%; border:1px solid;">
