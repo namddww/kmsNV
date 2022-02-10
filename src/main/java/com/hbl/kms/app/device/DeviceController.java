@@ -20,6 +20,15 @@ public class DeviceController {
     private final DeviceService deviceService;
 
     /**
+     * 자산등록 목록화면
+     */
+    @GetMapping(ControllerUrlConstants.DeviceUrl.Device.DEFAULT)
+    public ModelAndView deviceList(ModelAndView mav) {
+        mav.setViewName("device/deviceList");
+        return mav;
+    }
+
+    /**
      * 자산등록 화면
      */
     @GetMapping(ControllerUrlConstants.DeviceUrl.Device.SAVE_FORM)
@@ -31,7 +40,7 @@ public class DeviceController {
     /**
      * 건물정보 목록 및 정보 조회
      */
-    @GetMapping(ControllerUrlConstants.DeviceUrl.Device.DEFAULT)
+    @GetMapping(ControllerUrlConstants.DeviceUrl.Device.SEARCH)
     @ResponseBody
     public Result selectBuildingInfoList(@ModelAttribute DeviceDto deviceDto) {
         return ResponseUtil.process(deviceService.selectBuildingInfoList(deviceDto));

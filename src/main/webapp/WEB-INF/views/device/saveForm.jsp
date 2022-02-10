@@ -10,9 +10,8 @@
         등록일 : <span id="regDate">2022-02-09(현재날짜?)</span>&emsp;&emsp;&emsp;등록자 : <span id="regUser">1</span>
         <br><br>
         <input type="button" id="building-btn" value="건물 선택">
-        <br>
     </div>
-
+    <br>
     <div style="height: auto; width: 70%; border:1px solid; margin-left: 1%;">
         <div style="margin-left: 1%;">
             건물명 : <span id="buildName">휴빌론</span>
