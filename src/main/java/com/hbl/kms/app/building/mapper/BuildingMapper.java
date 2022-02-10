@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface BuildingMapper {
 
-    int buildingInsert(BuildingDto buildingDto);
+    int insertBuilding(BuildingDto buildingDto);
 
     List<Building> selectBuildingList(BuildingDto buildingDto);
 }

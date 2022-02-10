@@ -3,6 +3,7 @@
 
 <mapper namespace="com.hbl.kms.app.building.mapper.BuildingMapper">
 
+    <!-- 건물정보 조회 -->
     <select id="selectBuildingList" resultType="building">
         SELECT
             build_name
@@ -13,5 +14,10 @@
             , reg_date
         FROM t_building
     </select>
+
+    <!-- 건물정보 등록 -->
+    <insert id="insertBuilding">
+
+    </insert>
 
 </mapper>

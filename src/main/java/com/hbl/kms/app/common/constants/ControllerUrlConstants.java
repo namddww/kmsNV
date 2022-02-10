@@ -10,6 +10,9 @@ public class ControllerUrlConstants {
         interface Building {
             String DEFAULT = "/building/list";
             String SEARCH = "/building/search";
+            String SAVE_FORM = "/building/saveForm";
+            String SAVE = "/building/save";
+            String POINT_POPUP = "/building/pointPopup";
         }
 
     }

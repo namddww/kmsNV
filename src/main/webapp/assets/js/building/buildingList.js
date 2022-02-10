@@ -1,4 +1,4 @@
-var _buildingList = {
+let _buildingList = {
     $scope      : null, // 영역
     $tableList  : null, // content form
 
