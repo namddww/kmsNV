@@ -10,7 +10,6 @@ let _pointPopup = {
 
     events : function () {
         const _this = this;
-        var popLocation = '';
 
         let map = L.map('map').setView([37.5,127.5],11);
 

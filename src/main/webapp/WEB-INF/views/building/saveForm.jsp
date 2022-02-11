@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="../../views/common/include/common.jsp" %>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <h1>건물 등록</h1>
 <hr>
@@ -14,7 +15,7 @@
                 <input type="hidden" id="stdPoint2">
                 <input type="hidden" id="areaPoint1">
                 <input type="hidden" id="areaPoint2">
-                <button type="button" id="btnPoint">좌표등록</button>
+                <button type="button" id="btnPoint" class="btn gray">좌표등록</button>
             </div>
             <div>
                 <span>건물명:</span>
@@ -27,7 +28,7 @@
             <div>
                 <span>상세주소2:</span>
                 <input type="text" id="addr2" style="width: 25%;">
-                <button type="button" id="btnAddr">주소조회</button>
+                <button type="button" id="btnAddr" class="btn gray">주소조회</button>
             </div>
             <div>
                 <span>층정보</span>
@@ -35,15 +36,15 @@
                 <input type="number" id="groundFloor" min="1" style="width: 5%;"><span>층</span>
                 <span>지하:</span>
                 <input type="number" id="baseFloor" max="0" style="width: 5%;"><span>층</span>
-                <button type="button" id="btnFloor">등록</button>
-                <button type="button" id="btnFloorClear">초기화</button>
+                <button type="button" id="btnFloor" class="btn gray">등록</button>
+                <button type="button" id="btnFloorClear" class="btn gray">초기화</button>
             </div>
         </div>
         <hr>
         <div>
             <span>층별정보</span>
             <div>
-                <table id="floorListTable" border="1">
+                <table id="floorListTable">
                     <thead>
                     <tr>
                         <th>층</th>
@@ -57,8 +58,8 @@
         </div>
         <hr>
         <div>
-            <button id="btnSave">등록</button>
-            <button id="btnList">목록</button>
+            <button id="btnSave" class="btn gray">등록</button>
+            <button id="btnList" class="btn gray">목록</button>
         </div>
     </form>
 </div>

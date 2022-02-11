@@ -70,6 +70,7 @@ let _building = {
                             $('<td/>').text('')
                         ).append(
                             $('<button/>').text('등록').attr('type', 'button').attr('id', 'btnFloorPopup')
+                                .attr('data-num', Number((i-1)*-1))
                         )
                     )
                 }else{
@@ -80,6 +81,7 @@ let _building = {
                             $('<td/>').text('')
                         ).append(
                             $('<button/>').text('등록').attr('type', 'button').attr('id', 'btnFloorPopup')
+                                .attr('data-num', i)
                         )
                     )
                 }
@@ -100,7 +102,8 @@ let _building = {
                 alert('건물좌표를 입력해주세요');
                 return false;
             }
-            let url = '/building/floorPopup';
+            let num = $(this).data('num');
+            let url = '/building/floorPopup?num='+num;
             window.open(url, '_blank');
         });
     },

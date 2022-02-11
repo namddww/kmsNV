@@ -13,6 +13,7 @@ public class ControllerUrlConstants {
             String SAVE_FORM = "/building/saveForm";
             String SAVE = "/building/save";
             String POINT_POPUP = "/building/pointPopup";
+            String FLOOR_POPUP = "/building/floorPopup";
         }
 
     }

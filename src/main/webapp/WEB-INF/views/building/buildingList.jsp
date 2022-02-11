@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="../../views/common/include/common.jsp" %>
 
 <h1>건물 조회</h1>
 <div id="buildingList">

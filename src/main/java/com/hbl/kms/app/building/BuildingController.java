@@ -48,6 +48,13 @@ public class BuildingController {
         return mav;
     }
 
+    // 건물 등록 층정보 파일등록 팝업
+    @GetMapping(ControllerUrlConstants.BuildingUrl.Building.FLOOR_POPUP)
+    public ModelAndView floorPopup(ModelAndView mav, @ModelAttribute int num) {
+        mav.setViewName("building/floorPopup");
+        return mav;
+    }
+
     // 건물 등록
     @PostMapping(ControllerUrlConstants.BuildingUrl.Building.SAVE)
     @ResponseBody
