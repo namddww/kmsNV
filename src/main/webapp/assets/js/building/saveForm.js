@@ -1,4 +1,4 @@
-let _building = {
+var _building = {
     $scope: null, // 영역
     $contentForm: null, // content form
     $tableList  : null, // content form
@@ -67,10 +67,14 @@ let _building = {
                         $('<tr/>').append(
                             $('<td/>').text('지하'+Number((i-1)*-1))
                         ).append(
-                            $('<td/>').text('')
+                            $('<td/>').append(
+                                $('<div>').attr('id', 'df'+Number((i-1))).append(
+                                    $('<span/>').text('파일을 등록해주세요.')
+                                )
+                            )
                         ).append(
                             $('<button/>').text('등록').attr('type', 'button').attr('id', 'btnFloorPopup')
-                                .attr('data-num', Number((i-1)*-1))
+                                .attr('data-num', Number((i-1)))
                         )
                     )
                 }else{
@@ -78,7 +82,11 @@ let _building = {
                         $('<tr/>').append(
                             $('<td/>').text(i)
                         ).append(
-                            $('<td/>').text('')
+                            $('<td/>').append(
+                                $('<div>').attr('id', 'df'+i).append(
+                                    $('<span/>').text('파일을 등록해주세요.')
+                                )
+                            )
                         ).append(
                             $('<button/>').text('등록').attr('type', 'button').attr('id', 'btnFloorPopup')
                                 .attr('data-num', i)
@@ -106,6 +114,7 @@ let _building = {
             let url = '/building/floorPopup?num='+num;
             window.open(url, '_blank');
         });
+
     },
 
     floorClear: function () {
@@ -119,3 +128,4 @@ let _building = {
 $(document).ready(function() {
     _building.init();
 });
+

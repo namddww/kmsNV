@@ -75,7 +75,7 @@ let _pointPopup = {
             y2 = arr[0][3].lng;
         });
 
-        // 층 정보 등록
+        // 건물좌표 등록
         $('#btnSave').on('click', function(){
             $("#stdPoint", opener.document).val(x1+' / '+y1);
             $("#areaPoint", opener.document).val(x2+' / '+y2);

@@ -1,4 +1,4 @@
-let _floorPopup = {
+var _floorPopup = {
     $scope      : null, // 영역
 
     init : function () {
@@ -70,6 +70,23 @@ let _floorPopup = {
                 reader.readAsDataURL(this.files[0]);
             }
 
+        });
+
+        // 도면 등록
+        $('#btnSave').on('click', function(){
+            let num = $('#num').val();
+            let text = $('#floorFile').val().split("\\").pop();
+            $(opener.document).find('#df'+num).empty();
+            $(opener.document).find('#df'+num)
+                .append(
+                    $('<span/>').text(text)
+                ).append(
+                $('<div/>').attr('id','dfdiv'+num).attr('style', 'display:none;')
+                    .append(
+                        $('#floorFile').attr('id', 'dfinput'+num)
+                    )
+                );
+            window.close();
         });
     }
 };

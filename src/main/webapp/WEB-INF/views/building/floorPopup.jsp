@@ -11,7 +11,7 @@
     }
 </style>
 <body>
-    <input type="hidden" value="${num}">
+    <input type="hidden" id="num" value="${num}">
     <h1>파일등록</h1>
     <div id="floorPopupArea">
         <div>
