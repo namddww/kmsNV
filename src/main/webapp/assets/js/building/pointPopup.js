@@ -21,14 +21,14 @@ let _pointPopup = {
         var editableLayers = new L.FeatureGroup();
         map.addLayer(editableLayers);
 
-        var MyCustomMarker = L.Icon.extend({
+        /*var MyCustomMarker = L.Icon.extend({
             options: {
                 shadowUrl: null,
                 iconAnchor: new L.Point(12, 12),
                 iconSize: new L.Point(24, 24),
                 iconUrl: 'link/to/image.png'
             }
-        });
+        });*/
 
         var options = {
             position: 'topright',
@@ -53,21 +53,40 @@ let _pointPopup = {
         var drawControl = new L.Control.Draw(options);
         map.addControl(drawControl);
 
+        var x1 = '';
+        var y1 = '';
+        var x2 = '';
+        var y2 = '';
+
         map.on(L.Draw.Event.CREATED, function (e) {
             var type = e.layerType,
                 layer = e.layer;
             if(editableLayers && editableLayers.getLayers().length!==0){
                 editableLayers.clearLayers();
             }
-            if (type === 'marker') {
+            /*if (type === 'rectangle') {
                 layer.bindPopup('A popup!');
-            }
+            }*/
 
             editableLayers.addLayer(layer);
-            console.log(layer.getLatLngs());
+            var arr = layer.getLatLngs();
+            x1 = arr[0][1].lat;
+            y1 = arr[0][1].lng;
+            x2 = arr[0][3].lat;
+            y2 = arr[0][3].lng;
+        });
+
+        // 층 정보 등록
+        $('#btnSave').on('click', function(){
+            $("#stdPoint", opener.document).val(x1+' / '+y1);
+            $("#areaPoint", opener.document).val(x2+' / '+y2);
+            $("#stdPoint1", opener.document).val(x1);
+            $("#stdPoint2", opener.document).val(y1);
+            $("#areaPoint1", opener.document).val(x2);
+            $("#areaPoint2", opener.document).val(y2);
+            window.close();
         });
     }
-
 };
 
 // onload

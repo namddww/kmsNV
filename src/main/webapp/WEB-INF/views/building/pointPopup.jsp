@@ -8,11 +8,18 @@
         height: 100%;
         margin: 0;
     }
+    #btnSave{
+        position: absolute;
+        top: 100px;
+        right: 10px;
+        padding: 10px;
+        z-index: 400;
+    }
 </style>
 <body>
     <div id="map">
-
     </div>
+    <button id="btnSave">저장</button>
 </body>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="/assets/js/building/pointPopup.js"></script>

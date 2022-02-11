@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <h1>건물 등록</h1>
 <hr>
 <div id="buildingArea">
@@ -8,8 +8,8 @@
             <span>기본정보</span>
             <div>
                 <span>건물좌표:</span>
-                <input type="text" id="stdPoint" disabled>
-                <input type="text" id="areaPoint" disabled>
+                <input type="text" id="stdPoint" disabled style="width: 25%;">
+                <input type="text" id="areaPoint" disabled style="width: 25%;">
                 <input type="hidden" id="stdPoint1">
                 <input type="hidden" id="stdPoint2">
                 <input type="hidden" id="areaPoint1">
@@ -22,21 +22,21 @@
             </div>
             <div>
                 <span>상세주소1:</span>
-                <input type="text" id="addr1">
+                <input type="text" id="addr1" disabled style="width: 25%;"  >
             </div>
             <div>
                 <span>상세주소2:</span>
-                <input type="text" id="addr2">
-                <button type="button">주소조회</button>
+                <input type="text" id="addr2" style="width: 25%;">
+                <button type="button" id="btnAddr">주소조회</button>
             </div>
             <div>
                 <span>층정보</span>
                 <span>지상:</span>
-                <input type="number" id="groundFloor"><span>층</span>
+                <input type="number" id="groundFloor" min="1" style="width: 5%;"><span>층</span>
                 <span>지하:</span>
-                <input type="number" id="baseFloor"><span>층</span>
+                <input type="number" id="baseFloor" max="0" style="width: 5%;"><span>층</span>
                 <button type="button" id="btnFloor">등록</button>
-                <button type="button">초기화</button>
+                <button type="button" id="btnFloorClear">초기화</button>
             </div>
         </div>
         <hr>
