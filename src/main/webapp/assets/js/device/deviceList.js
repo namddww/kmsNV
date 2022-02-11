@@ -4,6 +4,16 @@ $(document).ready(function() {
 
     // 진입 후 건물 검색
     buildingSearch(1);
+
+    // 자산등록 버튼 선택
+    $("#a-reg").click(function () {
+        deviceInsert();
+    });
+
+    // 삭제 선택
+    $("#a-delete").click(function () {
+        deviceDelete();
+    });
 });
 
 function buildingSearch(page) {
@@ -16,27 +26,35 @@ function buildingSearch(page) {
         async: false,
         data: pageNum,
         success: function(res) {
+            $("#tbody").empty();
             if (res.result.list.length > 0) {
                 console.log("사이즈 있다 : " + res.result.list.length);
-                $("#tbody").empty();
+
                 $.each(res.result.list, function (i, val) {
                     $("#tbody").append(
                         $('<tr/>')
                             .append($('<td/>')
-                            .append('<input/>')
-                                .attr('type', 'checkbox')
-                                .attr('id', 'chk_' + i)
-                                .attr('name', 'chk')
-                            .append('<label/>')
-                                .attr('for', 'chk_' + i)
+                                .append($('<input/>')
+                                    .attr('type', 'checkbox')
+                                    .attr('id', 'chk_' + i)
+                                    .attr('name', 'chk')
+                                    .attr('value', val.buildSeq)
+                                ) // input
+                                .append($('<label/>')
+                                    .attr('for', 'chk_' + i)
+                                ) // label
+                                .append($('<input/>')
+                                    .attr('type', 'hidden')
+                                    .attr('id', 'deleteBuildSeq')
+                                ) // hidden
                             ) // 체크박스
                             .append($('<td/>')
-                                .attr('onClick', '#')
+                                .append($('<a/>').html('ttt'))
+                                .attr("onClick", "javascript:deviceDetail('" + val.buildSeq + "');")
                                 .text(val.buildName)
                             ) // 건물명
                             .append($('<td/>').text('서울')) // 지역
-                            .append($('<td/>').text(val.address)) // 상세주소1
-                            // .append($('<td/>').text(val.)) // 상세주소2
+                            .append($('<td/>').text(val.address)) // 상세주소
                             .append($('<td/>').text(val.groundFloor)) // 층수
                             .append($('<td/>').text(val.point)) // 좌표
                             .append($('<td/>').text(val.regDate)) // 등록일자
@@ -44,10 +62,45 @@ function buildingSearch(page) {
                 });
             } else {
                 console.log("사이즈 없음");
+                $("#tbody").append($('<tr/>')
+                    .append($('<td/>').attr({colspan : 8}).text('검색결과가 없습니다.'))
+                )
             }
         },
         error: function(request,status,error) {
             alert("통신상태가 원활하지 않아 접속이 끊어졌습니다.");
         }
     });
+}
+
+// 디바이스 등록 페이지
+// location.href
+function deviceInsert() {
+    console.log("deviceInsert");
+    location.href = "/device/saveForm";
+}
+
+// 디바이스 상세 페이지
+function deviceDetail(buildSeq) {
+    console.log("buildSeq : ", buildSeq);
+    alert("디바이스 상세페이지 현재 미구현.");
+}
+
+// 디바이스 삭제
+function deviceDelete() {
+    var checkRow = "";
+    $("input[name='chk']:checked" ).each (function (){
+        checkRow = checkRow + $(this).val()+"," ;
+    });
+    checkRow = checkRow.substring(0,checkRow.lastIndexOf( ",")); //맨끝 콤마 지우기
+    $("#deleteBuildSeq").val(checkRow);
+
+    console.log("checkRow : ", checkRow);
+    console.log("deleteBuildSeq.val : ", $("#deleteBuildSeq").val());
+
+    if(checkRow == ''){
+        alert("삭제 하실 대상을 선택하세요.");
+        return false;
+    }
+    alert("디바이스 상세페이지 현재 미구현.");
 }

@@ -29,21 +29,21 @@ public class DeviceController {
     }
 
     /**
-     * 자산등록 화면
-     */
-    @GetMapping(ControllerUrlConstants.DeviceUrl.Device.SAVE_FORM)
-    public ModelAndView saveForm(ModelAndView mav) {
-        mav.setViewName("device/saveForm");
-        return mav;
-    }
-
-    /**
      * 건물정보 목록 및 정보 조회
      */
     @GetMapping(ControllerUrlConstants.DeviceUrl.Device.SEARCH)
     @ResponseBody
     public Result selectBuildingInfoList(@ModelAttribute DeviceDto deviceDto) {
         return ResponseUtil.process(deviceService.selectBuildingInfoList(deviceDto));
+    }
+
+    /**
+     * 자산등록 화면
+     */
+    @GetMapping(ControllerUrlConstants.DeviceUrl.Device.SAVE_FORM)
+    public ModelAndView saveForm(ModelAndView mav) {
+        mav.setViewName("device/saveForm");
+        return mav;
     }
 
     /**

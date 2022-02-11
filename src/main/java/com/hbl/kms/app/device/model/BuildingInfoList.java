@@ -1,5 +1,6 @@
 package com.hbl.kms.app.device.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.apache.ibatis.type.Alias;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -40,7 +41,7 @@ public class BuildingInfoList {
     /**
      * 등록일
      */
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date regDate;
     /**
      * 등록자 (회원 번호)

@@ -117,7 +117,7 @@ table td.st1 input{width: 194px}
 /* 데이터 량이 많은 경우 : th글자 작게 .st3 추가*/
 .data_table.st3 th{font-size: 16px;}
 .data_table.st3 select, .data_table.st4 select{width: inherit}
-.data_table.st4 input{width: 60px;margin: 0 10px;text-align: center;font-size: 16px;}
+.data_table.st4 input{width: 20px;margin: 0 10px;text-align: center;font-size: 16px;}
 .data_table.st5 tr{border-bottom: 1px solid #d1d1d1}
 .data_table.st5 th, .data_table.st5 td{text-align: left;padding: 0 10px;}
 .data_table.st5 th[colspan]{text-align: center;}
