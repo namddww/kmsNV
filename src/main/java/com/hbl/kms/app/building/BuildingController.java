@@ -50,7 +50,8 @@ public class BuildingController {
 
     // 건물 등록 층정보 파일등록 팝업
     @GetMapping(ControllerUrlConstants.BuildingUrl.Building.FLOOR_POPUP)
-    public ModelAndView floorPopup(ModelAndView mav, @ModelAttribute int num) {
+    public ModelAndView floorPopup(ModelAndView mav, int num) {
+        mav.addObject("num", num);
         mav.setViewName("building/floorPopup");
         return mav;
     }
