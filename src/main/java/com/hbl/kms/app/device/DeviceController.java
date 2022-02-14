@@ -47,6 +47,24 @@ public class DeviceController {
     }
 
     /**
+     * 자산등록 > 건물조회 팝업
+     */
+    @GetMapping(ControllerUrlConstants.DeviceUrl.Device.BUILDING_POPUP)
+    public ModelAndView buildingPopup(ModelAndView mav) {
+        mav.setViewName("device/buildingPopup");
+        return mav;
+    }
+
+    /**
+     * 자산등록 > 건물조회 팝업
+     */
+    @GetMapping(ControllerUrlConstants.DeviceUrl.Device.POINT_POPUP)
+    public ModelAndView devicePointPopup(ModelAndView mav) {
+        mav.setViewName("device/devicePointPopup");
+        return mav;
+    }
+
+    /**
      * 디바이스 저장
      */
     @PostMapping(ControllerUrlConstants.DeviceUrl.Device.SAVE)

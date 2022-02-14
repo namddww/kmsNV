@@ -23,6 +23,8 @@ public class ControllerUrlConstants {
         interface Device {
             String DEFAULT = "/device/list";
             String SAVE_FORM = "/device/saveForm";
+            String BUILDING_POPUP = "/device/buildingPopup";
+            String POINT_POPUP = "/device/devicePointPopup";
             String SEARCH = "/device/search";
             String SAVE = "/device/save";
         }

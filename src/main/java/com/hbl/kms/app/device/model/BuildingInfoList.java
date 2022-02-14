@@ -38,6 +38,11 @@ public class BuildingInfoList {
      * 지하층
      */
     private int baseFloor;
+
+    private String stdPoint1;
+    private String stdPoint2;
+    private String areaPoint1;
+    private String areaPoint2;
     /**
      * 등록일
      */

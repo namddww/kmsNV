@@ -13,6 +13,10 @@
             , GROUND_FLOOR
             , BASE_FLOOR
             , CONCAT(STD_POINT1, ' / ', STD_POINT2) AS POINT
+            , STD_POINT1
+            , STD_POINT2
+            , AREA_POINT1
+            , AREA_POINT2
             , REG_DATE
             , REG_USER
         FROM t_building
