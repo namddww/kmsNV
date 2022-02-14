@@ -50,7 +50,7 @@ function buildingSearch(page) {
                                 .attr('id', 'buildName')
                                 .text(val.buildName)
                             ) // 건물명
-                            .append($('<td/>').attr('id', 'area').text('서울')) // 지역
+                            .append($('<td/>').attr('id', 'locationCd').text(val.locationCd)) // 지역
                             .append($('<td/>').attr('id', 'address').text(val.address)) // 상세주소
                             .append($('<td/>').attr('id', 'floorInfo').text(floorInfo)) // 층수
                             .append($('<td/>').text(val.point)) // 좌표
@@ -76,8 +76,8 @@ function buildingSearch(page) {
 function deviceInsertBuildingInfo(buildSeq, groundFloor, baseFloor, stdPoint1, stdPoint2, areaPoint1, areaPoint2) {
     console.log("buildSeq : ", buildSeq);
 
-    $("#buildSeq", opener.document).text(buildSeq);
-    $("#area", opener.document).text($("#area").text());
+    $("#buildSeq", opener.document).val(buildSeq);
+    $("#locationCd", opener.document).text($("#locationCd").text());
     $("#buildName", opener.document).text($("#buildName").text());
     $("#address", opener.document).text($("#address").text());
     $("#floorInfo", opener.document).text($("#floorInfo").text());

@@ -13,6 +13,7 @@
             , GROUND_FLOOR
             , BASE_FLOOR
             , CONCAT(STD_POINT1, ' / ', STD_POINT2) AS POINT
+            , LOCATION_CD
             , STD_POINT1
             , STD_POINT2
             , AREA_POINT1

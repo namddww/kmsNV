@@ -68,6 +68,7 @@ public class DeviceController {
      * 디바이스 저장
      */
     @PostMapping(ControllerUrlConstants.DeviceUrl.Device.SAVE)
+    @ResponseBody
     public Result insertDevice(DeviceDto deviceDto) {
         return ResponseUtil.process(deviceService.insertDevice(deviceDto));
     }

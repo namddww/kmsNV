@@ -41,9 +41,9 @@ public class DeviceDto {
      */
     private String typeCd;
     /**
-     * 위치설명
+     * 위치
      */
-    private String location;
+    private String locationCd;
     /**
      * 좌표1 (위도)
      */
@@ -52,6 +52,10 @@ public class DeviceDto {
      * 좌표2 (경도)
      */
     private String point2;
+    /**
+     * 메모
+     */
+    private String memo;
     /**
      * 한페이지 노출 시작 번호
      */
