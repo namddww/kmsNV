@@ -58,8 +58,23 @@
         </div>
         <hr>
         <div>
-            <button id="btnSave" class="btn gray">등록</button>
-            <button id="btnList" class="btn gray">목록</button>
+            <span>검색정보</span><br>
+            <span>* 복수의 검색 정보 등록 시 '/'로 구분하여 등록</span>
+            <div>
+                <textarea id="searchInfo"></textarea>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <span>메모</span>
+            <div>
+                <textarea id="memo"></textarea>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <button type="button" id="btnSave" class="btn gray">등록</button>
+            <button type="button" id="btnList" class="btn gray">목록</button>
         </div>
     </form>
 </div>

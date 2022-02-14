@@ -16,8 +16,56 @@
     </select>
 
     <!-- 건물정보 등록 -->
-    <insert id="insertBuilding">
+    <insert id="insertBuilding" useGeneratedKeys="true" keyProperty="buildSeq">
+        INSERT INTO t_building
+        ( std_point1
+          , std_point2
+          , area_point1
+          , area_point2
+          , build_name
+          , addr1
+          , addr2
+          , ground_floor
+          , base_floor
+          , is_use
+          , state_cd
+          , search_info
+          , memo
+          , reg_date
+          , reg_user
+        ) VALUES (
+          #{stdPoint1}
+          , #{stdPoint2}
+          , #{areaPoint1}
+          , #{areaPoint2}
+          , #{buildName}
+          , #{addr1}
+          , #{addr2}
+          , #{groundFloor}
+          , #{baseFloor}
+          , 'Y'
+          , ''
+          , #{searchInfo}
+          , #{memo}
+          , NOW()
+          , 0
+        );
+    </insert>
 
+    <!-- 층 정보 등록 -->
+    <insert id="insertFloorInfo">
+        INSERT INTO t_floor_info
+        ( build_seq
+          , floor
+          , file_path
+          , is_use
+        )
+        VALUES (
+          #{buildSeq}
+          , #{floor}
+          , #{filePath}
+          , 'Y'
+        )
     </insert>
 
 </mapper>
