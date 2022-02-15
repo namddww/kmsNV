@@ -13,6 +13,11 @@ import org.springframework.web.multipart.MultipartFile;
 public class FloorInfoDto {
 
     /**
+     * 빌딩seq
+     */
+    private int buildSeq;
+
+    /**
      * 층수
      */
     private int floor;

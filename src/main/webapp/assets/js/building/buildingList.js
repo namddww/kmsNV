@@ -1,11 +1,11 @@
 let _buildingList = {
-    $scope      : null, // 영역
-    $tableList  : null, // content form
+    $scope : null, // 영역
+    $tableList : null,
 
     init : function () {
 
-        this.$scope      = $("#buildingList");
-        this.$tableList  = $('#buildingListTable', this.$scope);
+        this.$scope = $("#buildingList");
+        this.$tableList = $('#buildingListTable', this.$scope);
 
         this.events();
     },

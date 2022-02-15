@@ -1,9 +1,9 @@
 var _floorPopup = {
-    $scope      : null, // 영역
+    $scope : null, // 영역
 
     init : function () {
 
-        this.$scope      = $("#floorPopupArea");
+        this.$scope = $("#floorPopupArea");
 
         this.events();
     },

@@ -1,9 +1,9 @@
 let _pointPopup = {
-    $scope      : null, // 영역
+    $scope : null, // 영역
 
     init : function () {
 
-        this.$scope      = $("#map");
+        this.$scope = $("#map");
 
         this.events();
     },

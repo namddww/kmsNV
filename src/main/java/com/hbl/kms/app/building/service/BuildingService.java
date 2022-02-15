@@ -6,12 +6,14 @@ import com.hbl.kms.app.building.mapper.BuildingMapper;
 import com.hbl.kms.app.building.model.Building;
 import com.hbl.kms.app.building.model.BuildingDto;
 import com.hbl.kms.app.building.model.FloorInfo;
+import com.hbl.kms.app.building.model.FloorInfoDto;
 import com.hbl.kms.app.common.model.utils.UploadUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -48,4 +50,7 @@ public class BuildingService {
         return 1;
     }
 
+    public List<FloorInfo> selectFloorInfoList(FloorInfoDto floorInfoDto) {
+        return buildingMapper.selectFloorInfoList(floorInfoDto);
+    }
 }
