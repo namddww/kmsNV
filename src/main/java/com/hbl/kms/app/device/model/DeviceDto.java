@@ -15,6 +15,10 @@ public class DeviceDto {
      */
     private int buildSeq;
     /**
+     * 층정보 SEQ
+     */
+    private int floorSeq;
+    /**
      * 주소1
      * 기본주소
      */
@@ -57,15 +61,23 @@ public class DeviceDto {
      */
     private String memo;
     /**
+     * 상태코드
+     */
+    private String stateCd;
+    /**
+     * 사용여부
+     */
+    private String isUse;
+    /**
      * 한페이지 노출 시작 번호
      */
     int pageNum = 1;
     /**
-     * 한페이지 노출 종료 번호
-     */
-    int pageSize = 5;
-    /**
      * 한페이지 노출 갯수
+     */
+    int pageSize = 10;
+    /**
+     * 한페이지 노출 종료 번호
      */
     int NavigatePages = 10;
     // TODO : BANG 지역, 메모 누락

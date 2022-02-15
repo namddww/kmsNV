@@ -40,17 +40,14 @@ let _pointPopup = {
                 polyline: false,
                 polygon: false,
                 circle: false, // Turns off this drawing tool
-                rectangle: {
-                    shapeOptions: {
-                        clickable: false
-                    }
-                },
+                rectangle: false,
                 marker: true,
-                circlemarker: false
+                circlemarker: false,
             },
             edit: {
                 featureGroup: editableLayers, //REQUIRED!!
-                remove: false
+                remove: false,
+                edit: false,
             }
         };
 
@@ -62,6 +59,7 @@ let _pointPopup = {
         // var imageUrl = "file:///C:/upload/images/building/sample_2.jpg";
         // var imageUrl = "D:\\test\\image\\sample_2.jpg";
         var imageUrl = "https://shop-phinf.pstatic.net/20210915_17/1631709921614RtBYz_PNG/%C3%CA%C4%DA%B3%D7_%B0%A1%B0%D4_%B8%DE%C0%CEPC.png?type=w345";
+        // var imageUrl = $("#imagePath").val();
 
         var imageBounds = [
             [x_1, y_1],
@@ -89,6 +87,10 @@ let _pointPopup = {
 
         // 건물좌표 등록
         $('#btnSave').on('click', function(){
+            if (x1 == '' || y1 == '') {
+                alert("자산 마커를 선택하지 않았습니다.\n" +
+                    "미 선택 시 좌표는 자동으로 입력 되지 않습니다.");
+            }
             $("#point1", opener.document).val(x1);
             $("#point2", opener.document).val(y1);
             window.close();

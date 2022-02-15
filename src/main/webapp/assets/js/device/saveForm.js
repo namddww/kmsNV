@@ -30,7 +30,7 @@ function devicePointPopup() {
         alert('건물을 선택해 주세요.');
         return false;
     }
-    var url = "/device/devicePointPopup";
+    var url = "/device/devicePointPopup" + "?buildSeq=" + $("#buildSeq").val() + "&floor=" + $("#floor option:selected").val();
     window.open(url, '_blank');
 }
 
@@ -67,7 +67,7 @@ function deviceSave() {
 }
 
 function deviceList() {
-
+    location.href = "/device/list"
 }
 
 

@@ -11,5 +11,10 @@ public interface DeviceMapper {
 
     List<BuildingInfoList> selectBuildingInfoList(DeviceDto deviceDto);
 
+    String selectFloorFilePath(int buildSeq, int floor);
+
+    int selectFloorSeq(DeviceDto deviceDto);
+
     int insertDevice(DeviceDto deviceDto);
+
 }

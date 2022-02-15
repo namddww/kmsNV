@@ -8,7 +8,7 @@
         SELECT
             BUILD_SEQ
             , BUILD_NAME
-            , '지역컬럼 미존재'
+            , LOCATION_CD
             , CONCAT(ADDR1, ' ', ADDR2) AS ADDRESS
             , GROUND_FLOOR
             , BASE_FLOOR
@@ -23,9 +23,53 @@
         FROM t_building
     </select>
 
+    <select id="selectFloorFilePath" resultType="String">
+        SELECT
+            fi.FILE_PATH
+        FROM t_building tb
+                 LEFT JOIN t_floor_info fi ON tb.BUILD_SEQ = fi.BUILD_SEQ
+        WHERE fi.BUILD_SEQ = #{buildSeq}
+          AND fi.fLOOR = #{floor}
+    </select>
+
+    <!-- FloorSeq 조회-->
+    <select id="selectFloorSeq" resultType="int">
+        SELECT
+            FLOOR_SEQ
+        FROM t_floor_info
+        WHERE BUILD_SEQ = #{buildSeq}
+          AND FLOOR = #{floor}
+    </select>
+
     <!-- 자산정보 저장 -->
     <insert id="insertDevice">
-
+        INSERT INTO t_device
+        ( BUILD_SEQ
+          , FLOOR_SEQ
+          , FLOOR
+          , TYPE_CD
+          , LOCATION
+          , POINT1
+          , POINT2
+          , REG_DATE
+          , REG_USER
+          , STATE_CD
+          , IS_USE
+          , MEMO
+        ) VALUES (
+          #{buildSeq}
+          , (SELECT IFNULL(MAX(td.BUILD_SEQ), 0) + 1 FROM t_device td)
+          , #{floor}
+          , #{typeCd}
+          , #{locationCd}
+          , #{point1}
+          , #{point2}
+          , NOW()
+          , 999
+          , #{stateCd}
+          , #{isUse}
+          , #{memo}
+        )
     </insert>
 
 </mapper>

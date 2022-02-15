@@ -20,7 +20,13 @@ public class DeviceService {
         return PageInfo.of(deviceMapper.selectBuildingInfoList(deviceDto), deviceDto.getNavigatePages());
     }
 
+    public String selectFloorFilePath(int buildSeq, int floor) {
+        return deviceMapper.selectFloorFilePath(buildSeq, floor);
+    }
+
     public int insertDevice(DeviceDto deviceDto) {
+        // buildSeq, floor 정보로 floorSeq 조회
+        deviceDto.setFloorSeq(deviceMapper.selectFloorSeq(deviceDto));
         return deviceMapper.insertDevice(deviceDto);
     }
 

@@ -7,10 +7,7 @@ import com.hbl.kms.app.device.model.DeviceDto;
 import com.hbl.kms.app.device.service.DeviceService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @AllArgsConstructor
@@ -59,8 +56,15 @@ public class DeviceController {
      * 자산등록 > 건물조회 팝업
      */
     @GetMapping(ControllerUrlConstants.DeviceUrl.Device.POINT_POPUP)
-    public ModelAndView devicePointPopup(ModelAndView mav) {
+    public ModelAndView devicePointPopup(ModelAndView mav
+            , @RequestParam(value = "buildSeq", required = true) int buildSeq
+            , @RequestParam(value = "floor", required = true) int floor) {
         mav.setViewName("device/devicePointPopup");
+
+        // buildSeq, floor 정보로 층 파일정보 조회
+        String imagePath = deviceService.selectFloorFilePath(buildSeq, floor);
+        mav.addObject("imagePath", imagePath);
+
         return mav;
     }
 

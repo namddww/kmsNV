@@ -21,6 +21,7 @@
     <div id="map">
     </div>
     <button id="btnSave" class="btn gray">저장</button>
+    <input type="hidden" id="imagePath" value="<c:out value="${imagePath}"/>">
 </body>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="/assets/js/device/devicePointPopup.js"></script>
