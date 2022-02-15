@@ -3,7 +3,7 @@
 
 <h1>건물 조회</h1>
 <div id="buildingList">
-    <table id="buildingListTable" border="1">
+    <table id="buildingListTable">
         <thead>
         <tr>
             <th>건물명</th>

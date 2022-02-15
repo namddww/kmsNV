@@ -1,6 +1,7 @@
 package com.hbl.kms.app.building;
 
 import com.hbl.kms.app.building.model.BuildingDto;
+import com.hbl.kms.app.building.model.FloorInfoDto;
 import com.hbl.kms.app.building.service.BuildingService;
 import com.hbl.kms.app.common.constants.ControllerUrlConstants;
 import com.hbl.kms.app.common.model.Result;
@@ -61,6 +62,13 @@ public class BuildingController {
     @ResponseBody
     public Result insertBuilding(BuildingDto buildingDto) {
         return ResponseUtil.process(buildingService.insertBuilding(buildingDto));
+    }
+
+    // 층 정보 조회 데이터
+    @GetMapping(ControllerUrlConstants.BuildingUrl.Building.SEARCH_FLOORINFO)
+    @ResponseBody
+    public Result floorInfoListData(@ModelAttribute FloorInfoDto floorInfoDto) {
+        return ResponseUtil.process(buildingService.selectFloorInfoList(floorInfoDto));
     }
 
 }

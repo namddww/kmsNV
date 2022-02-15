@@ -1,12 +1,14 @@
 package com.hbl.kms.app.building.model;
 
 import lombok.*;
+import org.apache.ibatis.type.Alias;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Alias("floorInfo")
 public class FloorInfo {
     /**
      * 층 SEQ

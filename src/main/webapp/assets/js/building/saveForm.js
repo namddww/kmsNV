@@ -1,7 +1,7 @@
 var _building = {
-    $scope: null, // 영역
-    $contentForm: null, // content form
-    $tableList  : null, // content form
+    $scope : null, // 영역
+    $contentForm : null, // content form
+    $tableList : null, // content form
 
     init: function () {
 

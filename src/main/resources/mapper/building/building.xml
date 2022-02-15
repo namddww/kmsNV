@@ -6,13 +6,19 @@
     <!-- 건물정보 조회 -->
     <select id="selectBuildingList" resultType="building">
         SELECT
-            build_name
+            build_seq
+            , build_name
             , addr1
             , addr2
             , ground_floor
             , base_floor
             , reg_date
+            , std_point1
+            , std_point2
+            , area_point1
+            , area_point2
         FROM t_building
+        WHERE build_name LIKE CONCAT('%', #{buildName}, '%')
     </select>
 
     <!-- 건물정보 등록 -->
@@ -67,5 +73,18 @@
           , 'Y'
         )
     </insert>
+
+    <!-- 층 정보 조회 -->
+    <select id="selectFloorInfoList" resultType="floorInfo">
+        SELECT
+            floor_seq
+            , build_seq
+            , floor
+            , file_path
+            , is_use
+        FROM t_floor_info
+        WHERE build_seq = #{buildSeq}
+        ORDER BY floor DESC
+    </select>
 
 </mapper>
