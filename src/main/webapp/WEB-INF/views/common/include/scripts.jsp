@@ -3,6 +3,7 @@
 <script src="/assets/js/common/ui_common.js"></script>
 <script src="/assets/js/common/jquery-ui.min.js"></script>
 <script src="/assets/js/common/jquery.plugin.js"></script>
+<script src="/assets/js/common/common.js"></script>
 
 <%--css--%>
 <link rel="stylesheet" href="/assets/css/common.css">

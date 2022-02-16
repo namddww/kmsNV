@@ -20,11 +20,16 @@ function buildingSearch(page) {
     console.log("buildingSearch 진입");
     var pageNum = page || 1;
 
+    var param = {
+      pageNum: pageNum
+    };
+
     $.ajax({
         type: 'GET',
         url: '/device/search',
         async: false,
-        data: pageNum,
+        // data: {pageNum : pageNum},
+        data: param,
         success: function(res) {
             $("#tbody").empty();
             if (res.result.list.length > 0) {
@@ -60,6 +65,7 @@ function buildingSearch(page) {
                             .append($('<td/>').text(val.regDate)) // 등록일자
                     ) // end append_tbody
                 });
+                pagination(res.result, '', 'buildingSearch');
             } else {
                 console.log("사이즈 없음");
                 $("#tbody").append($('<tr/>')

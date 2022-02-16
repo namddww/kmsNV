@@ -221,8 +221,8 @@ input.hasDatepicker{width:115px;text-align:center;box-sizing:border-box;backgrou
 .paging .arw.prev.on a{background-position:0 -15px;}
 .paging .arw.next.on a{background-position:0 -15px;}
 .paging a,
-.paging .at a{display:inline-block;padding:0 15px;vertical-align:middle;line-height:15px;font-size:15px;}
-.paging .at a{color:#e9464a;font-weight: 800; font-size: 16px}
+.paging .active a{display:inline-block;padding:0 15px;vertical-align:middle;line-height:15px;font-size:15px;}
+.paging .active a{color:#e9464a;font-weight: 800; font-size: 16px}
 
 
 /* popup
