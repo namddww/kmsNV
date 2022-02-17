@@ -72,4 +72,12 @@
         )
     </insert>
 
+    <!-- 층별 자산정보 조회 -->
+    <select id="selectDeviceListByFloor" resultType="device">
+        SELECT t.point1, t.point2, d.type_cd
+        FROM t_device d
+        LEFT JOIN t_tracking t ON d.device_seq = t.device_seq
+        WHERE d.floor_seq = #{floorSeq}
+    </select>
+
 </mapper>

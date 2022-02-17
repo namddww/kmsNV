@@ -1,5 +1,6 @@
 package com.hbl.kms.app.device;
 
+import com.hbl.kms.app.building.model.FloorInfoDto;
 import com.hbl.kms.app.common.constants.ControllerUrlConstants;
 import com.hbl.kms.app.common.model.Result;
 import com.hbl.kms.app.common.model.utils.ResponseUtil;
@@ -75,5 +76,12 @@ public class DeviceController {
     @ResponseBody
     public Result insertDevice(DeviceDto deviceDto) {
         return ResponseUtil.process(deviceService.insertDevice(deviceDto));
+    }
+
+    // device 정보 조회 데이터
+    @GetMapping(ControllerUrlConstants.DeviceUrl.Device.SEARCH_FLOOR)
+    @ResponseBody
+    public Result deviceListData(@ModelAttribute DeviceDto deviceDto) {
+        return ResponseUtil.process(deviceService.selectDeviceListByFloor(deviceDto));
     }
 }

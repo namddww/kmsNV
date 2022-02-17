@@ -1,6 +1,7 @@
 package com.hbl.kms.app.device.mapper;
 
 import com.hbl.kms.app.device.model.BuildingInfoList;
+import com.hbl.kms.app.device.model.Device;
 import com.hbl.kms.app.device.model.DeviceDto;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -17,4 +18,5 @@ public interface DeviceMapper {
 
     int insertDevice(DeviceDto deviceDto);
 
+    List<Device> selectDeviceListByFloor(DeviceDto deviceDto);
 }

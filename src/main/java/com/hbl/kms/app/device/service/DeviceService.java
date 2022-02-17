@@ -3,10 +3,13 @@ package com.hbl.kms.app.device.service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hbl.kms.app.device.mapper.DeviceMapper;
+import com.hbl.kms.app.device.model.Device;
 import com.hbl.kms.app.device.model.DeviceDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -30,4 +33,7 @@ public class DeviceService {
         return deviceMapper.insertDevice(deviceDto);
     }
 
+    public List<Device> selectDeviceListByFloor(DeviceDto deviceDto) {
+        return deviceMapper.selectDeviceListByFloor(deviceDto);
+    }
 }

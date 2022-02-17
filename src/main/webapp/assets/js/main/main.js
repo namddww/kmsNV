@@ -53,6 +53,7 @@ let _main = {
         });
 
         var image;
+        var markers = [];
         //층 클릭
         $(document).on("click", ".btnFloor", function() {
             if(map.hasLayer(image)){
@@ -66,6 +67,50 @@ let _main = {
                 [x_2, y_2]
             ];
             image = L.imageOverlay(imageUrl, imageBounds).addTo(map);
+
+            let param = {
+                floorSeq: f
+            };
+            $.ajax({
+                type : "GET",
+                url : "/device/search/floor",
+                data : param,
+                success : function(res){
+                    const _this = this;
+
+                    //device정보 클리어
+                    if (markers != undefined) {
+                        for(let i=0; i<markers.length; i++){
+                            map.removeLayer(markers[i]);
+                        }
+                    };
+                    if (res.result.length > 0) {
+                        $.each(res.result, function (i, val) {
+                            let x1 = val.point1;
+                            let y1 = val.point2;
+                            var iconUrl = "/assets/img/chk_atv.png"
+                            var icon = L.icon({
+                                iconUrl: iconUrl,
+                                iconSize: [32, 46], // 모바일에서는 2x 이미지 사용
+                                iconAnchor: [16,46],
+                                popupAnchor: [0,-46]
+                            });
+
+                            var latlng = L.latLng(x1, y1);
+                            /*L.marker(latlng, {
+                                icon: icon
+                            }).addTo(map);*/
+                            markers.push(L.marker(latlng).addTo(map));
+
+                        });
+                    } else {
+                        alert('등록된 장비가 없습니다.');
+                    }
+                },
+                error : function(XMLHttpRequest, textStatus, errorThrown){
+
+                }
+            });
         });
 
     },
