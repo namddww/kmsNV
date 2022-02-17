@@ -1,5 +1,6 @@
 package com.hbl.kms.app.device.mapper;
 
+import com.hbl.kms.app.device.model.AreaList;
 import com.hbl.kms.app.device.model.BuildingInfoList;
 import com.hbl.kms.app.device.model.Device;
 import com.hbl.kms.app.device.model.DeviceDto;
@@ -9,6 +10,8 @@ import java.util.List;
 
 @Mapper
 public interface DeviceMapper {
+
+    List<AreaList>  selectAreaList(String codeGroupCd);
 
     List<BuildingInfoList> selectBuildingInfoList(DeviceDto deviceDto);
 

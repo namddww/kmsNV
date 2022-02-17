@@ -3,6 +3,7 @@ package com.hbl.kms.app.device.service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hbl.kms.app.device.mapper.DeviceMapper;
+import com.hbl.kms.app.device.model.AreaList;
 import com.hbl.kms.app.device.model.Device;
 import com.hbl.kms.app.device.model.DeviceDto;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,10 @@ import java.util.List;
 public class DeviceService {
 
     private final DeviceMapper deviceMapper;
+
+    public List<AreaList> selectAreaList(String codeGroupCd) {
+        return deviceMapper.selectAreaList(codeGroupCd);
+    }
 
     public PageInfo<?> selectBuildingInfoList(DeviceDto deviceDto) {
         PageHelper.startPage(deviceDto);
