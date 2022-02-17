@@ -82,7 +82,7 @@
           , MEMO
         ) VALUES (
           #{buildSeq}
-          , (SELECT IFNULL(MAX(td.BUILD_SEQ), 0) + 1 FROM t_device td)
+          , #{floorSeq}
           , #{floor}
           , #{typeCd}
           , #{locationCd}
