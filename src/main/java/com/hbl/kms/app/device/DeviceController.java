@@ -1,20 +1,28 @@
 package com.hbl.kms.app.device;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hbl.kms.app.common.constants.ControllerUrlConstants;
 import com.hbl.kms.app.common.model.Result;
 import com.hbl.kms.app.common.model.utils.ResponseUtil;
+import com.hbl.kms.app.device.model.AreaList;
 import com.hbl.kms.app.device.model.DeviceDto;
 import com.hbl.kms.app.device.service.DeviceService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
+@Slf4j
 @AllArgsConstructor
 @Controller
 public class DeviceController {
 
     private final DeviceService deviceService;
+    private static final String codeGroupCd = "ACD";
 
     /**
      * 자산등록 목록화면
@@ -22,6 +30,17 @@ public class DeviceController {
     @GetMapping(ControllerUrlConstants.DeviceUrl.Device.DEFAULT)
     public ModelAndView deviceList(ModelAndView mav) {
         mav.setViewName("device/deviceList");
+
+        String json = null;
+        ObjectMapper mapper = new ObjectMapper();
+        List<AreaList> areaList = deviceService.selectAreaList(codeGroupCd);
+
+        try {
+            json = mapper.writeValueAsString(areaList);
+        } catch (JsonProcessingException e) {
+            log.error("NoticeController.faqCategoryLists error {}", e);
+        }
+        mav.addObject("areaList", json);
         return mav;
     }
 

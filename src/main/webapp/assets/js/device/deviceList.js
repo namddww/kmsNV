@@ -1,6 +1,7 @@
 $(document).ready(function() {
-    console.log("111");
-    console.log("222");
+
+    // 지역 셀렉트박스 그리기.
+    areaHtml(areaList);
 
     // 진입 후 건물 검색
     buildingSearch(1);
@@ -14,14 +15,42 @@ $(document).ready(function() {
     $("#a-delete").click(function () {
         deviceDelete();
     });
+    // 조회 버튼 선택
+    $("#a-search").click(function () {
+        buildingSearch(1);
+    });
 });
+
+function areaHtml(areaList) {
+    $("#select-area").empty();
+
+    $("#select-area").append(
+        $('<option/>')
+            .attr('value', '')
+            .text('전체')
+    )
+    $.each(areaList, function (i, val) {
+        $("#select-area").append(
+            $('<option/>')
+                .attr('value', val.codeVal)
+                .text(val.codeName)
+        )
+    });
+
+
+}
 
 function buildingSearch(page) {
     console.log("buildingSearch 진입");
     var pageNum = page || 1;
 
     var param = {
-      pageNum: pageNum
+        pageNum: pageNum,
+        buildName : $("#buildName").val(),
+        scRegDtSt : $("#scRegDtSt").val().replaceAll('-',''),
+        scRegDtEd : $("#scRegDtEd").val().replaceAll('-',''),
+        locationCd : $("#select-area option:selected").val(),
+        isUse : $("#select-useYn option:selected").val()
     };
 
     $.ajax({
@@ -58,7 +87,7 @@ function buildingSearch(page) {
                                 .attr("onClick", "javascript:deviceDetail('" + val.buildSeq + "');")
                                 .text(val.buildName)
                             ) // 건물명
-                            .append($('<td/>').text('서울')) // 지역
+                            .append($('<td/>').text(val.locationCd)) // 지역
                             .append($('<td/>').text(val.address)) // 상세주소
                             .append($('<td/>').text(val.groundFloor)) // 층수
                             .append($('<td/>').text(val.point)) // 좌표

@@ -45,7 +45,7 @@ public class DeviceDto {
      */
     private String typeCd;
     /**
-     * 위치
+     * 위치(지역)
      */
     private String locationCd;
     /**
@@ -69,6 +69,18 @@ public class DeviceDto {
      */
     private String isUse;
     /**
+     * 건물명
+     */
+    private String buildName;
+    /**
+     * 시작일
+     */
+    private String scRegDtSt;
+    /**
+     * 종료일
+     */
+    private String scRegDtEd;
+    /**
      * 한페이지 노출 시작 번호
      */
     int pageNum = 1;
@@ -80,5 +92,4 @@ public class DeviceDto {
      * 한페이지 노출 종료 번호
      */
     int NavigatePages = 10;
-    // TODO : BANG 지역, 메모 누락
 }

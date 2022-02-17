@@ -3,17 +3,25 @@
 
 <mapper namespace="com.hbl.kms.app.device.mapper.DeviceMapper">
 
+    <select id="selectAreaList" resultType="areaList">
+        SELECT
+            CODE_NAME
+            , CODE_VAL
+        FROM t_code
+        WHERE IS_USE = 'Y'
+        AND GROUP_CD = #{codeGroupCd}
+    </select>
+
     <!-- 건물정보 조회 -->
     <select id="selectBuildingInfoList" resultType="buildingInfoList">
         SELECT
             BUILD_SEQ
             , BUILD_NAME
-            , LOCATION_CD
+            , (SELECT CODE_NAME FROM t_code tc WHERE LOCATION_CD = tc.CODE_VAL) LOCATION_CD
             , CONCAT(ADDR1, ' ', ADDR2) AS ADDRESS
             , GROUND_FLOOR
             , BASE_FLOOR
             , CONCAT(STD_POINT1, ' / ', STD_POINT2) AS POINT
-            , LOCATION_CD
             , STD_POINT1
             , STD_POINT2
             , AREA_POINT1
@@ -21,6 +29,22 @@
             , REG_DATE
             , REG_USER
         FROM t_building
+        WHERE 1=1
+        <if test="buildName != null and buildName != ''">
+            AND BUILD_NAME LIKE CONCAT('%', #{buildName}, '%')
+        </if>
+        <if test="scRegDtSt != null and scRegDtSt != ''">
+            AND DATE_FORMAT(REG_DATE, '%Y%m%d') &gt;= #{scRegDtSt}
+        </if>
+        <if test="scRegDtEd != null and scRegDtEd != ''">
+            AND DATE_FORMAT(REG_DATE, '%Y%m%d') &lt;= #{scRegDtEd}
+        </if>
+        <if test="locationCd != null and locationCd != ''">
+            AND LOCATION_CD = #{locationCd}
+        </if>
+        <if test="isUse != null and isUse != ''">
+            AND IS_USE = #{isUse}
+        </if>
     </select>
 
     <select id="selectFloorFilePath" resultType="String">
