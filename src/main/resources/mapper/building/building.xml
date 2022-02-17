@@ -18,7 +18,10 @@
             , area_point1
             , area_point2
         FROM t_building
-        WHERE build_name LIKE CONCAT('%', #{buildName}, '%')
+        WHERE 1=1
+        <if test="buildName != null">
+            AND build_name LIKE CONCAT('%', #{buildName}, '%')
+        </if>
     </select>
 
     <!-- 건물정보 등록 -->

@@ -18,7 +18,7 @@ let _buildingList = {
     search : function(page) {
         const _this = this;
         var param = {
-
+            pageNum: page
         };
         $.ajax({
             type : "GET",
@@ -26,6 +26,7 @@ let _buildingList = {
             data : param,
             success : function(res){
                 _this.dataBind(res.result);
+                pagination(res.result, '', '_buildingList.search');
             },
             error : function(XMLHttpRequest, textStatus, errorThrown){
 

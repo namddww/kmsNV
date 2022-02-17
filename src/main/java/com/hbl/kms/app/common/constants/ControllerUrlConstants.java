@@ -28,6 +28,7 @@ public class ControllerUrlConstants {
             String POINT_POPUP = "/device/devicePointPopup";
             String SEARCH = "/device/search";
             String SAVE = "/device/save";
+            String SEARCH_FLOOR = "/device/search/floor";
         }
     }
 }
