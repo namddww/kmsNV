@@ -9,38 +9,38 @@
             <span>기본정보</span>
             <div>
                 <span>건물좌표:</span>
-                <input type="text" id="stdPoint" disabled style="width: 25%;">
-                <input type="text" id="areaPoint" disabled style="width: 25%;">
+                <input type="text" id="stdPoint" disabled style="width: 25%;" value="${building.stdPoint1} / ${building.stdPoint2}">
+                <input type="text" id="areaPoint" disabled style="width: 25%;" value="${building.stdPoint1} / ${building.stdPoint2}">
                 <button type="button" id="btnPoint" class="btn gray">좌표등록</button>
                 <button type="button" id="btnDirect" class="btn gray">직접입력</button><br>
                 <div id="inputDirect" style="display: none;">
                     좌상단:
-                    <input type="hidden" id="stdPoint1">
-                    <input type="hidden" id="stdPoint2">
+                    <input type="hidden" id="stdPoint1" value="${building.stdPoint1}">
+                    <input type="hidden" id="stdPoint2" value="${building.stdPoint2}">
                     우하단:
-                    <input type="hidden" id="areaPoint1">
-                    <input type="hidden" id="areaPoint2">
+                    <input type="hidden" id="areaPoint1" value="${building.areaPoint1}">
+                    <input type="hidden" id="areaPoint2" value="${building.areaPoint2}">
                 </div>
             </div>
             <div>
                 <span>건물명:</span>
-                <input type="text" id="buildName">
+                <input type="text" id="buildName" value="${building.buildName}">
             </div>
             <div>
                 <span>상세주소1:</span>
-                <input type="text" id="addr1" disabled style="width: 25%;"  >
+                <input type="text" id="addr1" disabled style="width: 25%;" value="${building.addr1}">
             </div>
             <div>
                 <span>상세주소2:</span>
-                <input type="text" id="addr2" style="width: 25%;">
+                <input type="text" id="addr2" style="width: 25%;" value="${building.addr2}">
                 <button type="button" id="btnAddr" class="btn gray">주소조회</button>
             </div>
             <div>
                 <span>층정보</span>
                 <span>지상:</span>
-                <input type="number" id="groundFloor" min="1" style="width: 5%;"><span>층</span>
+                <input type="number" id="groundFloor" min="1" style="width: 5%;" value="${building.groundFloor}"><span>층</span>
                 <span>지하:</span>
-                <input type="number" id="baseFloor" min="0" style="width: 5%;"><span>층</span>
+                <input type="number" id="baseFloor" min="0" style="width: 5%;" value="${building.baseFloor * -1}"><span>층</span>
                 <button type="button" id="btnFloor" class="btn gray">등록</button>
                 <button type="button" id="btnFloorClear" class="btn gray">초기화</button>
             </div>
@@ -57,7 +57,26 @@
                         <th></th>
                     </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                        <c:forEach var="data" items="${floor}" varStatus="status">
+                            <tr>
+                                <c:if test="${data.floor < 0}">
+                                    <td>지하${data.floor * -1}</td>
+                                </c:if>
+                                <c:if test="${data.floor > 0}">
+                                    <td>${data.floor}</td>
+                                </c:if>
+                                <td>
+                                    <div id="df${data.floor}">
+                                        <span>${data.filePath}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button type="button" id="btnFloorPopup" data-num="${data.floor}">등록</button>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -78,10 +97,10 @@
         </div>
         <hr>
         <div>
-            <button type="button" id="btnSave" class="btn gray">등록</button>
+            <button type="button" id="btnSave" class="btn gray">수정</button>
             <button type="button" id="btnList" class="btn gray">목록</button>
         </div>
     </form>
 </div>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript" src="/assets/js/building/saveForm.js"></script>
+<script type="text/javascript" src="/assets/js/building/buildingInfo.js"></script>

@@ -18,4 +18,8 @@ public interface BuildingMapper {
     int insertFloorInfo(FloorInfo floorInfo);
 
     List<FloorInfo> selectFloorInfoList(FloorInfoDto floorInfoDto);
+
+    Building selectBuildingInfo(int buildSeq);
+
+    FloorInfo selectBuildingFloorInfo(int buildSeq);
 }

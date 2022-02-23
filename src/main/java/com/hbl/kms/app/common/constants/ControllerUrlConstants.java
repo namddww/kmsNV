@@ -15,6 +15,7 @@ public class ControllerUrlConstants {
             String POINT_POPUP = "/building/pointPopup";
             String FLOOR_POPUP = "/building/floorPopup";
             String SEARCH_FLOORINFO = "/building/search/floorInfo";
+            String INFO = "/building/buildingInfo";
         }
 
     }

@@ -1,4 +1,4 @@
-var _building = {
+var _buildingInfo = {
     $scope : null, // 영역
     $contentForm : null, // content form
     $tableList : null, // content form
@@ -15,7 +15,6 @@ var _building = {
 
     events: function () {
         const _this = this;
-        _this.floorClear();
 
         // 건물좌표 등록
         $('#btnPoint').on('click', function () {
@@ -84,7 +83,7 @@ var _building = {
                         ).append(
                             $('<td/>').append(
                                 $('<button/>').text('등록').attr('type', 'button').attr('id', 'btnFloorPopup')
-                                .attr('data-num', Number((i-1)))
+                                    .attr('data-num', Number((i-1)))
                             )
                         )
                     )
@@ -203,6 +202,6 @@ var _building = {
 
 // onload
 $(document).ready(function() {
-    _building.init();
+    _buildingInfo.init();
 });
 
