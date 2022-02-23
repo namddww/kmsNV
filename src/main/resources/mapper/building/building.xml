@@ -24,6 +24,24 @@
         </if>
     </select>
 
+    <!-- 건물정보 조회 -->
+    <select id="selectBuildingInfo" resultType="building">
+        SELECT
+            build_seq
+            , build_name
+            , addr1
+            , addr2
+            , ground_floor
+            , base_floor
+            , reg_date
+            , std_point1
+            , std_point2
+            , area_point1
+            , area_point2
+        FROM t_building
+        WHERE build_seq = #{buildSeq}
+    </select>
+
     <!-- 건물정보 등록 -->
     <insert id="insertBuilding" useGeneratedKeys="true" keyProperty="buildSeq">
         INSERT INTO t_building

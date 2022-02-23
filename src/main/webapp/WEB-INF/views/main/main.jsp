@@ -35,8 +35,11 @@
         background-color: #f5f8ff;
         text-align: center;
     }
-    .btnFloor{
-
+    #btnPopup{
+        top: 90%;
+        left: 90%;
+        position: absolute;
+        z-index: 500;
     }
 </style>
 <body>
@@ -63,6 +66,9 @@
 <div id="floorInfo">
     <ul id="floorInfoList">
     </ul>
+</div>
+<div>
+    <button id="btnPopup" type="button" class="btn gray">팝업</button>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>

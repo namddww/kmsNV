@@ -54,14 +54,16 @@ let _main = {
 
         var image;
         var markers = [];
+        var markersB = [];
+        var imageUrl;
         //층 클릭
         $(document).on("click", ".btnFloor", function() {
             if(map.hasLayer(image)){
                 map.removeLayer(image);
             }
             let f = $(this).attr('data-f');
-            var imageUrl = $('#F'+f).val();
-            //var imageUrl = 'https://www.codingfactory.net/wp-content/uploads/abc.jpg';
+            imageUrl = $('#F'+f).val();
+            // imageUrl = 'https://www.codingfactory.net/wp-content/uploads/abc.jpg';
             var imageBounds = [
                 [x_1, y_1],
                 [x_2, y_2]
@@ -84,6 +86,11 @@ let _main = {
                             map.removeLayer(markers[i]);
                         }
                     };
+                    markers = [];
+                    markersB = [];
+                    //영역의 가로 세로 길이
+                    let t = L.point(x_1, y_1).distanceTo(L.point(x_2, y_1));
+                    let l = L.point(x_1, y_1).distanceTo(L.point(x_1, y_2));
                     if (res.result.length > 0) {
                         $.each(res.result, function (i, val) {
                             let x1 = val.point1;
@@ -102,6 +109,16 @@ let _main = {
                             }).addTo(map);*/
                             markers.push(L.marker(latlng).addTo(map));
 
+                            if(x1 <= x_1 && x1 >= x_2 && y1 >= y_1 && y1 <= y_2){
+                                let mt = L.point(x_1, y_1).distanceTo(L.point(x1, y_1));
+                                let ml = L.point(x_1, y_1).distanceTo(L.point(x_1, y1));
+
+                                let top = (mt/t) * 100;
+                                let left = (ml/l) * 100;
+
+                                let obj = {top:top, left:left, typeCd:val.typeCd};
+                                markersB.push(obj);
+                            }
                         });
                     } else {
                         alert('등록된 장비가 없습니다.');
@@ -111,6 +128,12 @@ let _main = {
 
                 }
             });
+        });
+
+        // 검색
+        $('#btnPopup').on('click', function(){
+            console.log(markersB);
+            console.log(imageUrl);
         });
 
     },

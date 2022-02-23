@@ -53,4 +53,8 @@ public class BuildingService {
     public List<FloorInfo> selectFloorInfoList(FloorInfoDto floorInfoDto) {
         return buildingMapper.selectFloorInfoList(floorInfoDto);
     }
+
+    public Building selectBuildingInfo(int buildSeq) {
+        return buildingMapper.selectBuildingInfo(buildSeq);
+    }
 }

@@ -71,4 +71,15 @@ public class BuildingController {
         return ResponseUtil.process(buildingService.selectFloorInfoList(floorInfoDto));
     }
 
+    // 건물 상세페이지
+    @GetMapping(ControllerUrlConstants.BuildingUrl.Building.INFO)
+    public ModelAndView buildingInfo(ModelAndView mav, int buildSeq) {
+        FloorInfoDto floorInfoDto = new FloorInfoDto();
+        floorInfoDto.setBuildSeq(buildSeq);
+        mav.addObject("building", buildingService.selectBuildingInfo(buildSeq));
+        mav.addObject("floor", buildingService.selectFloorInfoList(floorInfoDto));
+        mav.setViewName("building/buildingInfo");
+        return mav;
+    }
+
 }

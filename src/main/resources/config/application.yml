@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    jdbc-url: jdbc:mysql://192.168.50.110:13306/admin?serverTimezone=UTC&characterEncoding=UTF-8
-    username: admin
-    password: admin.123qwe
+    jdbc-url: jdbc:mysql://localhost:3306/admin?serverTimezone=UTC&characterEncoding=UTF-8
+    username: root
+    password: hubjava1!
     mapper: classpath:mapper/**/*.xml
 
   messages:
