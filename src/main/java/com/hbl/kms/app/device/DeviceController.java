@@ -113,4 +113,24 @@ public class DeviceController {
     public Result deviceListData(@ModelAttribute DeviceDto deviceDto) {
         return ResponseUtil.process(deviceService.selectDeviceListByFloor(deviceDto));
     }
+
+    /**
+     * 디바이스 확대이미지 화면
+     */
+    @GetMapping(ControllerUrlConstants.DeviceUrl.Device.FLOOR_DEVICEINFO_POPUP)
+    public ModelAndView floorDeviceInfoPopup(ModelAndView mav, DeviceDto deviceDto) {
+        mav.setViewName("device/floorDeviceInfoPopup");
+
+        String json = null;
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            json = mapper.writeValueAsString(deviceDto.getDeviceInfoList());
+        } catch (JsonProcessingException e) {
+            log.error("NoticeController.faqCategoryLists error {}", e);
+        }
+        mav.addObject("deviceInfoList", json);
+
+        return mav;
+    }
 }

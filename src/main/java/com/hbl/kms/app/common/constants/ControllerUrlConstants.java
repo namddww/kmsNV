@@ -29,6 +29,7 @@ public class ControllerUrlConstants {
             String SEARCH = "/device/search";
             String SAVE = "/device/save";
             String SEARCH_FLOOR = "/device/search/floor";
+            String FLOOR_DEVICEINFO_POPUP = "/device/floorDeviceInfoPopup";
         }
     }
 }

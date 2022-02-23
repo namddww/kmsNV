@@ -3,6 +3,8 @@ package com.hbl.kms.app.device.model;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 /**
  * 자산등록 파라미터 전달용
  */
@@ -80,6 +82,10 @@ public class DeviceDto {
      * 종료일
      */
     private String scRegDtEd;
+
+    // 디바이스 이미지 확대용
+    List<DeviceInfoList> deviceInfoList;
+
     /**
      * 한페이지 노출 시작 번호
      */
