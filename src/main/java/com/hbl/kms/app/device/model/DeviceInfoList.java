@@ -18,4 +18,8 @@ public class DeviceInfoList {
      * 디바이스 타입
      */
     private String type;
+    /**
+     * 이미지 경로
+     */
+    private String imgPath;
 }

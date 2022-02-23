@@ -9,6 +9,7 @@ function img() {
     console.log("img deviceInfoList : ", deviceInfoList);
 
     var img = $("#img")
+    img.attr('src', deviceInfoList[0].imgPath);
     console.log("img width : ", img.width());
     console.log("img height : ", img.height());
 }
@@ -16,7 +17,7 @@ function img() {
 
 function onLoad() {
     console.log("onLoad deviceInfoList : ", deviceInfoList);
-    
+
     // TODO : 루프돌면서 좌물쇠, 키 구분값으로 색깔 구분하고, top,left 퍼센트 바꾸고
     $.each(deviceInfoList, function (i, val) {
         var deviceTypeColor = val.type == '자물쇠' ? 'red' : 'blue';

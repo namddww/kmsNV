@@ -22,19 +22,19 @@
     /*    z-index: -1;*/
     /*}*/
 
-    /*.device-point {*/
-    /*    display: flex;*/
-    /*    background-color: red;*/
-    /*    width:10px;*/
-    /*    height:10px;*/
-    /*    border-radius: 50px;*/
-    /*}*/
+    .device-point {
+        display: flex;
+        background-color: red;
+        width:10px;
+        height:10px;
+        border-radius: 50px;
+    }
 
 </style>
 <body onload="onLoad()">
 
     <div id="div-main">
-        <img id="img" src="/assets/testImg/test.jpg">
+        <img id="img" src="/assets/testImg/sample.jpg">
         <div class="div-append">
         </div>
     </div>
