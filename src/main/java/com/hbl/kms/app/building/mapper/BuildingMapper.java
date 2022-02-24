@@ -22,4 +22,8 @@ public interface BuildingMapper {
     Building selectBuildingInfo(int buildSeq);
 
     FloorInfo selectBuildingFloorInfo(int buildSeq);
+
+    int updateBuilding(BuildingDto buildingDto);
+
+    int deleteFloorInfo(BuildingDto buildingDto);
 }

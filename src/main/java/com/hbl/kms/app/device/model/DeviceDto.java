@@ -86,6 +86,9 @@ public class DeviceDto {
     // 디바이스 이미지 확대용
     List<DeviceInfoList> deviceInfoList;
 
+    // 건물이미지 경로
+    private String imgPath;
+
     /**
      * 한페이지 노출 시작 번호
      */

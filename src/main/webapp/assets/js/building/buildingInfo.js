@@ -133,7 +133,7 @@ var _buildingInfo = {
 
         // 건물좌표 등록
         $('#btnSave').on('click', function () {
-            _building.save();
+            _buildingInfo.save();
         });
 
     },
@@ -151,6 +151,7 @@ var _buildingInfo = {
 
         let formData = new FormData();
 
+        formData.append('buildSeq', $('#buildSeq', _this.$contentForm).val());
         formData.append('stdPoint1', $('#stdPoint1', _this.$contentForm).val());
         formData.append('stdPoint2', $('#stdPoint2', _this.$contentForm).val());
         formData.append('areaPoint1', $('#areaPoint1', _this.$contentForm).val());
@@ -176,6 +177,8 @@ var _buildingInfo = {
                 $.each($("#dfinput"+a, _this.$contentForm)[0].files, function (k, value){
                     formData.append("floorInfo["+i+"].file", value);
                 });
+            }else{
+                formData.append("floorInfo["+i+"].filePath", $('#filePath'+a, _this.$contentForm).val());
             }
             a++;
         }
@@ -183,10 +186,10 @@ var _buildingInfo = {
         formData.append('memo', $('#memo', _this.$contentForm).val());
 
         $.ajax({
-            type : "POST",
+            type : "PUT",
             processData : false,
             contentType : false,
-            url : "/building/save",
+            url : "/building/update",
             data : formData,
             success : function(res){
                 location.href = '/building/list'

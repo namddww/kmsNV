@@ -127,7 +127,7 @@ public class DeviceController {
         ObjectMapper mapper = new ObjectMapper();
 
         // TODO : TEST 시작
-        List<DeviceInfoList> deviceInfoList = new ArrayList<>();
+        /*List<DeviceInfoList> deviceInfoList = new ArrayList<>();
         deviceInfoList.add(0, new DeviceInfoList());
         deviceInfoList.get(0).setTop("10%");
         deviceInfoList.get(0).setLeft("10%");
@@ -158,7 +158,7 @@ public class DeviceController {
         deviceInfoList.get(5).setLeft("60%");
         deviceInfoList.get(5).setType("열쇠");
         deviceInfoList.get(5).setImgPath("/assets/testImg/test.jpg");
-        deviceDto.setDeviceInfoList(deviceInfoList);
+        deviceDto.setDeviceInfoList(deviceInfoList);*/
         // TODO : TEST 종료
 
         try {
@@ -167,6 +167,7 @@ public class DeviceController {
             log.error("NoticeController.faqCategoryLists error {}", e);
         }
         mav.addObject("deviceInfoList", json);
+        mav.addObject("imgPath", deviceDto.getImgPath());
 
         return mav;
     }

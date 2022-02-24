@@ -42,7 +42,7 @@ let _buildingList = {
             $.each(result.list, function (i, val) {
                 _this.$tableList.append(
                     $('<tr/>').append(
-                        $('<td/>').text(val.buildName)
+                        $('<td/>').append($('<a/>').text(val.buildName).attr("href", "/building/buildingInfo/"+val.buildSeq))
                     ).append(
                         $('<td/>').text(" ")
                     ).append(

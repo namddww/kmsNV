@@ -22,8 +22,13 @@ public class FloorInfoDto {
      */
     private int floor;
     /**
-     * 도면파일경로
+     * 도면파일
      */
     private MultipartFile file;
+
+    /**
+     * 도면파일경로
+     */
+    private String filePath;
 
 }

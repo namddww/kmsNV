@@ -1,12 +1,18 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="../../views/common/include/common.jsp" %>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<h1>건물 등록</h1>
+<h1>건물 상세페이지</h1>
 <hr>
 <div id="buildingArea">
     <form method="POST" id="buildingForm" enctype="multipart/form-data">
         <div>
             <span>기본정보</span>
+            <div>
+                <span>등록일: ${building.regDate}</span>
+                <span>등록자: ${building.regUser}</span>
+                <span>건물ID: ${building.buildSeq}</span>
+                <input type="hidden" id="buildSeq" value="${building.buildSeq}">
+            </div>
             <div>
                 <span>건물좌표:</span>
                 <input type="text" id="stdPoint" disabled style="width: 25%;" value="${building.stdPoint1} / ${building.stdPoint2}">
@@ -70,6 +76,7 @@
                                     <div id="df${data.floor}">
                                         <span>${data.filePath}</span>
                                     </div>
+                                    <input type="hidden" id="filePath${data.floor}" value="${data.filePath}">
                                 </td>
                                 <td>
                                     <button type="button" id="btnFloorPopup" data-num="${data.floor}">등록</button>
@@ -85,14 +92,14 @@
             <span>검색정보</span><br>
             <span>* 복수의 검색 정보 등록 시 '/'로 구분하여 등록</span>
             <div>
-                <textarea id="searchInfo"></textarea>
+                <textarea id="searchInfo">${building.searchInfo}</textarea>
             </div>
         </div>
         <hr>
         <div>
             <span>메모</span>
             <div>
-                <textarea id="memo"></textarea>
+                <textarea id="memo">${building.memo}</textarea>
             </div>
         </div>
         <hr>

@@ -8,10 +8,7 @@ import com.hbl.kms.app.common.model.Result;
 import com.hbl.kms.app.common.model.utils.ResponseUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -73,13 +70,20 @@ public class BuildingController {
 
     // 건물 상세페이지
     @GetMapping(ControllerUrlConstants.BuildingUrl.Building.INFO)
-    public ModelAndView buildingInfo(ModelAndView mav, int buildSeq) {
+    public ModelAndView buildingInfo(ModelAndView mav, @PathVariable("buildSeq") int buildSeq) {
         FloorInfoDto floorInfoDto = new FloorInfoDto();
         floorInfoDto.setBuildSeq(buildSeq);
         mav.addObject("building", buildingService.selectBuildingInfo(buildSeq));
         mav.addObject("floor", buildingService.selectFloorInfoList(floorInfoDto));
         mav.setViewName("building/buildingInfo");
         return mav;
+    }
+
+    // 건물 수정
+    @PutMapping(ControllerUrlConstants.BuildingUrl.Building.UPDATE)
+    @ResponseBody
+    public Result updateBuilding(BuildingDto buildingDto) {
+        return ResponseUtil.process(buildingService.updateBuilding(buildingDto));
     }
 
 }

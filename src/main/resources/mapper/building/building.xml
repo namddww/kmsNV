@@ -38,6 +38,10 @@
             , std_point2
             , area_point1
             , area_point2
+            , search_info
+            , memo
+            , reg_date
+            , reg_user
         FROM t_building
         WHERE build_seq = #{buildSeq}
     </select>
@@ -107,5 +111,29 @@
         WHERE build_seq = #{buildSeq}
         ORDER BY floor DESC
     </select>
+
+    <!-- 건물 정보 update -->
+    <update id="updateBuilding">
+        UPDATE t_building
+        SET
+            std_point1 = #{stdPoint1}
+            , std_point2 = #{stdPoint2}
+            , area_point1 = #{areaPoint1}
+            , area_point2 = #{areaPoint2}
+            , build_name = #{buildName}
+            , addr1 = #{addr1}
+            , addr2 = #{addr1}
+            , ground_floor = #{groundFloor}
+            , base_floor = #{baseFloor}
+            , search_info = #{searchInfo}
+            , memo = #{memo}
+        WHERE build_seq = #{buildSeq}
+    </update>
+
+    <!-- 층 정보 delete -->
+    <delete id="deleteFloorInfo">
+        DELETE FROM t_floor_info
+        WHERE build_seq = #{buildSeq}
+    </delete>
 
 </mapper>

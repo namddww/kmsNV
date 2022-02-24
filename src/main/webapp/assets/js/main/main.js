@@ -132,7 +132,15 @@ let _main = {
 
         // 검색
         $('#btnPopup').on('click', function(){
-            console.log(markersB);
+            let url = '/device/floorDeviceInfoPopup';
+            url = url + "?imgPath="+encodeURIComponent(imageUrl)
+            for(let i=0; i<markersB.length; i++){
+                url = url + "&" + encodeURIComponent("deviceInfoList["+i+"].type")+"="+markersB[i].typeCd;
+                url = url + "&" + encodeURIComponent("deviceInfoList["+i+"].left")+"="+markersB[i].left;
+                url = url + "&" + encodeURIComponent("deviceInfoList["+i+"].top")+"="+markersB[i].top;
+            }
+            window.open(url, '_blank');
+            console.log(markersB[0].left);
             console.log(imageUrl);
         });
 

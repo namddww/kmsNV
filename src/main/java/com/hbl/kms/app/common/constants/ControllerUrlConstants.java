@@ -12,10 +12,11 @@ public class ControllerUrlConstants {
             String SEARCH = "/building/search";
             String SAVE_FORM = "/building/saveForm";
             String SAVE = "/building/save";
+            String UPDATE = "/building/update";
             String POINT_POPUP = "/building/pointPopup";
             String FLOOR_POPUP = "/building/floorPopup";
             String SEARCH_FLOORINFO = "/building/search/floorInfo";
-            String INFO = "/building/buildingInfo";
+            String INFO = "/building/buildingInfo/{buildSeq}";
         }
 
     }

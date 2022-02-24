@@ -26,8 +26,8 @@ function onLoad() {
                 .attr('class', 'div' + i)
                 .css({
                     'position' : 'absolute',
-                    'top' : val.top,
-                    'left' : val.left
+                    'top' : val.top+"%",
+                    'left' : val.left+"%"
                 })
                 .append(
                     $('<span/>')

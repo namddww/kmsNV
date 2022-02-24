@@ -57,4 +57,27 @@ public class BuildingService {
     public Building selectBuildingInfo(int buildSeq) {
         return buildingMapper.selectBuildingInfo(buildSeq);
     }
+
+    public int updateBuilding(BuildingDto buildingDto) {
+        buildingMapper.updateBuilding(buildingDto);
+        buildingMapper.deleteFloorInfo(buildingDto);
+        for(int i=0; i<buildingDto.getFloorInfo().size(); i++){
+            FloorInfo floorInfo = new FloorInfo();
+            if(buildingDto.getFloorInfo().get(i).getFile() != null){
+                try {
+                    String filePath = UploadUtil.uploadImage("building", buildingDto.getFloorInfo().get(i).getFile());
+                    floorInfo.setFilePath(filePath);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }else{
+                floorInfo.setFilePath(buildingDto.getFloorInfo().get(i).getFilePath());
+            }
+            floorInfo.setBuildSeq(buildingDto.getBuildSeq());
+            floorInfo.setFloor(buildingDto.getFloorInfo().get(i).getFloor());
+            buildingMapper.insertFloorInfo(floorInfo);
+        }
+        return 1;
+    }
 }
