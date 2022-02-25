@@ -122,7 +122,7 @@
             , area_point2 = #{areaPoint2}
             , build_name = #{buildName}
             , addr1 = #{addr1}
-            , addr2 = #{addr1}
+            , addr2 = #{addr2}
             , ground_floor = #{groundFloor}
             , base_floor = #{baseFloor}
             , search_info = #{searchInfo}

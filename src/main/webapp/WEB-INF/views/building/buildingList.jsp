@@ -35,5 +35,10 @@
         </nav>
     </div>
 </div>
+<div>
+    <button type="button" id="btnSaveForm" class="btn gray">
+        건물등록
+    </button>
+</div>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="/assets/js/building/buildingList.js"></script>

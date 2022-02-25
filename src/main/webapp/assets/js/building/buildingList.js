@@ -13,6 +13,11 @@ let _buildingList = {
     events : function () {
         const _this = this;
         this.search(1);
+
+        // 목록
+        $('#btnSaveForm').on('click', function () {
+            location.href = '/building/saveForm';
+        });
     },
 
     search : function(page) {
@@ -50,7 +55,7 @@ let _buildingList = {
                     ).append(
                         $('<td/>').text(val.addr2)
                     ).append(
-                        $('<td/>').text('지상'+val.groundFloor+'/ 지하'+val.baseFloor)
+                        $('<td/>').text('지상'+val.groundFloor+'/ 지하'+(val.baseFloor*-1))
                     ).append(
                         $('<td/>').text(" ")
                     ).append(
