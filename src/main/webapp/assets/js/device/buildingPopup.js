@@ -25,7 +25,7 @@ function buildingSearch(page) {
 
                     // 1. 지상,지하 층정보가 존재 시
                     if ( !!val.groundFloor && !!val.baseFloor ) {
-                        floorInfo = "지상 " + val.groundFloor + " / 지하 " + val.baseFloor + " 층";
+                        floorInfo = "지상 " + val.groundFloor + " / 지하 " + Math.abs(val.baseFloor) + " 층";
                     }
                     // 2. 지하층 정보가 비어있으면 지상층 정보만 표시
                     else if (!!val.baseFloor) {
@@ -33,7 +33,7 @@ function buildingSearch(page) {
                     }
                     // 3. 지상층 정보가 비어있으면 지하층 정보만 표시
                     else if (!!val.groundFloor) {
-                        floorInfo = "지하 " + val.baseFloor + " 층";
+                        floorInfo = "지하 " + Math.abs(val.baseFloor) + " 층";
                     }
 
                     $("#tbody").append(
