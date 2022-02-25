@@ -22,4 +22,6 @@ public interface DeviceMapper {
     int insertDevice(DeviceDto deviceDto);
 
     List<Device> selectDeviceListByFloor(DeviceDto deviceDto);
+
+    int insertDeviceTracking(DeviceDto deviceDto);
 }

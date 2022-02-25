@@ -66,15 +66,13 @@
     </select>
 
     <!-- 자산정보 저장 -->
-    <insert id="insertDevice">
+    <insert id="insertDevice" useGeneratedKeys="true" keyProperty="deviceSeq">
         INSERT INTO t_device
         ( BUILD_SEQ
           , FLOOR_SEQ
           , FLOOR
           , TYPE_CD
           , LOCATION
-          , POINT1
-          , POINT2
           , REG_DATE
           , REG_USER
           , STATE_CD
@@ -86,14 +84,28 @@
           , #{floor}
           , #{typeCd}
           , #{locationCd}
-          , #{point1}
-          , #{point2}
           , NOW()
           , 999
           , #{stateCd}
           , #{isUse}
           , #{memo}
         )
+    </insert>
+    <!-- 자산정보 저장 -->
+    <insert id="insertDeviceTracking" useGeneratedKeys="true" keyProperty="buildSeq">
+        INSERT INTO t_tracking
+            ( DEVICE_SEQ
+            , POINT1
+            , POINT2
+            , TRACK_TYPE_CD
+            , REG_DATE
+        ) VALUES (
+             #{deviceSeq}
+             , #{point1}
+             , #{point2}
+             , #{stateCd}
+             , NOW()
+         )
     </insert>
 
     <!-- 층별 자산정보 조회 -->

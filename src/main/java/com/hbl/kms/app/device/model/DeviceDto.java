@@ -21,6 +21,10 @@ public class DeviceDto {
      */
     private int floorSeq;
     /**
+     * 디바이스 SEQ
+     */
+    private int deviceSeq;
+    /**
      * 주소1
      * 기본주소
      */
