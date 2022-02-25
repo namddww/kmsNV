@@ -136,6 +136,11 @@ var _buildingInfo = {
             _buildingInfo.save();
         });
 
+        // 목록
+        $('#btnList').on('click', function () {
+            location.href = '/building/list';
+        });
+
     },
 
     floorClear: function () {
