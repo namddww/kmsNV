@@ -21,7 +21,7 @@ $(document).ready(function() {
 
 function buildingPopup() {
     var url = "/device/buildingPopup";
-    window.open(url, '_blank');
+    window.open(url, '', '_blank');
 }
 
 function devicePointPopup() {
@@ -31,7 +31,7 @@ function devicePointPopup() {
         return false;
     }
     var url = "/device/devicePointPopup" + "?buildSeq=" + $("#buildSeq").val() + "&floor=" + $("#floor option:selected").val();
-    window.open(url, '_blank');
+    window.open(url, '', '_blank');
 }
 
 function deviceSave() {
