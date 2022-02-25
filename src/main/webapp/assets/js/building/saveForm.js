@@ -20,7 +20,7 @@ var _building = {
         // 건물좌표 등록
         $('#btnPoint').on('click', function () {
             let url = '/building/pointPopup';
-            window.open(url, '_blank');
+            window.open(url, '', '_blank');
         });
 
         // 건물좌표 직접 등록
@@ -129,7 +129,7 @@ var _building = {
             }
             let num = $(this).data('num');
             let url = '/building/floorPopup?num='+num;
-            window.open(url, '_blank');
+            window.open(url, '', '_blank');
         });
 
         // 건물좌표 등록

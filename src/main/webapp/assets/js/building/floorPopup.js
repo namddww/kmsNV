@@ -15,8 +15,9 @@ var _floorPopup = {
         var y_1 = $("#stdPoint2", opener.document).val();
         var x_2 = $("#areaPoint1", opener.document).val();
         var y_2 = $("#areaPoint2", opener.document).val();
-
-        let map = L.map('map').setView([x_1,y_1],15);
+        let x = Number(x_1) - ((Number(x_1) - Number(x_2)) / 2);
+        let y = Number(y_1) + ((Number(y_2) - Number(y_1)) / 2);
+        let map = L.map('map').setView([x,y], 17);
 
         let osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
             attribution:'&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> Contributors'

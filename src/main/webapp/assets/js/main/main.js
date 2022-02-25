@@ -139,7 +139,7 @@ let _main = {
                 url = url + "&" + encodeURIComponent("deviceInfoList["+i+"].left")+"="+markersB[i].left;
                 url = url + "&" + encodeURIComponent("deviceInfoList["+i+"].top")+"="+markersB[i].top;
             }
-            window.open(url, '_blank');
+            window.open(url, '', '_blank');
             console.log(markersB[0].left);
             console.log(imageUrl);
         });
