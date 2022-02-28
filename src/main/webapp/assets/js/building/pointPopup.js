@@ -51,7 +51,16 @@ let _pointPopup = {
 
         var drawControl = new L.Control.Draw(options);
         map.addControl(drawControl);
-
+        /*var polygon = new L.Polygon([
+            [37.5,127.5],
+            [37.502,127.502],
+            [37.486,127.511]
+        ], {
+            color: '#f00',
+            draggable: true,
+            transform: true
+        }).addTo(map);
+        polygon.transform.enable({rotation: true, scaling: false});*/
         var x1 = '';
         var y1 = '';
         var x2 = '';

@@ -4,6 +4,8 @@
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" rel="stylesheet" />
+<script src='https://unpkg.com/leaflet-draw-drag@0.1.7/dist/Leaflet.draw.drag.js'></script>
+<script src="https://unpkg.com/leaflet-path-transform@1.1.3/dist/L.Path.Transform.js"></script>
 <style>
     html, body, #map{
         height: 100%;
