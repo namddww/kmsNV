@@ -16,7 +16,9 @@ let _pointPopup = {
         let osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
             attribution:'&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> Contributors'
         }).addTo(map);
-
+        /* rotation
+        L.Edit.Rectangle.prototype.setOptions({ rotation: true, uniformScaling: false });
+        */
         var editableLayers = new L.FeatureGroup();
         map.addLayer(editableLayers);
 
@@ -66,6 +68,7 @@ let _pointPopup = {
         var x2 = '';
         var y2 = '';
 
+        var rectangle;
         map.on(L.Draw.Event.CREATED, function (e) {
             var type = e.layerType,
                 layer = e.layer;
@@ -75,17 +78,20 @@ let _pointPopup = {
             /*if (type === 'rectangle') {
                 layer.bindPopup('A popup!');
             }*/
-
+            rectangle = layer;
             editableLayers.addLayer(layer);
-            var arr = layer.getLatLngs();
-            x1 = arr[0][1].lat;
-            y1 = arr[0][1].lng;
-            x2 = arr[0][3].lat;
-            y2 = arr[0][3].lng;
+
         });
 
         // 건물좌표 등록
         $('#btnSave').on('click', function(){
+
+            var arr = rectangle.getLatLngs();
+            x1 = arr[0][1].lat;
+            y1 = arr[0][1].lng;
+            x2 = arr[0][3].lat;
+            y2 = arr[0][3].lng;
+
             $("#stdPoint", opener.document).val(x1+' / '+y1);
             $("#areaPoint", opener.document).val(x2+' / '+y2);
             $("#stdPoint1", opener.document).val(x1);
