@@ -60,7 +60,6 @@
                     <tr>
                         <th>층</th>
                         <th>파일</th>
-                        <th>투명도</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -78,9 +77,6 @@
                                         <span>${data.filePath}</span>
                                     </div>
                                     <input type="hidden" id="filePath${data.floor}" value="${data.filePath}">
-                                </td>
-                                <td>
-                                    <input type="num" id="dfopacity${data.floor}" value="${data.opacity*0.01}">
                                 </td>
                                 <td>
                                     <button type="button" id="btnFloorPopup" data-num="${data.floor}">등록</button>

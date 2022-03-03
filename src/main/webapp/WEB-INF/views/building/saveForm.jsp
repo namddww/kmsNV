@@ -54,7 +54,6 @@
                     <tr>
                         <th>층</th>
                         <th>파일</th>
-                        <th>투명도</th>
                         <th></th>
                     </tr>
                     </thead>

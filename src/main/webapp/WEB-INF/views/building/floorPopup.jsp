@@ -27,10 +27,6 @@
             <input type="file" name="floorFile" id="floorFile">
         </div>
     </div>
-    <div>
-        <span>투명도: </span>
-        <input id="opacity" type="range" min="0" max="1" step="0.01" value="1" onchange="_floorPopup.updateOpacity(this.value)">
-    </div>
     <div id="map">
     </div>
     <div>

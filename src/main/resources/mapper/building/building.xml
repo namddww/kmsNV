@@ -89,14 +89,12 @@
         ( build_seq
           , floor
           , file_path
-          , opacity
           , is_use
         )
         VALUES (
           #{buildSeq}
           , #{floor}
           , #{filePath}
-          , #{opacity}
           , 'Y'
         )
     </insert>
@@ -109,7 +107,6 @@
             , floor
             , file_path
             , is_use
-            , opacity
         FROM t_floor_info
         WHERE build_seq = #{buildSeq}
         ORDER BY floor DESC

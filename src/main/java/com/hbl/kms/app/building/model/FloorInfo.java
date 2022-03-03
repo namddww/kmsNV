@@ -30,10 +30,4 @@ public class FloorInfo {
      * 사용여부
      */
     private String isUse;
-
-    /**
-     * 도면투명도
-     */
-    private int opacity;
-
 }
