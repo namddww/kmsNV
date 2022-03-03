@@ -44,6 +44,7 @@ public class BuildingService {
             }
             floorInfo.setBuildSeq(buildingDto.getBuildSeq());
             floorInfo.setFloor(buildingDto.getFloorInfo().get(i).getFloor());
+            floorInfo.setOpacity(buildingDto.getFloorInfo().get(i).getOpacity());
             buildingMapper.insertFloorInfo(floorInfo);
         }
 
@@ -76,6 +77,7 @@ public class BuildingService {
             }
             floorInfo.setBuildSeq(buildingDto.getBuildSeq());
             floorInfo.setFloor(buildingDto.getFloorInfo().get(i).getFloor());
+            floorInfo.setOpacity(buildingDto.getFloorInfo().get(i).getOpacity());
             buildingMapper.insertFloorInfo(floorInfo);
         }
         return 1;

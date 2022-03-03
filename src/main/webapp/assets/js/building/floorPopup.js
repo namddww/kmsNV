@@ -1,5 +1,6 @@
 var _floorPopup = {
     $scope : null, // 영역
+    $image : null,
 
     init : function () {
 
@@ -62,7 +63,7 @@ var _floorPopup = {
                     [x_1, y_1],
                     [x_2, y_2]
                 ];
-                L.imageOverlay(imageUrl, imageBounds).addTo(map);
+                $image = L.imageOverlay(imageUrl, imageBounds, {opacity: $("#opacity").val()}).addTo(map);
 
             }
             if(this.files[0] == null){
@@ -70,13 +71,13 @@ var _floorPopup = {
             }else{
                 reader.readAsDataURL(this.files[0]);
             }
-
         });
 
         // 도면 등록
         $('#btnSave').on('click', function(){
             let num = $('#num').val();
             let text = $('#floorFile').val().split("\\").pop();
+            let opacity = $('#opacity').val();
             $(opener.document).find('#df'+num).empty();
             $(opener.document).find('#df'+num)
                 .append(
@@ -87,8 +88,13 @@ var _floorPopup = {
                         $('#floorFile').attr('id', 'dfinput'+num)
                     )
                 );
+            $(opener.document).find('#dfopacity'+num).val(opacity);
             window.close();
         });
+    },
+
+    updateOpacity : function (value) {
+        $image.setOpacity(value);
     }
 };
 
