@@ -31,4 +31,9 @@ public class FloorInfoDto {
      */
     private String filePath;
 
+    /**
+     * 도면투명도
+     */
+    private int opacity;
+
 }

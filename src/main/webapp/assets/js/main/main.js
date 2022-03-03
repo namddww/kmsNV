@@ -62,13 +62,14 @@ let _main = {
                 map.removeLayer(image);
             }
             let f = $(this).attr('data-f');
-            imageUrl = $('#F'+f).val();
-            // imageUrl = 'https://www.codingfactory.net/wp-content/uploads/abc.jpg';
+            let o = $(this).attr('data-o');
+            //imageUrl = $('#F'+f).val();
+            imageUrl = 'https://www.codingfactory.net/wp-content/uploads/abc.jpg';
             var imageBounds = [
                 [x_1, y_1],
                 [x_2, y_2]
             ];
-            image = L.imageOverlay(imageUrl, imageBounds).addTo(map);
+            image = L.imageOverlay(imageUrl, imageBounds, {opacity: o*0.01}).addTo(map);
 
             let param = {
                 floorSeq: f
@@ -218,7 +219,7 @@ let _main = {
                 if(val.floor < 0){
                     _this.$floorInfoList.append(
                         $('<li/>').append(
-                            $('<button/>').text('B'+(val.floor*-1)).attr('class', 'btnFloor').attr('data-f', val.floorSeq)
+                            $('<button/>').text('B'+(val.floor*-1)).attr('class', 'btnFloor').attr('data-f', val.floorSeq).attr('data-o', val.opacity)
                         ).append(
                             $('<input>').attr('id', 'F'+val.floorSeq).attr('type', 'hidden').val(val.filePath)
                         )
@@ -226,7 +227,7 @@ let _main = {
                 }else{
                     _this.$floorInfoList.append(
                         $('<li/>').append(
-                            $('<button/>').text(val.floor).attr('class', 'btnFloor').attr('data-f', val.floorSeq)
+                            $('<button/>').text(val.floor).attr('class', 'btnFloor').attr('data-f', val.floorSeq).attr('data-o', val.opacity)
                         ).append(
                             $('<input>').attr('id', 'F'+val.floorSeq).attr('type', 'hidden').val(val.filePath)
                         )

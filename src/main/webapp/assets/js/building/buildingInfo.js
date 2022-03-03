@@ -82,6 +82,10 @@ var _buildingInfo = {
                             )
                         ).append(
                             $('<td/>').append(
+                                $('<input>').attr('id', 'dfopacity'+Number((i-1))).attr('type', 'num').val(1)
+                            )
+                        ).append(
+                            $('<td/>').append(
                                 $('<button/>').text('등록').attr('type', 'button').attr('id', 'btnFloorPopup')
                                     .attr('data-num', Number((i-1)))
                             )
@@ -96,6 +100,10 @@ var _buildingInfo = {
                                 $('<div>').attr('id', 'df'+i).append(
                                     $('<span/>').text('파일을 등록해주세요.')
                                 )
+                            )
+                        ).append(
+                            $('<td/>').append(
+                                $('<input>').attr('id', 'dfopacity'+i).attr('type', 'num').val(1)
                             )
                         ).append(
                             $('<td/>').append(
@@ -185,6 +193,8 @@ var _buildingInfo = {
             }else{
                 formData.append("floorInfo["+i+"].filePath", $('#filePath'+a, _this.$contentForm).val());
             }
+            let o = $("#dfopacity"+a, _this.$contentForm).val();
+            formData.append("floorInfo["+i+"].opacity", Number(o*100));
             a++;
         }
         formData.append('searchInfo', $('#searchInfo', _this.$contentForm).val());
