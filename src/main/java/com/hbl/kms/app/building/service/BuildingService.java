@@ -61,7 +61,7 @@ public class BuildingService {
 
     public int updateBuilding(BuildingDto buildingDto) {
         buildingMapper.updateBuilding(buildingDto);
-        buildingMapper.deleteFloorInfo(buildingDto);
+
         for(int i=0; i<buildingDto.getFloorInfo().size(); i++){
             FloorInfo floorInfo = new FloorInfo();
             if(buildingDto.getFloorInfo().get(i).getFile() != null){
@@ -75,10 +75,10 @@ public class BuildingService {
             }else{
                 floorInfo.setFilePath(buildingDto.getFloorInfo().get(i).getFilePath());
             }
-            floorInfo.setBuildSeq(buildingDto.getBuildSeq());
-            floorInfo.setFloor(buildingDto.getFloorInfo().get(i).getFloor());
             floorInfo.setOpacity(buildingDto.getFloorInfo().get(i).getOpacity());
-            buildingMapper.insertFloorInfo(floorInfo);
+            floorInfo.setFloorSeq(buildingDto.getFloorInfo().get(i).getFloorSeq());
+            floorInfo.setIsUse(buildingDto.getFloorInfo().get(i).getIsUse());
+            buildingMapper.updateFloorInfo(floorInfo);
         }
         return 1;
     }

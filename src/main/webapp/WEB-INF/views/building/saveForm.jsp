@@ -57,7 +57,7 @@
                         <th>층</th>
                         <th>파일</th>
                         <th>투명도</th>
-                        <th></th>
+                        <th>도면등록</th>
                     </tr>
                     </thead>
                     <tbody></tbody>
@@ -86,5 +86,4 @@
         </div>
     </form>
 </div>
-<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="/assets/js/building/saveForm.js"></script>

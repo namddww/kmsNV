@@ -22,6 +22,18 @@
         <if test="buildName != null">
             AND build_name LIKE CONCAT('%', #{buildName}, '%')
         </if>
+        <if test="scRegDtSt != null and scRegDtSt != ''">
+            AND DATE_FORMAT(reg_date, '%Y%m%d') &gt;= #{scRegDtSt}
+        </if>
+        <if test="scRegDtEd != null and scRegDtEd != ''">
+            AND DATE_FORMAT(reg_date, '%Y%m%d') &lt;= #{scRegDtEd}
+        </if>
+        <if test="locationCd != null and locationCd != ''">
+            AND location_cd = #{locationCd}
+        </if>
+        <if test="isUse != null and isUse != ''">
+            AND is_use = #{isUse}
+        </if>
     </select>
 
     <!-- 건물정보 조회 -->
@@ -126,8 +138,6 @@
             , build_name = #{buildName}
             , addr1 = #{addr1}
             , addr2 = #{addr2}
-            , ground_floor = #{groundFloor}
-            , base_floor = #{baseFloor}
             , search_info = #{searchInfo}
             , memo = #{memo}
         WHERE build_seq = #{buildSeq}
@@ -138,5 +148,15 @@
         DELETE FROM t_floor_info
         WHERE build_seq = #{buildSeq}
     </delete>
+
+    <!-- 층 정보 update -->
+    <update id="updateFloorInfo">
+        UPDATE t_floor_info
+        SET
+            file_path = #{filePath}
+            , opacity = #{opacity}
+            , is_use = #{isUse}
+        WHERE floor_seq = #{floorSeq}
+    </update>
 
 </mapper>

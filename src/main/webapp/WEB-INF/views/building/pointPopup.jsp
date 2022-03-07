@@ -25,5 +25,4 @@
     </div>
     <button id="btnSave" class="btn gray">저장</button>
 </body>
-<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="/assets/js/building/pointPopup.js"></script>

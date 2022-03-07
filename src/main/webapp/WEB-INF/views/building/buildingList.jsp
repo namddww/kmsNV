@@ -3,6 +3,53 @@
 
 <h1>건물 조회</h1>
 <div id="buildingList">
+    <div>
+        <table>
+            <colgroup>
+                <col style="width:10%">
+                <col style="width:30%">
+                <col style="width:10%">
+                <col style="width:50%">
+            </colgroup>
+            <tbody>
+            <tr>
+                <th>건물명</th>
+                <td><input type="text" id="buildName"></td>
+                <th>등록 일자</th>
+                <td colspan="3">
+                    <div class="date_wp">
+                        <input type="text" id="scRegDtSt" name="scRegDtSt" title="시작일시" class="dateRegStart" readonly="readonly">
+                        <span class="dash">~</span>
+                        <input type="text" id="scRegDtEd" name="scRegDtEd" title="종료일시" class="dateRegEnd" readonly="readonly">
+                    </div>
+                </td>
+                <td rowspan="2">
+                    <div class="btn_area search"><a href="javascript:void(0)" id="a-search" class="btn gray">조회</a></div>
+                </td>
+            </tr>
+            <tr>
+                <th>지역</th>
+                <td>
+                    <select id="select-area">
+                        <option value="" selected>전체</option>
+                        <option value="SO">서울</option>
+                        <option value="DJ">대전</option>
+                        <option value="DG">대구</option>
+                        <option value="BS">부산</option>
+                    </select>
+                </td>
+                <th>사용 여부</th>
+                <td>
+                    <select id="select-useYn">
+                        <option value="" selected>전체</option>
+                        <option value="Y">사용</option>
+                        <option value="N">미사용</option>
+                    </select>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
     <table id="buildingListTable">
         <thead>
         <tr>
@@ -40,5 +87,4 @@
         건물등록
     </button>
 </div>
-<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="/assets/js/building/buildingList.js"></script>

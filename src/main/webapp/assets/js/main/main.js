@@ -4,6 +4,19 @@ let _main = {
     $tableList : null,
     $floorInfo : null,
     $floorInfoList : null,
+    $trigger : null,
+    $image : null,
+    $markers : [],
+    $markersB : [],
+    $imageUrl :  null,
+    $map : null,
+    $x_1 : null,
+    $y_1 : null,
+    $x_2 : null,
+    $y_2 : null,
+    $f : null,
+    $o : null,
+    $b : null,
 
     init : function () {
 
@@ -19,130 +32,69 @@ let _main = {
     events : function () {
         const _this = this;
 
+        setInterval(function() {
+            if(_main.$trigger == 'f'){
+                _main.clickFloor(_main.$f, _main.$o);
+            }else if(_main.$trigger == 'fAll'){
+                _main.clickFloorAll(_main.$b);
+            }
+        }, 10000);
+
         // 검색
         $('#btnSearch').on('click', function(){
             _main.searchBuilding(1)
         });
 
-        var map = L.map('map').setView([37.5,127.5],11);
+        _main.$map = L.map('map').setView([37.5,127.5],11);
 
         let osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
             attribution:'&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> Contributors'
             , maxZoom:19
-        }).addTo(map);
+        }).addTo(_main.$map);
 
         var editableLayers = new L.FeatureGroup();
-        map.addLayer(editableLayers);
+        _main.$map.addLayer(editableLayers);
 
-        var x_1 = '';
-        var y_1 = '';
-        var x_2 = '';
-        var y_2 = '';
+
 
         //건물검색결과 클릭
         $(document).on("click", ".building", function() {
             let i = $(this).attr('data-seq');
-            x_1 = $("#"+i+'-stdPoint1').val();
-            y_1 = $("#"+i+'-stdPoint2').val();
-            x_2 = $("#"+i+'-areaPoint1').val();
-            y_2 = $("#"+i+'-areaPoint2').val();
-            map.setView(new L.LatLng(x_1, y_1), 18);
+            _main.$x_1 = $("#"+i+'-stdPoint1').val();
+            _main.$y_1 = $("#"+i+'-stdPoint2').val();
+            _main.$x_2 = $("#"+i+'-areaPoint1').val();
+            _main.$y_2 = $("#"+i+'-areaPoint2').val();
+            _main.$map.setView(new L.LatLng(_main.$x_1, _main.$y_1), 18);
 
             _main.searchFloorInfo(i);
 
         });
 
-        var image;
-        var markers = [];
-        var markersB = [];
-        var imageUrl;
         //층 클릭
         $(document).on("click", ".btnFloor", function() {
-            if(map.hasLayer(image)){
-                map.removeLayer(image);
-            }
-            let f = $(this).attr('data-f');
-            let o = $(this).attr('data-o');
-            //imageUrl = $('#F'+f).val();
-            imageUrl = 'https://www.codingfactory.net/wp-content/uploads/abc.jpg';
-            var imageBounds = [
-                [x_1, y_1],
-                [x_2, y_2]
-            ];
-            image = L.imageOverlay(imageUrl, imageBounds, {opacity: o*0.01}).addTo(map);
+            _main.$f = $(this).attr('data-f');
+            _main.$o = $(this).attr('data-o');
+            _main.clickFloor(_main.$f, _main.$o);
+            _main.$trigger = 'f';
+        });
 
-            let param = {
-                floorSeq: f
-            };
-            $.ajax({
-                type : "GET",
-                url : "/device/search/floor",
-                data : param,
-                success : function(res){
-                    const _this = this;
-
-                    //device정보 클리어
-                    if (markers != undefined) {
-                        for(let i=0; i<markers.length; i++){
-                            map.removeLayer(markers[i]);
-                        }
-                    };
-                    markers = [];
-                    markersB = [];
-                    //영역의 가로 세로 길이
-                    let t = L.point(x_1, y_1).distanceTo(L.point(x_2, y_1));
-                    let l = L.point(x_1, y_1).distanceTo(L.point(x_1, y_2));
-                    if (res.result.length > 0) {
-                        $.each(res.result, function (i, val) {
-                            let x1 = val.point1;
-                            let y1 = val.point2;
-                            var iconUrl = "/assets/img/chk_atv.png"
-                            var icon = L.icon({
-                                iconUrl: iconUrl,
-                                iconSize: [32, 46], // 모바일에서는 2x 이미지 사용
-                                iconAnchor: [16,46],
-                                popupAnchor: [0,-46]
-                            });
-
-                            var latlng = L.latLng(x1, y1);
-                            /*L.marker(latlng, {
-                                icon: icon
-                            }).addTo(map);*/
-                            markers.push(L.marker(latlng).addTo(map));
-
-                            if(x1 <= x_1 && x1 >= x_2 && y1 >= y_1 && y1 <= y_2){
-                                let mt = L.point(x_1, y_1).distanceTo(L.point(x1, y_1));
-                                let ml = L.point(x_1, y_1).distanceTo(L.point(x_1, y1));
-
-                                let top = (mt/t) * 100;
-                                let left = (ml/l) * 100;
-
-                                let obj = {top:top, left:left, typeCd:val.typeCd};
-                                markersB.push(obj);
-                            }
-                        });
-                    } else {
-                        alert('등록된 장비가 없습니다.');
-                    }
-                },
-                error : function(XMLHttpRequest, textStatus, errorThrown){
-
-                }
-            });
+        //층 전체 클릭
+        $(document).on("click", ".btnFloorAll", function() {
+            _main.$b = $(this).attr('data-b');
+            _main.clickFloorAll(_main.$b);
+            _main.$trigger = 'fAll';
         });
 
         // 검색
         $('#btnPopup').on('click', function(){
             let url = '/device/floorDeviceInfoPopup';
-            url = url + "?imgPath="+encodeURIComponent(imageUrl)
-            for(let i=0; i<markersB.length; i++){
-                url = url + "&" + encodeURIComponent("deviceInfoList["+i+"].type")+"="+markersB[i].typeCd;
-                url = url + "&" + encodeURIComponent("deviceInfoList["+i+"].left")+"="+markersB[i].left;
-                url = url + "&" + encodeURIComponent("deviceInfoList["+i+"].top")+"="+markersB[i].top;
+            url = url + "?imgPath="+encodeURIComponent(_main.$imageUrl);
+            for(let i=0; i<_main.$markersB.length; i++){
+                url = url + "&" + encodeURIComponent("deviceInfoList["+i+"].type")+"="+_main.$markersB[i].typeCd;
+                url = url + "&" + encodeURIComponent("deviceInfoList["+i+"].left")+"="+_main.$markersB[i].left;
+                url = url + "&" + encodeURIComponent("deviceInfoList["+i+"].top")+"="+_main.$markersB[i].top;
             }
             window.open(url, '', '_blank');
-            console.log(markersB[0].left);
-            console.log(imageUrl);
         });
 
     },
@@ -215,6 +167,11 @@ let _main = {
         const _this = this;
         _this.$floorInfoList.empty();
         if (result.length > 0) {
+            _this.$floorInfoList.append(
+                $('<li/>').append(
+                    $('<button/>').text('전체').attr('class', 'btnFloorAll').attr('data-b', result[0].buildSeq)
+                )
+            );
             $.each(result, function (i, val) {
                 if(val.floor < 0){
                     _this.$floorInfoList.append(
@@ -239,7 +196,146 @@ let _main = {
             _this.$floorInfoList.append(
 
             );
+            alert('층 정보가 없습니다.');
         }
+    },
+
+    //층 클릭
+    clickFloor : function(f, o) {
+        if(_main.$map.hasLayer(_main.$image)){
+            _main.$map.removeLayer(_main.$image);
+        }
+        //imageUrl = $('#F'+f).val();
+        _main.$imageUrl = 'https://www.codingfactory.net/wp-content/uploads/abc.jpg';
+        var imageBounds = [
+            [_main.$x_1, _main.$y_1],
+            [_main.$x_2, _main.$y_2]
+        ];
+        _main.$image = L.imageOverlay(_main.$imageUrl, imageBounds, {opacity: o*0.01}).addTo(_main.$map);
+
+        let param = {
+            floorSeq: f
+        };
+        $.ajax({
+            type : "GET",
+            url : "/device/search/floor",
+            data : param,
+            success : function(res){
+
+                //device정보 클리어
+                if (_main.$markers != undefined) {
+                    for(let i=0; i<_main.$markers.length; i++){
+                        _main.$map.removeLayer(_main.$markers[i]);
+                    }
+                };
+                _main.$markers = [];
+                _main.$markersB = [];
+                //영역의 가로 세로 길이
+                let t = L.point(_main.$x_1, _main.$y_1).distanceTo(L.point(_main.$x_2, _main.$y_1));
+                let l = L.point(_main.$x_1, _main.$y_1).distanceTo(L.point(_main.$x_1, _main.$y_2));
+                if (res.result.length > 0) {
+                    $.each(res.result, function (i, val) {
+                        let x1 = val.point1;
+                        let y1 = val.point2;
+                        var iconUrl = "/assets/img/chk_atv.png"
+                        var icon = L.icon({
+                            iconUrl: iconUrl,
+                            iconSize: [32, 46], // 모바일에서는 2x 이미지 사용
+                            iconAnchor: [16,46],
+                            popupAnchor: [0,-46]
+                        });
+
+                        var latlng = L.latLng(x1, y1);
+                        /*L.marker(latlng, {
+                            icon: icon
+                        }).addTo(_this2.$map);*/
+                        _main.$markers.push(L.marker(latlng).addTo(_main.$map));
+
+                        if(x1 <= _main.$x_1 && x1 >= _main.$x_2 && y1 >= _main.$y_1 && y1 <= _main.$y_2){
+                            let mt = L.point(_main.$x_1, _main.$y_1).distanceTo(L.point(x1, _main.$y_1));
+                            let ml = L.point(_main.$x_1, _main.$y_1).distanceTo(L.point(_main.$x_1, y1));
+
+                            let top = (mt/t) * 100;
+                            let left = (ml/l) * 100;
+
+                            let obj = {top:top, left:left, typeCd:val.typeCd};
+                            _main.$markersB.push(obj);
+                        }
+                    });
+                } else {
+                    alert('등록된 장비가 없습니다.');
+                    _main.$trigger = '';
+                }
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown){
+
+            }
+        });
+    },
+
+    //층 전체 클릭
+    clickFloorAll : function(b) {
+        if(_main.$map.hasLayer(_main.$image)){
+            _main.$map.removeLayer(_main.$image);
+        }
+        let param = {
+            buildSeq: b
+        };
+        $.ajax({
+            type : "GET",
+            url : "/device/search/floor",
+            data : param,
+            success : function(res){
+
+                //device정보 클리어
+                if (_main.$markers != undefined) {
+                    for(let i=0; i<_main.$markers.length; i++){
+                        _main.$map.removeLayer(_main.$markers[i]);
+                    }
+                };
+                _main.$markers = [];
+                _main.$markersB = [];
+                //영역의 가로 세로 길이
+                let t = L.point(_main.$x_1, _main.$y_1).distanceTo(L.point(_main.$x_2, _main.$y_1));
+                let l = L.point(_main.$x_1, _main.$y_1).distanceTo(L.point(_main.$x_1, _main.$y_2));
+                if (res.result.length > 0) {
+                    $.each(res.result, function (i, val) {
+                        let x1 = val.point1;
+                        let y1 = val.point2;
+                        var iconUrl = "/assets/img/chk_atv.png"
+                        var icon = L.icon({
+                            iconUrl: iconUrl,
+                            iconSize: [32, 46], // 모바일에서는 2x 이미지 사용
+                            iconAnchor: [16,46],
+                            popupAnchor: [0,-46]
+                        });
+
+                        var latlng = L.latLng(x1, y1);
+                        /*L.marker(latlng, {
+                            icon: icon
+                        }).addTo(_this2.$map);*/
+                        _main.$markers.push(L.marker(latlng).addTo(_main.$map));
+
+                        if(x1 <= _main.$x_1 && x1 >= _main.$x_2 && y1 >= _main.$y_1 && y1 <= _main.$y_2){
+                            let mt = L.point(_main.$x_1, _main.$y_1).distanceTo(L.point(x1, _main.$y_1));
+                            let ml = L.point(_main.$x_1, _main.$y_1).distanceTo(L.point(_main.$x_1, y1));
+
+                            let top = (mt/t) * 100;
+                            let left = (ml/l) * 100;
+
+                            let obj = {top:top, left:left, typeCd:val.typeCd};
+                            _main.$markersB.push(obj);
+                        }
+                    });
+                } else {
+                    alert('등록된 장비가 없습니다.');
+                    _main.$trigger = '';
+                }
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown){
+
+            }
+        });
     }
 };
 

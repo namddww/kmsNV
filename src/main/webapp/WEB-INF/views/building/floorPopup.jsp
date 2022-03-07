@@ -42,5 +42,4 @@
         <button id="btnSave" class="btn gray">등록</button>
     </div>
 </body>
-<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="/assets/js/building/floorPopup.js"></script>

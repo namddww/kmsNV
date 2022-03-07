@@ -51,90 +51,6 @@ var _buildingInfo = {
             }).open();
         });
 
-        // 층 정보 등록
-        $('#btnFloor').on('click', function () {
-            let ground = $('#groundFloor').val();
-            let base = $('#baseFloor').val();
-            if (ground == '' || base == '') {
-                alert('층 정보를 입력해주세요.');
-                return false;
-            }
-            if (ground < 1) {
-                $('#groundFloor').val(1);
-                return false;
-            }
-            if (base < 0) {
-                $('#baseFloor').val(0);
-                return false;
-            }
-
-            _this.$tableList.find('tbody').empty();
-            for(let i=ground; i>base*-1; i--){
-                if(i <= 0){
-                    _this.$tableList.append(
-                        $('<tr/>').append(
-                            $('<td/>').append(
-                                $('<input>').attr('type', 'checkbox').attr('name', 'chk').attr('class', 'floorChk').val(Number((i-1)))
-                            )
-                        ).append(
-                            $('<td/>').text('지하'+Number((i-1)*-1))
-                        ).append(
-                            $('<td/>').append(
-                                $('<div>').attr('id', 'df'+Number((i-1))).append(
-                                    $('<span/>').text('파일을 등록해주세요.')
-                                )
-                            )
-                        ).append(
-                            $('<td/>').append(
-                                $('<input>').attr('id', 'dfopacity'+Number((i-1))).attr('type', 'num').val(1)
-                            )
-                        ).append(
-                            $('<td/>').append(
-                                $('<button/>').text('등록').attr('type', 'button').attr('id', 'btnFloorPopup')
-                                    .attr('data-num', Number((i-1)))
-                            )
-                        )
-                    )
-                }else{
-                    _this.$tableList.append(
-                        $('<tr/>').append(
-                            $('<td/>').append(
-                                $('<input>').attr('type', 'checkbox').attr('name', 'chk').attr('class', 'floorChk').val(i)
-                            )
-                        ).append(
-                            $('<td/>').text(i)
-                        ).append(
-                            $('<td/>').append(
-                                $('<div>').attr('id', 'df'+i).append(
-                                    $('<span/>').text('파일을 등록해주세요.')
-                                )
-                            )
-                        ).append(
-                            $('<td/>').append(
-                                $('<input>').attr('id', 'dfopacity'+i).attr('type', 'num').val(1)
-                            )
-                        ).append(
-                            $('<td/>').append(
-                                $('<button/>').text('등록').attr('type', 'button').attr('id', 'btnFloorPopup')
-                                    .attr('data-num', i)
-                            )
-                        )
-                    )
-                }
-            }
-
-            $('#groundFloor').attr('disabled', true);
-            $('#baseFloor').attr('disabled', true);
-            $('#btnFloor').attr('disabled', true).attr('style', 'background: #f6f7f7;');
-
-        });
-
-        // 층 정보 초기화
-        $('#btnFloorClear').on('click', function () {
-            _this.floorClear();
-            _this.$tableList.find('tbody').empty();
-        });
-
         // 층 정보 파일업로드 팝업
         $(document).on("click", "#btnFloorPopup", function() {
             if($('#stdPoint1').val() == '' || $('#stdPoint2').val() == '' ||
@@ -203,11 +119,8 @@ var _buildingInfo = {
         formData.append('buildName', $('#buildName', _this.$contentForm).val());
         formData.append('addr1', $('#addr1', _this.$contentForm).val());
         formData.append('addr2', $('#addr2', _this.$contentForm).val());
-        formData.append('groundFloor', $('#groundFloor', _this.$contentForm).val());
 
         let baseFloor = $('#baseFloor', _this.$contentForm).val();
-        baseFloor = Number(baseFloor) * -1
-        formData.append('baseFloor', baseFloor);
 
         let size = $('#floorListTable tbody tr').length;
         let a = baseFloor;
@@ -225,12 +138,22 @@ var _buildingInfo = {
                 formData.append("floorInfo["+i+"].filePath", $('#filePath'+a, _this.$contentForm).val());
             }
             let o = $("#dfopacity"+a, _this.$contentForm).val();
-            formData.append("floorInfo["+i+"].opacity", Number(o*100));
+            let seq = $('#floorSeq'+a, _this.$contentForm).val();
+            formData.append("floorInfo["+i+"].opacity", Number(o*100).toFixed(0));
+            formData.append("floorInfo["+i+"].floorSeq", Number(seq));
+            formData.append("floorInfo["+i+"].isUse", $('#sel'+a, _this.$contentForm).val());
             a++;
         }
         formData.append('searchInfo', $('#searchInfo', _this.$contentForm).val());
         formData.append('memo', $('#memo', _this.$contentForm).val());
-
+        // FormData의 key 확인
+        for (let key of formData.keys()) {
+            console.log(key);
+        }
+        // FormData의 value 확인
+        for (let value of formData.values()) {
+            console.log(value);
+        }
         $.ajax({
             type : "PUT",
             processData : false,

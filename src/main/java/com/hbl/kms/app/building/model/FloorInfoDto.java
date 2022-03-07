@@ -13,6 +13,11 @@ import org.springframework.web.multipart.MultipartFile;
 public class FloorInfoDto {
 
     /**
+     * 층seq
+     */
+    private int floorSeq;
+
+    /**
      * 빌딩seq
      */
     private int buildSeq;
@@ -35,5 +40,10 @@ public class FloorInfoDto {
      * 도면투명도
      */
     private int opacity;
+
+    /**
+     * 사용여부
+     */
+    private String isUse;
 
 }

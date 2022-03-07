@@ -75,6 +75,18 @@ public class BuildingDto {
      */
     private String memo;
     /**
+     * 시작일
+     */
+    private String scRegDtSt;
+    /**
+     * 종료일
+     */
+    private String scRegDtEd;
+    /**
+     * 위치(지역)
+     */
+    private String locationCd;
+    /**
      * 층별 정보
      */
     private List<FloorInfoDto> floorInfo;
