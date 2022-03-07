@@ -26,4 +26,6 @@ public interface BuildingMapper {
     int updateBuilding(BuildingDto buildingDto);
 
     int deleteFloorInfo(BuildingDto buildingDto);
+
+    int updateFloorInfo(FloorInfo floorInfo);
 }

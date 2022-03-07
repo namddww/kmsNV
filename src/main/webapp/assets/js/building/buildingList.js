@@ -18,12 +18,24 @@ let _buildingList = {
         $('#btnSaveForm').on('click', function () {
             location.href = '/building/saveForm';
         });
+
+        //조회
+        $('#a-search').on('click', function () {
+            _this.search(1);
+        });
+
     },
 
     search : function(page) {
         const _this = this;
+
         var param = {
-            pageNum: page
+            pageNum: page,
+            buildName: $("#buildName").val(),
+            scRegDtSt : $("#scRegDtSt").val().replaceAll('-',''),
+            scRegDtEd : $("#scRegDtEd").val().replaceAll('-',''),
+            locationCd : $("#select-area option:selected").val(),
+            isUse : $("#select-useYn option:selected").val()
         };
         $.ajax({
             type : "GET",

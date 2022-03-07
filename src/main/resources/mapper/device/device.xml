@@ -113,7 +113,13 @@
         SELECT t.point1, t.point2, d.type_cd
         FROM t_device d
         LEFT JOIN t_tracking t ON d.device_seq = t.device_seq
-        WHERE d.floor_seq = #{floorSeq}
+        WHERE
+        <if test="floorSeq != 0">
+            d.floor_seq = #{floorSeq}
+        </if>
+        <if test="buildSeq != 0">
+            d.build_seq = #{buildSeq}
+        </if>
     </select>
 
 </mapper>

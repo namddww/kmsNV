@@ -43,12 +43,10 @@
             </div>
             <div>
                 <span>층정보</span>
-                <span>지상:</span>
-                <input type="number" id="groundFloor" min="1" style="width: 5%;" value="${building.groundFloor}"><span>층</span>
-                <span>지하:</span>
-                <input type="number" id="baseFloor" min="0" style="width: 5%;" value="${building.baseFloor * -1}"><span>층</span>
-                <button type="button" id="btnFloor" class="btn gray">등록</button>
-                <button type="button" id="btnFloorClear" class="btn gray">초기화</button>
+                <span>지상: ${building.groundFloor}층</span>
+                <span>지하: ${building.baseFloor * -1}층</span>
+                <input type="hidden" id="groundFloor" value="${building.groundFloor}">
+                <input type="hidden" id="baseFloor" value="${building.baseFloor}">
             </div>
         </div>
         <hr>
@@ -63,7 +61,8 @@
                         <th>층</th>
                         <th>파일</th>
                         <th>투명도</th>
-                        <th></th>
+                        <th>도면등록</th>
+                        <th>사용여부</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -71,6 +70,7 @@
                             <tr>
                                 <td>
                                     <input type="checkbox" name="chk" class="floorChk" value="${data.floor}">
+                                    <input type="hidden" id="floorSeq${data.floor}" value="${data.floorSeq}">
                                 </td>
                                 <c:if test="${data.floor < 0}">
                                     <td>지하${data.floor * -1}</td>
@@ -89,6 +89,12 @@
                                 </td>
                                 <td>
                                     <button type="button" id="btnFloorPopup" data-num="${data.floor}">등록</button>
+                                </td>
+                                <td>
+                                    <select id="sel${data.floor}">
+                                        <option value="Y" <c:if test ="${data.isUse eq 'Y'}">selected="selected"</c:if>>사용</option>
+                                        <option value="N" <c:if test ="${data.isUse eq 'N'}">selected="selected"</c:if>>사용안함</option>
+                                    </select>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -118,5 +124,4 @@
         </div>
     </form>
 </div>
-<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="/assets/js/building/buildingInfo.js"></script>
