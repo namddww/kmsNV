@@ -11,16 +11,21 @@
     }
 </style>
 <body>
-    <input type="hidden" id="num" value="${num}">
+    <c:forEach var="data" items="${num.list}" varStatus="status">
+        <input type="hidden" id="num${data}" value="${data}">
+    </c:forEach>
     <h1>파일등록</h1>
     <div id="floorPopupArea">
         <div>
-            <c:if test="${num < 0}">
-                <span>층 정보: 지하${(num*-1)}층</span>
-            </c:if>
-            <c:if test="${num > 0}">
-                <span>층 정보: ${num}층</span>
-            </c:if>
+            <span>층 정보:</span>
+            <c:forEach var="data" items="${num.list}" varStatus="status">
+                <c:if test="${data < 0}">
+                    <span>지하${(data*-1)}층 / </span>
+                </c:if>
+                <c:if test="${data > 0}">
+                    <span>${data}층 / </span>
+                </c:if>
+            </c:forEach>
         </div>
         <div>
             <span>도면파일: </span>

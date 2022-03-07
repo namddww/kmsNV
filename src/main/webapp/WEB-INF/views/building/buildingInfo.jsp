@@ -54,10 +54,12 @@
         <hr>
         <div>
             <span>층별정보</span>
+            <button type="button" id="btnFloorPopupChk" class="btn gray">일괄등록 (체크된 층)</button>
             <div>
                 <table id="floorListTable">
                     <thead>
                     <tr>
+                        <th>체크</th>
                         <th>층</th>
                         <th>파일</th>
                         <th>투명도</th>
@@ -67,6 +69,9 @@
                     <tbody>
                         <c:forEach var="data" items="${floor}" varStatus="status">
                             <tr>
+                                <td>
+                                    <input type="checkbox" name="chk" class="floorChk" value="${data.floor}">
+                                </td>
                                 <c:if test="${data.floor < 0}">
                                     <td>지하${data.floor * -1}</td>
                                 </c:if>

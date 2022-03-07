@@ -75,20 +75,23 @@ var _floorPopup = {
 
         // 도면 등록
         $('#btnSave').on('click', function(){
-            let num = $('#num').val();
             let text = $('#floorFile').val().split("\\").pop();
             let opacity = $('#opacity').val();
-            $(opener.document).find('#df'+num).empty();
-            $(opener.document).find('#df'+num)
-                .append(
-                    $('<span/>').text(text)
-                ).append(
-                $('<div/>').attr('id','dfdiv'+num).attr('style', 'display:none;')
+            $("input[id^='num']").each(function (i){
+                let clone = $('#floorFile').clone();
+                let num = $(this).val();
+                $(opener.document).find('#df'+num).empty();
+                $(opener.document).find('#df'+num)
                     .append(
-                        $('#floorFile').attr('id', 'dfinput'+num)
-                    )
+                        $('<span/>').text(text)
+                    ).append(
+                    $('<div/>').attr('id','dfdiv'+num).attr('style', 'display:none;')
+                        .append(
+                            clone.attr('id', 'dfinput'+num)
+                        )
                 );
-            $(opener.document).find('#dfopacity'+num).val(opacity);
+                $(opener.document).find('#dfopacity'+num).val(opacity);
+            });
             window.close();
         });
     },

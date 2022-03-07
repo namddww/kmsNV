@@ -74,6 +74,10 @@ var _building = {
                 if(i <= 0){
                     _this.$tableList.append(
                         $('<tr/>').append(
+                            $('<td/>').append(
+                                $('<input>').attr('type', 'checkbox').attr('name', 'chk').attr('class', 'floorChk').val(Number((i-1)))
+                            )
+                        ).append(
                             $('<td/>').text('지하'+Number((i-1)*-1))
                         ).append(
                             $('<td/>').append(
@@ -95,6 +99,10 @@ var _building = {
                 }else{
                     _this.$tableList.append(
                         $('<tr/>').append(
+                            $('<td/>').append(
+                                $('<input>').attr('type', 'checkbox').attr('name', 'chk').attr('class', 'floorChk').val(i)
+                            )
+                        ).append(
                             $('<td/>').text(i)
                         ).append(
                             $('<td/>').append(
@@ -135,8 +143,31 @@ var _building = {
                 alert('건물좌표를 입력해주세요');
                 return false;
             }
-            let num = $(this).data('num');
-            let url = '/building/floorPopup?num='+num;
+            let list = $(this).data('num');
+            let url = '/building/floorPopup?'+encodeURIComponent("list[0]")+"="+list;
+            window.open(url, '', '_blank');
+        });
+
+        // 층 정보 파일업로드 팝업 일괄적용
+        $('#btnFloorPopupChk').on('click', function () {
+            if($('#stdPoint1').val() == '' || $('#stdPoint2').val() == '' ||
+                $('#areaPoint1').val() == '' || $('#areaPoint2').val() == ''){
+                alert('건물좌표를 입력해주세요');
+                return false;
+            }
+            let list = '';
+            if($(".floorChk:checked").length == 0){
+                alert('층을 선택해주세요.');
+                return false;
+            }
+            $(".floorChk:checked").each(function(i){
+                if(i==0){
+                    list = encodeURIComponent("list[0]")+"=" + $(this).val();
+                }else{
+                    list = list + "&" + encodeURIComponent("list["+i+"]")+"="+$(this).val();
+                }
+            });
+            let url = '/building/floorPopup?'+list;
             window.open(url, '', '_blank');
         });
 

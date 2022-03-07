@@ -2,6 +2,7 @@ package com.hbl.kms.app.building;
 
 import com.hbl.kms.app.building.model.BuildingDto;
 import com.hbl.kms.app.building.model.FloorInfoDto;
+import com.hbl.kms.app.building.model.FloorInfoPopupDto;
 import com.hbl.kms.app.building.service.BuildingService;
 import com.hbl.kms.app.common.constants.ControllerUrlConstants;
 import com.hbl.kms.app.common.model.Result;
@@ -10,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 
 @Controller
@@ -48,8 +51,8 @@ public class BuildingController {
 
     // 건물 등록 층정보 파일등록 팝업
     @GetMapping(ControllerUrlConstants.BuildingUrl.Building.FLOOR_POPUP)
-    public ModelAndView floorPopup(ModelAndView mav, int num) {
-        mav.addObject("num", num);
+    public ModelAndView floorPopup(ModelAndView mav, FloorInfoPopupDto floorInfoPopupDto) {
+        mav.addObject("num", floorInfoPopupDto);
         mav.setViewName("building/floorPopup");
         return mav;
     }
