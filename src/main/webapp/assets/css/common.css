@@ -117,7 +117,7 @@ textarea {width: 100%; border: 1px solid #c8c8c8;margin: 10px 0;padding:10px;fon
 
 /*checkbox*/
 .chk{position:relative;display:inline-block;}
-/*input[type="checkbox"], input[type="radio"]{text-indent: -9999px;display: none;}*/
+input[type="checkbox"], input[type="radio"]{text-indent: -9999px;display: none;}
 input[type="checkbox"] + label{position:relative;font-size:14px;height:25px;line-height:25px;vertical-align:middle;cursor:pointer;color:#2c2c2c;z-index:2;}
 input[type="checkbox"] + label:before{content:"";display:inline-block;width:20px;height:20px;margin:0 7px 0 0;background:#fff url(../img/chk.png) left top no-repeat;background-size: 20px;cursor:pointer; vertical-align: middle; border-radius: 3px;}
 input[type="checkbox"]:checked + label:before{background:#fff url(../img/chk_atv.png) left top no-repeat;background-size: 20px;}

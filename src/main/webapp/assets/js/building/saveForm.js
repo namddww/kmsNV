@@ -76,7 +76,7 @@ var _building = {
                         $('<tr/>').append(
                             $('<td/>').append(
                                 $('<input>').attr('type', 'checkbox').attr('name', 'chk').attr('class', 'floorChk').val(Number((i-1)))
-                            )
+                            ).append($('<label/>').attr('for', 'chk'))
                         ).append(
                             $('<td/>').text('지하'+Number((i-1)*-1))
                         ).append(
@@ -101,7 +101,7 @@ var _building = {
                         $('<tr/>').append(
                             $('<td/>').append(
                                 $('<input>').attr('type', 'checkbox').attr('name', 'chk').attr('class', 'floorChk').val(i)
-                            )
+                            ).append($('<label/>').attr('for', 'chk'))
                         ).append(
                             $('<td/>').text(i)
                         ).append(
