@@ -63,7 +63,7 @@ public class LoginController {
 
         // 사용자 조회 및 검증
         if (!validationLogin(user.getUserId(), user.getPassword(), request)) {
-            return ResponseUtil.process("실패");
+            return ResponseUtil.process(false);
         }
         
         // 세션 저장
@@ -71,7 +71,7 @@ public class LoginController {
 //        session.setAttribute("userInfo", "유저정보 넣을까?");
 //        session.setMaxInactiveInterval(1800); // 일단 유지시간 30분 설정
 
-        return ResponseUtil.process("성공");
+        return ResponseUtil.process(true);
     }
 
     /**

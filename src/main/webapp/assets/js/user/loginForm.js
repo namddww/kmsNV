@@ -65,6 +65,11 @@ function login() {
         url : "/user/login",
         data : formData,
         success : function (res) {
+            if (!res.result) {
+                alert("아이디나 비밀번호를 다시한번 확인해 주세요.");
+                return false;
+            }
+
             location.href = "/main"
         },
         error : function(XMLHttpRequest, textStatus, errorThrown){
