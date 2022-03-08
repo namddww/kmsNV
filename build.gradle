@@ -34,6 +34,8 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    // 암호화
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security'
 }
 
 tasks.named('test') {

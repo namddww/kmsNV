@@ -5,6 +5,17 @@ package com.hbl.kms.app.common.constants;
  */
 public class ControllerUrlConstants {
 
+    // 로그인관련 URL
+    public interface LoginUrl {
+        interface Login {
+            String DEFAULT = "/user/loginForm";
+            String LOGIN = "/user/login";
+            String SAVE_FORM = "/user/saveForm";
+            String SAVE = "/user/save";
+            String LOGOUT = "/user/logout";
+        }
+    }
+
     // 건물관련 URL
     public interface BuildingUrl {
         interface Building {
@@ -34,4 +45,5 @@ public class ControllerUrlConstants {
             String FLOOR_DEVICEINFO_POPUP = "/device/floorDeviceInfoPopup";
         }
     }
+
 }
