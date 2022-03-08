@@ -66,7 +66,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>상세주소 <span class="red">*</span></th>
+                        <th>상세주소</th>
                         <td>
                             <input type="text" id="addr2" style="width: 90%;">
                         </td>

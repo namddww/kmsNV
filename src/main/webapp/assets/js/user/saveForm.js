@@ -9,12 +9,27 @@ $(document).ready(function() {
 
     // 등록 버튼 선택
     $("#a-reg").click(function () {
-        userSave();
+        if (validation()) {
+            userSave();
+        }
     });
 
     // 취소 버튼 선택
     $("#a-cancel").click(function () {
         location.href = "/user/loginForm";
+    });
+
+    // 아이디, 패스워드, 입력 시 영문,숫자만 입력받게.
+    $('#userId, #password').keyup(function() {
+        var inputVal = $(this).val();
+        $(this).val((inputVal.replace(/[ㄱ-힣~!@#$%^&*()_+|<>?:{}= ]/g,'')));
+    });
+
+    // 아이디, 패스워드, 이름 입력 시 한글, 영문만 입력받게.
+    $('#userName').keyup(function() {
+        console.log("fff")
+        var inputVal = $(this).val();
+        $(this).val((inputVal.replace(/[^(ㄱ-힣a-zA-Z)]/gi,'')));
     });
 });
 
@@ -51,9 +66,9 @@ function addrSearch() {
 function userSave() {
     var formData = new FormData();
 
-    formData.append('userId', $("#userId").val());
-    formData.append('password', $("#password").val());
-    formData.append('userName', $("#userName").val());
+    formData.append('userId', $("#userId").val().trim());
+    formData.append('password', $("#password").val().trim());
+    formData.append('userName', $("#userName").val().trim());
     formData.append('sexCd', $("#sexCd option:selected").val());
     formData.append('birthday', $("#birthday").val().replaceAll('-',''));
     formData.append('addr1', $("#addr1").val());
@@ -84,5 +99,52 @@ function userSave() {
 
 function dataBind() {
     console.log("로그인 사용자 시 데이터 바인딩");
+}
+
+function validation() {
+
+    if (!$("#userId").val()) {
+        alert("아이디를 입력해 주세요.");
+        $("#userId").focus();
+        return false;
+    }
+
+    if (!$("#password").val()) {
+        alert("비밀번호를 입력해 주세요.");
+        $("#password").focus();
+        return false;
+    }
+
+    if (!$("#userName").val()) {
+        alert("이름을 입력해 주세요.");
+        $("#userName").focus();
+        return false;
+    }
+
+    if (!$("#password").val()) {
+        alert("비밀번호를 입력해 주세요.");
+        $("#password").focus();
+        return false;
+    }
+
+    if (!$("#birthday").val()) {
+        alert("생년월일을 선택해 주세요.");
+        $("#birthday").focus();
+        return false;
+    }
+
+    if (!$("#addr1").val()) {
+        alert("주소를 검색해 주세요.");
+        $("#addr1").focus();
+        return false;
+    }
+
+    if (!$("input[name='isUse']").is(':checked')) {
+        alert("사용여부를 선택해 주세요.");
+        $("input[name='isUse']").focus();
+        return false;
+    }
+
+    return true;
 }
 
