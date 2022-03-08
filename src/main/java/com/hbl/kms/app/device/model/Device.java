@@ -60,4 +60,8 @@ public class Device {
      * 사용여부
      */
     private String isUse;
+    /**
+     * device_name
+     */
+    private String deviceName;
 }

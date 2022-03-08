@@ -14,20 +14,29 @@
         width: 20%;
         z-index: 500;
     }
+    #deviceTab{
+        float: left;
+        width: 20%;
+        height: 100%;
+        z-index: 500;
+        left: 20%;
+        border: 1px solid;
+        display: none;
+    }
     #map{
         position: relative;
         height: 100%;
         margin: 0;
     }
-    #btnShowArea{
-        top: 10px;
-        right: 10px;
-        position: absolute;
-        z-index: 500;
+    #btnSearchArea{
+
+    }
+    #btnSearch{
+        width: 30%;
     }
     #floorInfo{
         top: 70%;
-        left: 21%;
+        left: 41%;
         position: absolute;
         z-index: 500;
     }
@@ -36,15 +45,30 @@
         text-align: center;
     }
     #btnPopup{
-        top: 90%;
-        left: 90%;
+        top: 92%;
+        left: 87%;
         position: absolute;
         z-index: 500;
+    }
+    #searchText{
+        width: 50%;
+    }
+    #deviceTabClose{
+        float: left;
+        z-index: 500;
+        left: 40%;
+        position: absolute;
+        border: 1px solid;
+        background-color: white;
+        top: 0%;
     }
 </style>
 <body>
 <div id="searchTab">
     <div>
+        <button id="btnSearchArea" type="button" class="btn gray">지도내검색</button>
+        <br>
+        <span>건물명: </span>
         <input type="text" id="searchText">
         <button id="btnSearch" type="button" class="btn gray">검색</button>
     </div>
@@ -58,18 +82,26 @@
         </table>
     </div>
 </div>
-<div id="map">
+<div id="deviceTab">
+    <table>
+        <thead>
+            <th>층수</th>
+            <th>타입</th>
+            <th>장비명</th>
+        </thead>
+        <tbody id="deviceListTable">
+        </tbody>
+    </table>
+    <button id="deviceTabClose">닫기</button>
 </div>
-<div>
-    <button id="btnShowArea" type="button" class="btn gray">보이기</button>
+<div id="map">
 </div>
 <div id="floorInfo">
     <ul id="floorInfoList">
     </ul>
 </div>
 <div>
-    <button id="btnPopup" type="button" class="btn gray">팝업</button>
+    <button id="btnPopup" type="button" class="btn gray">실내확대</button>
 </div>
 </body>
-<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="/assets/js/main/main.js"></script>

@@ -1,14 +1,16 @@
 let _main = {
     $scope : null, // 영역
     $searchTab : null,
+    $deviceTab : null,
     $tableList : null,
     $floorInfo : null,
     $floorInfoList : null,
+    $deviceList : null,
     $trigger : null,
     $image : null,
     $markers : [],
     $markersB : [],
-    $imageUrl :  null,
+    $imageUrl : null,
     $map : null,
     $x_1 : null,
     $y_1 : null,
@@ -22,9 +24,11 @@ let _main = {
 
         this.$scope = $("#map");
         this.$searchTab = $("#searchTab");
+        this.$deviceTab = $("#deviceTab");
         this.$tableList = $('#searchListTable', this.$searchTab);
         this.$floorInfo = $("#floorInfo");
         this.$floorInfoList = $('#floorInfoList', this.$floorInfo);
+        this.$deviceList = $('#deviceListTable', this.$deviceTab);
 
         this.events();
     },
@@ -42,7 +46,7 @@ let _main = {
 
         // 검색
         $('#btnSearch').on('click', function(){
-            _main.searchBuilding(1)
+            _main.searchBuilding(1);
         });
 
         _main.$map = L.map('map').setView([37.5,127.5],11);
@@ -55,7 +59,11 @@ let _main = {
         var editableLayers = new L.FeatureGroup();
         _main.$map.addLayer(editableLayers);
 
+        _main.$map.zoomControl.remove();
 
+        L.control.zoom({
+            position: 'bottomright'
+        }).addTo(_main.$map);
 
         //건물검색결과 클릭
         $(document).on("click", ".building", function() {
@@ -67,7 +75,7 @@ let _main = {
             _main.$map.setView(new L.LatLng(_main.$x_1, _main.$y_1), 18);
 
             _main.searchFloorInfo(i);
-
+            $("#deviceTab").show();
         });
 
         //층 클릭
@@ -95,6 +103,12 @@ let _main = {
                 url = url + "&" + encodeURIComponent("deviceInfoList["+i+"].top")+"="+_main.$markersB[i].top;
             }
             window.open(url, '', '_blank');
+        });
+
+        // 닫기
+        $('#deviceTabClose').on('click', function(){
+            $("#deviceTab").attr('style', 'display:none;');
+            _this.$floorInfoList.empty();
         });
 
     },
@@ -200,6 +214,29 @@ let _main = {
         }
     },
 
+    //device list databind
+    dataBindDeviceList : function(result) {
+        const _this = this;
+        _this.$deviceList.empty();
+        if (result.length > 0) {
+            $.each(result, function (i, val) {
+                _this.$deviceList.append(
+                    $('<tr/>').attr('onclick', '_main.clickDevice('+val.point1+','+val.point2+')').append(
+                        $('<td/>').text(val.floor)
+                    ).append(
+                        $('<td/>').text(val.typeCd)
+                    ).append(
+                        $('<td/>').text(val.deviceName)
+                    )
+                )
+            });
+        } else {
+            _this.$deviceList.append(
+                $('<tr/>').append($('<td/>').attr({colspan : 1}).text('검색결과가 없습니다.'))
+            );
+        }
+    },
+
     //층 클릭
     clickFloor : function(f, o) {
         if(_main.$map.hasLayer(_main.$image)){
@@ -221,7 +258,7 @@ let _main = {
             url : "/device/search/floor",
             data : param,
             success : function(res){
-
+                _main.dataBindDeviceList(res.result);
                 //device정보 클리어
                 if (_main.$markers != undefined) {
                     for(let i=0; i<_main.$markers.length; i++){
@@ -286,7 +323,7 @@ let _main = {
             url : "/device/search/floor",
             data : param,
             success : function(res){
-
+                _main.dataBindDeviceList(res.result);
                 //device정보 클리어
                 if (_main.$markers != undefined) {
                     for(let i=0; i<_main.$markers.length; i++){
@@ -336,6 +373,11 @@ let _main = {
 
             }
         });
+    },
+
+    //장비 클릭
+    clickDevice : function(point1, point2) {
+        _main.$map.setView(new L.LatLng(point1, point2), 18);
     }
 };
 
