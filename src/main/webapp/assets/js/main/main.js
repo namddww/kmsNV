@@ -88,7 +88,7 @@ let _main = {
             _main.$trigger = 'fAll';
         });
 
-        // 검색
+        // 실내확대
         $('#btnPopup').on('click', function(){
             let url = '/device/floorDeviceInfoPopup';
             url = url + "?imgPath="+encodeURIComponent(_main.$imageUrl);
@@ -284,8 +284,11 @@ let _main = {
         if(_main.$map.hasLayer(_main.$image)){
             _main.$map.removeLayer(_main.$image);
         }
-        //imageUrl = $('#F'+f).val();
-        _main.$imageUrl = 'https://www.codingfactory.net/wp-content/uploads/abc.jpg';
+        if(_main.$map.hasLayer(_main.$rect)){
+            _main.$map.removeLayer(_main.$rect);
+        }
+        _main.$imageUrl = $('#F'+f).val();
+        //_main.$imageUrl = 'https://www.codingfactory.net/wp-content/uploads/abc.jpg';
         var imageBounds = [
             [_main.$x_1, _main.$y_1],
             [_main.$x_2, _main.$y_2]
@@ -357,6 +360,21 @@ let _main = {
         if(_main.$map.hasLayer(_main.$image)){
             _main.$map.removeLayer(_main.$image);
         }
+        if(_main.$map.hasLayer(_main.$rect)){
+            _main.$map.removeLayer(_main.$rect);
+        }
+        var rectBounds = [
+            [_main.$x_1, _main.$y_1],
+            [_main.$x_2, _main.$y_2]
+        ];
+        _main.$rect = L.rectangle(rectBounds, {color: 'red', weight: 1}).on('click', function (e) {
+            // There event is event object
+            // there e.type === 'click'
+            // there e.lanlng === L.LatLng on map
+            // there e.target.getLatLngs() - your rectangle coordinates
+            // but e.target !== rect
+        }).addTo(_main.$map);
+
         let param = {
             buildSeq: b
         };

@@ -2,13 +2,11 @@ package com.hbl.kms.app.device;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hbl.kms.app.building.model.FloorInfoDto;
 import com.hbl.kms.app.common.constants.ControllerUrlConstants;
 import com.hbl.kms.app.common.model.Result;
 import com.hbl.kms.app.common.model.utils.ResponseUtil;
 import com.hbl.kms.app.device.model.AreaList;
 import com.hbl.kms.app.device.model.DeviceDto;
-import com.hbl.kms.app.device.model.DeviceInfoList;
 import com.hbl.kms.app.device.service.DeviceService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -157,48 +154,13 @@ public class DeviceController {
         String json = null;
         ObjectMapper mapper = new ObjectMapper();
 
-        // TODO : TEST 시작
-        /*List<DeviceInfoList> deviceInfoList = new ArrayList<>();
-        deviceInfoList.add(0, new DeviceInfoList());
-        deviceInfoList.get(0).setTop("10%");
-        deviceInfoList.get(0).setLeft("10%");
-        deviceInfoList.get(0).setType("자물쇠");
-        deviceInfoList.get(0).setImgPath("/assets/testImg/test.jpg");
-        deviceInfoList.add(1, new DeviceInfoList());
-        deviceInfoList.get(1).setTop("20%");
-        deviceInfoList.get(1).setLeft("20%");
-        deviceInfoList.get(1).setType("자물쇠");
-        deviceInfoList.get(1).setImgPath("/assets/testImg/test.jpg");
-        deviceInfoList.add(2, new DeviceInfoList());
-        deviceInfoList.get(2).setTop("30%");
-        deviceInfoList.get(2).setLeft("30%");
-        deviceInfoList.get(2).setType("열쇠");
-        deviceInfoList.get(2).setImgPath("/assets/testImg/test.jpg");
-        deviceInfoList.add(3, new DeviceInfoList());
-        deviceInfoList.get(3).setTop("40%");
-        deviceInfoList.get(3).setLeft("40%");
-        deviceInfoList.get(3).setType("열쇠");
-        deviceInfoList.get(3).setImgPath("/assets/testImg/test.jpg");
-        deviceInfoList.add(4, new DeviceInfoList());
-        deviceInfoList.get(4).setTop("50%");
-        deviceInfoList.get(4).setLeft("50%");
-        deviceInfoList.get(4).setType("자물쇠");
-        deviceInfoList.get(4).setImgPath("/assets/testImg/test.jpg");
-        deviceInfoList.add(5, new DeviceInfoList());
-        deviceInfoList.get(5).setTop("60%");
-        deviceInfoList.get(5).setLeft("60%");
-        deviceInfoList.get(5).setType("열쇠");
-        deviceInfoList.get(5).setImgPath("/assets/testImg/test.jpg");
-        deviceDto.setDeviceInfoList(deviceInfoList);*/
-        // TODO : TEST 종료
-
         try {
             json = mapper.writeValueAsString(deviceDto.getDeviceInfoList());
         } catch (JsonProcessingException e) {
             log.error("NoticeController.faqCategoryLists error {}", e);
         }
         mav.addObject("deviceInfoList", json);
-        mav.addObject("imgPath", deviceDto.getImgPath());
+        mav.addObject("imagePath", deviceDto.getImgPath());
 
         return mav;
     }

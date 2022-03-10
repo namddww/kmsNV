@@ -9,7 +9,7 @@ function img() {
     console.log("img deviceInfoList : ", deviceInfoList);
 
     var img = $("#img")
-    img.attr('src', deviceInfoList[0].imgPath);
+    img.attr('src', $("#imagePath").val());
     console.log("img width : ", img.width());
     console.log("img height : ", img.height());
 }

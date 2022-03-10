@@ -21,7 +21,7 @@ public class UploadUtil {
             File file = new File(filePath);
             multipartFile.transferTo(file);
 
-            return filePath;
+            return File.separator+"images" + File.separator + path + File.separator + originalName;
         }
         return "";
     }
