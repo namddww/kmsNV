@@ -19,9 +19,21 @@ public class BuildingInfoList {
      */
     private int buildSeq;
     /**
+     * 층정보 SEQ
+     */
+    private int floorSeq;
+    /**
+     * 디바이스 SEQ
+     */
+    private int deviceSeq;
+    /**
      * 빌딩명
      */
     private String buildName;
+    /**
+     * 자산명
+     */
+    private String deviceName;
     /**
      * 주소 (주소1 + 주소2)
      */
@@ -38,6 +50,10 @@ public class BuildingInfoList {
      * 지하층
      */
     private int baseFloor;
+    /**
+     * 층수
+     */
+    private int floor;
     /**
      * 기준좌표1(leftop_위도)
      */
@@ -58,6 +74,14 @@ public class BuildingInfoList {
      * 지역코드
      */
     private String locationCd;
+    /**
+     * 타입 (코드값)
+     */
+    private String typeCd;
+    /**
+     * 상태코드
+     */
+    private String stateCd;
     /**
      * 등록일
      */

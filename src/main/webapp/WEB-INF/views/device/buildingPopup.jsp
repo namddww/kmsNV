@@ -42,18 +42,14 @@
                                 <td>
                                     <select id="select-area">
                                         <option value="" selected>전체</option>
-                                        <option value="SO">서울</option>
-                                        <option value="DJ">대전</option>
-                                        <option value="DG">대구</option>
-                                        <option value="BS">부산</option>
                                     </select>
                                 </td>
                                 <th>사용 여부</th>
                                 <td>
                                     <select id="select-useYn">
                                         <option value="" selected>전체</option>
-                                        <option value="YES">사용</option>
-                                        <option value="NO">미사용</option>
+                                        <option value="Y">사용</option>
+                                        <option value="N">미사용</option>
                                     </select>
                                 </td>
                             </tr>
@@ -117,3 +113,6 @@
     </div>
 </div>
 <script type="text/javascript" src="/assets/js/device/buildingPopup.js"></script>
+<script>
+    var areaList = ${areaList};
+</script>

@@ -13,6 +13,41 @@
         AND GROUP_CD = #{codeGroupCd}
     </select>
 
+    <!-- 자산정보 조회 -->
+    <select id="selectDeviceInfoList" resultType="buildingInfoList">
+        SELECT
+            TB.BUILD_SEQ
+            , TD.DEVICE_SEQ
+            , TB.BUILD_NAME
+            , (SELECT CODE_NAME FROM t_code tc WHERE TB.LOCATION_CD = tc.CODE_VAL) LOCATION_CD
+            , TD.FLOOR
+            , (SELECT CODE_NAME FROM t_code tc WHERE TD.TYPE_CD = tc.CODE_VAL) TYPE_CD
+            , TD.DEVICE_NAME
+            , CONCAT(TD.POINT1, ' / ', TD.POINT2) AS POINT
+            , TD.LOCATION
+            , (SELECT CODE_NAME FROM t_code tc WHERE TD.STATE_CD = tc.CODE_VAL) STATE_CD
+            , TD.REG_DATE
+        FROM t_building TB
+            INNER JOIN t_device TD ON TB.build_seq = TD.build_seq
+            INNER JOIN t_floor_info TFI ON TB.build_seq = TFI.build_seq AND TD.floor_seq = TFI.floor_seq
+        WHERE 1=1
+        <if test="buildName != null and buildName != ''">
+            AND TB.BUILD_NAME LIKE CONCAT('%', #{buildName}, '%')
+        </if>
+        <if test="scRegDtSt != null and scRegDtSt != ''">
+            AND DATE_FORMAT(TD.REG_DATE, '%Y%m%d') &gt;= #{scRegDtSt}
+        </if>
+        <if test="scRegDtEd != null and scRegDtEd != ''">
+            AND DATE_FORMAT(TD.REG_DATE, '%Y%m%d') &lt;= #{scRegDtEd}
+        </if>
+        <if test="typeCd != null and typeCd != ''">
+            AND TD.TYPE_CD = #{typeCd}
+        </if>
+        <if test="floor != null and floor != ''">
+            AND TD.FLOOR = #{floor}
+        </if>
+    </select>
+
     <!-- 건물정보 조회 -->
     <select id="selectBuildingInfoList" resultType="buildingInfoList">
         SELECT
@@ -72,6 +107,7 @@
         ( BUILD_SEQ
           , FLOOR_SEQ
           , FLOOR
+          , DEVICE_NAME
           , TYPE_CD
           , LOCATION
           , REG_DATE
@@ -83,6 +119,7 @@
           #{buildSeq}
           , #{floorSeq}
           , #{floor}
+          , #{deviceName}
           , #{typeCd}
           , #{locationCd}
           , NOW()

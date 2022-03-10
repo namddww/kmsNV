@@ -40,6 +40,8 @@
             <div style="margin-left: 1%;">
                 <h3>자산 상세정보</h3>
                 <br>
+                자산명 : <input type="text" id="deviceName">
+                <br>
                 층정보 : <select id="floor">
                             <option>-</option>
                         </select>

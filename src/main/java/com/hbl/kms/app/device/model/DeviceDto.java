@@ -79,6 +79,10 @@ public class DeviceDto {
      */
     private String buildName;
     /**
+     * 자산명
+     */
+    private String deviceName;
+    /**
      * 시작일
      */
     private String scRegDtSt;

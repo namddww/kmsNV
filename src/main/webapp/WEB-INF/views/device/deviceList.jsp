@@ -38,22 +38,16 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>지역</th>
+                                <th>자산종류</th>
                                 <td>
-                                    <select id="select-area">
+                                    <select id="select-type">
                                         <option value="" selected>전체</option>
-                                        <option value="SO">서울</option>
-                                        <option value="DJ">대전</option>
-                                        <option value="DG">대구</option>
-                                        <option value="BS">부산</option>
                                     </select>
                                 </td>
-                                <th>사용 여부</th>
+                                <th>층</th>
                                 <td>
-                                    <select id="select-useYn">
-                                        <option value="" selected>전체</option>
-                                        <option value="Y">사용</option>
-                                        <option value="N">미사용</option>
+                                    <select id="select-floor">
+                                        <option value="0" selected>전체</option>
                                     </select>
                                 </td>
                             </tr>
@@ -69,40 +63,30 @@
                     <div class="data_table st4">
                         <table class="link ">
                             <colgroup>
-                                <col style="width:1%">
                                 <col style="width:10%">
+                                <col style="width:10%">
+                                <col style="width:5%">
+                                <col style="width:7%">
+                                <col style="width:20%">
+                                <col style="width:20%">
                                 <col style="width:7%">
                                 <col style="width:25%">
-                                <col style="width:5%">
-                                <col style="width:30%">
-                                <col style="width:15%">
                             </colgroup>
                             <thead>
                             <tr>
-                                <th><input type="checkbox" id="chk_all"><label for="chk_all"></label></th>
-                                <!-- 전체 선택 해제 ui_common.js스크립트가 적용 되나, 추후 변경 해 주세요. -->
-                                <th>건물명</th>
                                 <th>지역</th>
-                                <th>상세주소</th>
-                                <th>층수</th>
-                                <th>좌표</th>
+                                <th>건물명</th>
+                                <th>층</th>
+                                <th>종류</th>
+                                <th>자산명</th>
+                                <th>위치</th>
+                                <th>상태</th>
                                 <th>등록 일자</th>
                             </tr>
                             </thead>
                             <tbody id="tbody">
                             <tr>
-                                <td>
-                                    <input type="checkbox" id="chk_01" name="chk" value="00">
-                                    <label for="chk_01"></label>
-                                    <input type="hidden" id="deleteBuildSeq">
-                                </td>
-                                <!-- 추후 checkbox 의 ID / name 명 변경 필요 > 각 연동된 label 도 변경 해 주세요 -->
-                                <td onClick="#">휴빌론</td>
-                                <td>서울</td>
-                                <td>서울 서초구 강남대로 291 남강빌딩</td>
-                                <td>5</td>
-                                <td>127.03122777241998	/ 37.48893200242128</td>
-                                <td>2022-02-10 17:00</td>
+                                <td onClick="javascript:void(0);" colspan="8">조회버튼을 통해 검색해 주세요.</td>
                             </tr>
                             </tbody>
                         </table>

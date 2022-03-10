@@ -3,9 +3,6 @@ $(document).ready(function() {
     // 지역 셀렉트박스 그리기.
     areaHtml(areaList);
 
-    // 진입 후 건물 검색
-    buildingSearch(1);
-
     // 자산등록 버튼 선택
     $("#a-reg").click(function () {
         deviceInsert();
@@ -22,22 +19,21 @@ $(document).ready(function() {
 });
 
 function areaHtml(areaList) {
-    $("#select-area").empty();
+    $("#select-type").empty();
 
-    $("#select-area").append(
+    $("#select-type").append(
         $('<option/>')
             .attr('value', '')
             .text('전체')
     )
+
     $.each(areaList, function (i, val) {
-        $("#select-area").append(
+        $("#select-type").append(
             $('<option/>')
                 .attr('value', val.codeVal)
                 .text(val.codeName)
         )
     });
-
-
 }
 
 function buildingSearch(page) {
@@ -49,13 +45,13 @@ function buildingSearch(page) {
         buildName : $("#buildName").val(),
         scRegDtSt : $("#scRegDtSt").val().replaceAll('-',''),
         scRegDtEd : $("#scRegDtEd").val().replaceAll('-',''),
-        locationCd : $("#select-area option:selected").val(),
-        isUse : $("#select-useYn option:selected").val()
+        typeCd : $("#select-type option:selected").val(),
+        floor : $("#select-floor option:selected").val()
     };
 
     $.ajax({
         type: 'GET',
-        url: '/device/search',
+        url: '/device/deviceSearch',
         async: false,
         // data: {pageNum : pageNum},
         data: param,
@@ -67,30 +63,16 @@ function buildingSearch(page) {
                 $.each(res.result.list, function (i, val) {
                     $("#tbody").append(
                         $('<tr/>')
+                            .append($('<td/>').text(val.locationCd)) // 지역
                             .append($('<td/>')
-                                .append($('<input/>')
-                                    .attr('type', 'checkbox')
-                                    .attr('id', 'chk_' + i)
-                                    .attr('name', 'chk')
-                                    .attr('value', val.buildSeq)
-                                ) // input
-                                .append($('<label/>')
-                                    .attr('for', 'chk_' + i)
-                                ) // label
-                                .append($('<input/>')
-                                    .attr('type', 'hidden')
-                                    .attr('id', 'deleteBuildSeq')
-                                ) // hidden
-                            ) // 체크박스
-                            .append($('<td/>')
-                                .append($('<a/>').html('ttt'))
-                                .attr("onClick", "javascript:deviceDetail('" + val.buildSeq + "');")
+                                .attr("onClick", "javascript:deviceDetail('" + val.deviceSeq + "');")
                                 .text(val.buildName)
                             ) // 건물명
-                            .append($('<td/>').text(val.locationCd)) // 지역
-                            .append($('<td/>').text(val.address)) // 상세주소
-                            .append($('<td/>').text(val.groundFloor)) // 층수
-                            .append($('<td/>').text(val.point)) // 좌표
+                            .append($('<td/>').text(val.floor)) // 층수
+                            .append($('<td/>').text(val.typeCd)) // 종류
+                            .append($('<td/>').text(val.deviceName)) // 자산명
+                            .append($('<td/>').text(val.point)) // 위치
+                            .append($('<td/>').text(val.stateCd)) // 상태
                             .append($('<td/>').text(val.regDate)) // 등록일자
                     ) // end append_tbody
                 });

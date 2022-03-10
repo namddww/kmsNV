@@ -23,6 +23,11 @@ public class DeviceService {
         return deviceMapper.selectAreaList(codeGroupCd);
     }
 
+    public PageInfo<?> selectDeviceInfoList(DeviceDto deviceDto) {
+        PageHelper.startPage(deviceDto);
+        return PageInfo.of(deviceMapper.selectDeviceInfoList(deviceDto), deviceDto.getNavigatePages());
+    }
+
     public PageInfo<?> selectBuildingInfoList(DeviceDto deviceDto) {
         PageHelper.startPage(deviceDto);
         return PageInfo.of(deviceMapper.selectBuildingInfoList(deviceDto), deviceDto.getNavigatePages());

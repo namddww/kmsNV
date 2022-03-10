@@ -60,6 +60,7 @@ function deviceSave() {
     var formData = new FormData();
 
     formData.append('buildSeq', $("#buildSeq").val());
+    formData.append('deviceName', $("#deviceName").val());
     formData.append('floor', $("#floor option:selected").val());
     formData.append('typeCd', $("#typeCd option:selected").val());
     formData.append('locationCd', $("#locationCd").text());

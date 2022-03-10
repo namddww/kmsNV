@@ -1,4 +1,8 @@
 $(document).ready(function() {
+
+    // 지역 셀렉트박스 그리기.
+    areaHtml(areaList);
+
     // 진입 후 건물 검색
     buildingSearch(1);
 
@@ -7,6 +11,24 @@ $(document).ready(function() {
         buildingSearch(1);
     });
 });
+
+function areaHtml(areaList) {
+    $("#select-area").empty();
+
+    $("#select-area").append(
+        $('<option/>')
+            .attr('value', '')
+            .text('전체')
+    )
+
+    $.each(areaList, function (i, val) {
+        $("#select-area").append(
+            $('<option/>')
+                .attr('value', val.codeVal)
+                .text(val.codeName)
+        )
+    });
+}
 
 function buildingSearch(page) {
     console.log("buildingSearch 진입");

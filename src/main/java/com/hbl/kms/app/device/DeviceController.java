@@ -37,7 +37,7 @@ public class DeviceController {
 
         String json = null;
         ObjectMapper mapper = new ObjectMapper();
-        List<AreaList> areaList = deviceService.selectAreaList(codeAcdGroupCd);
+        List<AreaList> areaList = deviceService.selectAreaList(codeDevGroupCd);
 
         try {
             json = mapper.writeValueAsString(areaList);
@@ -93,6 +93,17 @@ public class DeviceController {
     @GetMapping(ControllerUrlConstants.DeviceUrl.Device.BUILDING_POPUP)
     public ModelAndView buildingPopup(ModelAndView mav) {
         mav.setViewName("device/buildingPopup");
+
+        String json = null;
+        ObjectMapper mapper = new ObjectMapper();
+        List<AreaList> areaList = deviceService.selectAreaList(codeAcdGroupCd);
+
+        try {
+            json = mapper.writeValueAsString(areaList);
+        } catch (JsonProcessingException e) {
+            log.error("NoticeController.faqCategoryLists error {}", e);
+        }
+        mav.addObject("areaList", json);
         return mav;
     }
 
