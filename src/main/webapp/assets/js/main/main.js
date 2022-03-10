@@ -44,11 +44,6 @@ let _main = {
             }
         }, 10000);
 
-        // 검색
-        $('#btnSearch').on('click', function(){
-            _main.searchBuilding(1);
-        });
-
         _main.$map = L.map('map').setView([37.5,127.5],11);
 
         let osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
@@ -111,12 +106,36 @@ let _main = {
             _this.$floorInfoList.empty();
         });
 
+        // 검색
+        $('#btnSearch').on('click', function(){
+            _main.searchBuilding(1, 't');
+        });
+
+        // 지도내검색
+        $('#btnSearchArea').on('click', function(){
+            _main.searchBuilding(1, 'a');
+        });
+
     },
 
-    searchBuilding : function(page) {
+    searchBuilding : function(page, type) {
         const _this = this;
+        let x1;
+        let x2;
+        let y1;
+        let y2;
+        if(type == 'a'){
+            x1 = _main.$map.getBounds()._southWest.lat;
+            y1 = _main.$map.getBounds()._southWest.lng;
+            x2 = _main.$map.getBounds()._northEast.lat;
+            y2 = _main.$map.getBounds()._northEast.lng;
+        }
         var param = {
-            buildName : $('#searchText').val()
+            buildName : $('#searchText').val(),
+            x1 : x1,
+            y1 : y1,
+            x2 : x2,
+            y2 : y2
         };
         $.ajax({
             type : "GET",
@@ -136,6 +155,12 @@ let _main = {
         const _this = this;
         _this.$tableList.find('tbody').empty();
         if (result.list.length > 0) {
+            if (_main.$markers != undefined) {
+                for(let i=0; i<_main.$markers.length; i++){
+                    _main.$map.removeLayer(_main.$markers[i]);
+                }
+            };
+            _main.$markers = [];
             $.each(result.list, function (i, val) {
                 _this.$tableList.append(
                     $('<tr/>').append(
@@ -150,8 +175,25 @@ let _main = {
                         )
                     )
                 )
+                var x_1 = val.stdPoint1;
+                var y_1 = val.stdPoint2;
+                var x_2 = val.areaPoint1;
+                var y_2 = val.areaPoint2;
+                let x = Number(x_1) - ((Number(x_1) - Number(x_2)) / 2);
+                let y = Number(y_1) + ((Number(y_2) - Number(y_1)) / 2);
+                var latlng = L.latLng(x, y);
+                /*L.marker(latlng, {
+                    icon: icon
+                }).addTo(_this2.$map);*/
+                _main.$markers.push(L.marker(latlng).addTo(_main.$map));
             });
         } else {
+            if (_main.$markers != undefined) {
+                for(let i=0; i<_main.$markers.length; i++){
+                    _main.$map.removeLayer(_main.$markers[i]);
+                }
+            };
+            _main.$markers = [];
             _this.$tableList.append(
                 $('<tr/>').append($('<td/>').attr({colspan : 1}).text('검색결과가 없습니다.'))
             );
