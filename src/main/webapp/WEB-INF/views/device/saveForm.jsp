@@ -46,8 +46,6 @@
                 <br>
                 타입 : <select id="typeCd">
                             <option>타입1</option>
-                            <option>타입2</option>
-                            <option>타입3</option>
                         </select>
                 <br>
                 위치설명 : <input type="text" id="location">
@@ -74,3 +72,6 @@
     </form>
 </div>
 <script type="text/javascript" src="/assets/js/device/saveForm.js"></script>
+<script>
+    var typeList = ${typeList};
+</script>

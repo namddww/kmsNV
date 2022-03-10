@@ -39,7 +39,8 @@ public class ControllerUrlConstants {
             String SAVE_FORM = "/device/saveForm";
             String BUILDING_POPUP = "/device/buildingPopup";
             String POINT_POPUP = "/device/devicePointPopup";
-            String SEARCH = "/device/search";
+            String SEARCH_BUILDING = "/device/buildingSearch";
+            String SEARCH_DEVICE = "/device/deviceSearch";
             String SAVE = "/device/save";
             String SEARCH_FLOOR = "/device/search/floor";
             String FLOOR_DEVICEINFO_POPUP = "/device/floorDeviceInfoPopup";

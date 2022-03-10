@@ -25,7 +25,8 @@ import java.util.List;
 public class DeviceController {
 
     private final DeviceService deviceService;
-    private static final String codeGroupCd = "ACD";
+    private static final String codeAcdGroupCd = "ACD";
+    private static final String codeDevGroupCd = "DEV";
 
     /**
      * 자산등록 목록화면
@@ -34,10 +35,9 @@ public class DeviceController {
     public ModelAndView deviceList(ModelAndView mav) {
         mav.setViewName("device/deviceList");
 
-
         String json = null;
         ObjectMapper mapper = new ObjectMapper();
-        List<AreaList> areaList = deviceService.selectAreaList(codeGroupCd);
+        List<AreaList> areaList = deviceService.selectAreaList(codeAcdGroupCd);
 
         try {
             json = mapper.writeValueAsString(areaList);
@@ -50,9 +50,18 @@ public class DeviceController {
     }
 
     /**
-     * 건물정보 목록 및 정보 조회
+     * 자산정보 조회
      */
-    @GetMapping(ControllerUrlConstants.DeviceUrl.Device.SEARCH)
+    @GetMapping(ControllerUrlConstants.DeviceUrl.Device.SEARCH_DEVICE)
+    @ResponseBody
+    public Result selectDeviceInfoList(@ModelAttribute DeviceDto deviceDto) {
+        return ResponseUtil.process(deviceService.selectDeviceInfoList(deviceDto));
+    }
+
+    /**
+     * 건물정보 조회
+     */
+    @GetMapping(ControllerUrlConstants.DeviceUrl.Device.SEARCH_BUILDING)
     @ResponseBody
     public Result selectBuildingInfoList(@ModelAttribute DeviceDto deviceDto) {
         return ResponseUtil.process(deviceService.selectBuildingInfoList(deviceDto));
@@ -64,6 +73,17 @@ public class DeviceController {
     @GetMapping(ControllerUrlConstants.DeviceUrl.Device.SAVE_FORM)
     public ModelAndView saveForm(ModelAndView mav) {
         mav.setViewName("device/saveForm");
+
+        String json = null;
+        ObjectMapper mapper = new ObjectMapper();
+        List<AreaList> areaList = deviceService.selectAreaList(codeDevGroupCd);
+
+        try {
+            json = mapper.writeValueAsString(areaList);
+        } catch (JsonProcessingException e) {
+            log.error("NoticeController.faqCategoryLists error {}", e);
+        }
+        mav.addObject("typeList", json);
         return mav;
     }
 

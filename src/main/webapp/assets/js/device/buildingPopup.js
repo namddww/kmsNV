@@ -1,17 +1,31 @@
 $(document).ready(function() {
     // 진입 후 건물 검색
     buildingSearch(1);
+
+    // 조회 버튼 선택
+    $("#a-search").click(function () {
+        buildingSearch(1);
+    });
 });
 
 function buildingSearch(page) {
     console.log("buildingSearch 진입");
     var pageNum = page || 1;
 
+    var param = {
+        pageNum: pageNum,
+        buildName : $("#buildName").val(),
+        scRegDtSt : $("#scRegDtSt").val().replaceAll('-',''),
+        scRegDtEd : $("#scRegDtEd").val().replaceAll('-',''),
+        locationCd : $("#select-area option:selected").val(),
+        isUse : $("#select-useYn option:selected").val()
+    };
+
     $.ajax({
         type: 'GET',
-        url: '/device/search',
+        url: '/device/buildingSearch',
         async: false,
-        data: pageNum,
+        data: param,
         success: function(res) {
             $("#tbody").empty();
             if (res.result.list.length > 0) {
@@ -59,6 +73,7 @@ function buildingSearch(page) {
 
                     // selectFloorHtml(val.groundFloor, val.baseFloor);
                 });
+                pagination(res.result, '', 'buildingSearch');
             } else {
                 console.log("사이즈 없음");
                 $("#tbody").append($('<tr/>')

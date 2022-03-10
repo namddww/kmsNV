@@ -15,6 +15,8 @@ public interface DeviceMapper {
 
     List<BuildingInfoList> selectBuildingInfoList(DeviceDto deviceDto);
 
+    List<BuildingInfoList> selectDeviceInfoList(DeviceDto deviceDto);
+
     String selectFloorFilePath(int buildSeq, int floor);
 
     int selectFloorSeq(DeviceDto deviceDto);
@@ -24,4 +26,5 @@ public interface DeviceMapper {
     List<Device> selectDeviceListByFloor(DeviceDto deviceDto);
 
     int insertDeviceTracking(DeviceDto deviceDto);
+
 }

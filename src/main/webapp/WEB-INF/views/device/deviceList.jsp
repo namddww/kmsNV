@@ -133,7 +133,4 @@
 <script type="text/javascript" src="/assets/js/device/deviceList.js"></script>
 <script>
     var areaList = ${areaList};
-    <%--var response = null;--%>
-    <%--response = <c:out value="${empty areaList ? 'null' : areaList}" escapeXml="false"/>;--%>
-    <%--console.log(JSON.stringify(response));--%>
 </script>

@@ -16,4 +16,8 @@ public class AreaList {
      * 코드값
      */
     private String codeVal;
+    /**
+     * 코드 그룹명
+     */
+    private String groupCd;
 }

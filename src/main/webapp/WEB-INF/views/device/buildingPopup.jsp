@@ -24,7 +24,7 @@
                             <tbody>
                             <tr>
                                 <th>건물명</th>
-                                <td><input type="text"></td>
+                                <td><input type="text" id="buildName"></td>
                                 <th>등록 일자</th>
                                 <td colspan="3">
                                     <div class="date_wp">
@@ -34,14 +34,14 @@
                                     </div>
                                 </td>
                                 <td rowspan="2">
-                                    <div class="btn_area search"><a href="#" class="btn gray">조회</a></div>
+                                    <div class="btn_area search"><a href="javascript:void(0)" id="a-search" class="btn gray">조회</a></div>
                                 </td>
                             </tr>
                             <tr>
                                 <th>지역</th>
                                 <td>
                                     <select id="select-area">
-                                        <option value="ALL" selected>전체</option>
+                                        <option value="" selected>전체</option>
                                         <option value="SO">서울</option>
                                         <option value="DJ">대전</option>
                                         <option value="DG">대구</option>
@@ -51,7 +51,7 @@
                                 <th>사용 여부</th>
                                 <td>
                                     <select id="select-useYn">
-                                        <option value="ALL" selected>전체</option>
+                                        <option value="" selected>전체</option>
                                         <option value="YES">사용</option>
                                         <option value="NO">미사용</option>
                                     </select>
@@ -91,6 +91,24 @@
                             </tr>
                             </tbody>
                         </table>
+
+                        <div class="paging">
+                            <nav>
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item">
+                                        <a class="page-link" href="javascript: void(0);" aria-label="Previous">
+                                            <span aria-hidden="true">«</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="javascript: void(0);">1</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="javascript: void(0);" aria-label="Next">
+                                            <span aria-hidden="true">»</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
 
                     </div>
                 </div>

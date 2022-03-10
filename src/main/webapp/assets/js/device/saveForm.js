@@ -1,4 +1,8 @@
 $(document).ready(function() {
+
+    // 타입 셀렉트박스 그리기.
+    typeHtml(typeList);
+
     // 건물검색 버튼 선택
     $("#building-btn").click(function () {
         buildingPopup();
@@ -18,6 +22,24 @@ $(document).ready(function() {
         deviceList();
     })
 });
+
+function typeHtml(typeList) {
+    $("#typeCd").empty();
+
+    $("#typeCd").append(
+        $('<option/>')
+            .attr('value', '')
+            .text('전체')
+    )
+
+    $.each(typeList, function (i, val) {
+        $("#typeCd").append(
+            $('<option/>')
+                .attr('value', val.codeVal)
+                .text(val.codeName)
+        )
+    });
+}
 
 function buildingPopup() {
     var url = "/device/buildingPopup";
