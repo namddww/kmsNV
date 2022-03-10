@@ -8,6 +8,7 @@ let _main = {
     $deviceList : null,
     $trigger : null,
     $image : null,
+    $rect : null,
     $markers : [],
     $markersB : [],
     $imageUrl : null,
