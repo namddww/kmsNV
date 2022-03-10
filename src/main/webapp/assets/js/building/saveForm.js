@@ -75,8 +75,11 @@ var _building = {
                     _this.$tableList.append(
                         $('<tr/>').append(
                             $('<td/>').append(
-                                $('<input>').attr('type', 'checkbox').attr('name', 'chk').attr('class', 'floorChk').val(Number((i-1)))
-                            ).append($('<label/>').attr('for', 'chk'))
+                                $('<input>').attr('type', 'checkbox').attr('name', 'chk')
+                                    .attr('class', 'floorChk').attr('id', 'chk'+Number((i-1))).val(Number((i-1)))
+                            ).append(
+                                $('<label/>').attr('for', 'chk'+Number((i-1)))
+                            )
                         ).append(
                             $('<td/>').text('지하'+Number((i-1)*-1))
                         ).append(
@@ -100,8 +103,11 @@ var _building = {
                     _this.$tableList.append(
                         $('<tr/>').append(
                             $('<td/>').append(
-                                $('<input>').attr('type', 'checkbox').attr('name', 'chk').attr('class', 'floorChk').val(i)
-                            ).append($('<label/>').attr('for', 'chk'))
+                                $('<input>').attr('type', 'checkbox').attr('name', 'chk')
+                                    .attr('class', 'floorChk').attr('id', 'chk'+i).val(i)
+                            ).append(
+                                $('<label/>').attr('for', 'chk'+i)
+                            )
                         ).append(
                             $('<td/>').text(i)
                         ).append(

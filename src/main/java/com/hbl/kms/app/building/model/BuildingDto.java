@@ -6,7 +6,7 @@ import lombok.Setter;
 import java.util.List;
 
 /**
- * 건물등록 파리미터 전달용
+ * 건물관련 파리미터 전달용
  */
 
 @Getter
@@ -90,6 +90,14 @@ public class BuildingDto {
      * 층별 정보
      */
     private List<FloorInfoDto> floorInfo;
+
+    /**
+     * 층별 정보
+     */
+    private String x1;
+    private String y1;
+    private String x2;
+    private String y2;
 
     int pageNum = 1;
     int pageSize = 5;

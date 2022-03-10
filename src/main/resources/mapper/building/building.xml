@@ -34,6 +34,10 @@
         <if test="isUse != null and isUse != ''">
             AND is_use = #{isUse}
         </if>
+        <if test="x1 != null and x1 != '' and x2 != null and x2 != '' and y1 != null and y1 != '' and y2 != null and y2 != '' ">
+            AND #{x1} &lt; std_point1 AND std_point1 &lt; #{x2}
+            AND #{y1} &lt; std_point2 AND std_point2 &lt; #{y2}
+        </if>
     </select>
 
     <!-- 건물정보 조회 -->

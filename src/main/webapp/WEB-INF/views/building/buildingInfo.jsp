@@ -69,7 +69,8 @@
                         <c:forEach var="data" items="${floor}" varStatus="status">
                             <tr>
                                 <td>
-                                    <input type="checkbox" name="chk" class="floorChk" value="${data.floor}">
+                                    <input type="checkbox" name="chk" id="chk${data.floor}" class="floorChk" value="${data.floor}">
+                                    <label for="chk${data.floor}"></label>
                                     <input type="hidden" id="floorSeq${data.floor}" value="${data.floorSeq}">
                                 </td>
                                 <c:if test="${data.floor < 0}">
