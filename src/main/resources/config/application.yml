@@ -24,6 +24,11 @@ spring:
       file-size-threshold: 2KB
 
 file:
+#  resourcePath: /images/
+  resourcePath: file:///C:/upload/images/
+  uploadPath: /images/**
+#  resourcePath: file:///test/image/
+#  uploadPath: /image/**
   upload-dir: /uploads
 
 pagehelper:
