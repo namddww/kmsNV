@@ -1,20 +1,17 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ include file="../../views/common/include/common.jsp" %>
 
 <div class="sub_content">
     <div class="view_list_head">
         <h2 class="page_title_big">건물 조회</h2>
         <div class="search_sort sort">
             <div class="calendar_sort">
-            <span class="date_box">
-                <input type="text" class="date" placeholder="yyyy-mm-dd" id="scRegDtSt" autocomplete="off">
-                <img class="ui-datepicker-trigger" src="../../../assets/resource/images/ico/ico_calendar.svg">
-            </span>
-                <span class="bar">~</span>
                 <span class="date_box">
-                <input type="text" class="date" placeholder="yyyy-mm-dd" id="scRegDtEd" autocomplete="off">
-                <img class="ui-datepicker-trigger" src="../../../assets/resource/images/ico/ico_calendar.svg">
-            </span>
+                    <input type="text" class="date" placeholder="yyyy-mm-dd" id="scRegDtSt" autocomplete="off">
+                </span>
+                    <span class="bar">~</span>
+                    <span class="date_box">
+                    <input type="text" class="date" placeholder="yyyy-mm-dd" id="scRegDtEd" autocomplete="off">
+                </span>
             </div>
             <select id="select-area">
                 <option value="" selected>전체</option>

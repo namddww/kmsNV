@@ -24,6 +24,9 @@ let _buildingList = {
             _this.search(1);
         });
 
+        $("#scRegDtSt").datepicker();
+        $("#scRegDtEd").datepicker();
+
     },
 
     search : function(page) {
