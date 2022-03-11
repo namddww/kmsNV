@@ -47,4 +47,14 @@ public class ControllerUrlConstants {
         }
     }
 
+    // 아이콘관련 URL
+    public interface IconUrl {
+        interface Icon {
+            String DEFAULT = "/icon/list";
+            String SAVE_FORM = "/icon/saveForm";
+            String SELECT_ICON_COUNT = "/icon/selectIconCount";
+            String SAVE = "/icon/save";
+        }
+    }
+
 }

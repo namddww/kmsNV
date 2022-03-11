@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hbl.kms.app.icon.mapper.IconMapper">
+
+    <select id="selectIconCount" resultType="int">
+        SELECT COUNT(ICON_SEQ)
+        FROM t_icon
+        WHERE GROUP_CD = #{groupCd}
+        AND CODE_VAL = #{codeVal}
+    </select>
+
+    <insert id="insertIcon">
+        INSERT INTO t_icon
+        ( ICON_NAME
+          , GROUP_CD
+          , CODE_VAL
+          , ICON_PATH
+          , USER_SEQ
+          , REG_DATE
+          , MODI_SEQ
+          , MODI_DATE
+        ) VALUES (
+          #{iconName}
+          , #{groupCd}
+          , #{codeVal}
+          , #{iconPath}
+          , #{userSeq}
+          , NOW()
+          , #{userSeq}
+          , NOW()
+        )
+    </insert>
+
+</mapper>
