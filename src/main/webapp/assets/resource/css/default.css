@@ -1,0 +1,216 @@
+@charset "utf-8";  
+/* noto-sans-kr-300 - latin_korean */
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../fonts/noto-sans-kr-v21-latin_korean-300.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../fonts/noto-sans-kr-v21-latin_korean-300.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/noto-sans-kr-v21-latin_korean-300.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/noto-sans-kr-v21-latin_korean-300.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/noto-sans-kr-v21-latin_korean-300.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/noto-sans-kr-v21-latin_korean-300.svg#NotoSansKR') format('svg'); /* Legacy iOS */
+}
+/* noto-sans-kr-regular - latin_korean */
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/noto-sans-kr-v21-latin_korean-regular.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../fonts/noto-sans-kr-v21-latin_korean-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/noto-sans-kr-v21-latin_korean-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/noto-sans-kr-v21-latin_korean-regular.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/noto-sans-kr-v21-latin_korean-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/noto-sans-kr-v21-latin_korean-regular.svg#NotoSansKR') format('svg'); /* Legacy iOS */
+}
+/* noto-sans-kr-500 - latin_korean */
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../fonts/noto-sans-kr-v21-latin_korean-500.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../fonts/noto-sans-kr-v21-latin_korean-500.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/noto-sans-kr-v21-latin_korean-500.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/noto-sans-kr-v21-latin_korean-500.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/noto-sans-kr-v21-latin_korean-500.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/noto-sans-kr-v21-latin_korean-500.svg#NotoSansKR') format('svg'); /* Legacy iOS */
+}
+/* noto-sans-kr-700 - latin_korean */
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/noto-sans-kr-v21-latin_korean-700.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../fonts/noto-sans-kr-v21-latin_korean-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/noto-sans-kr-v21-latin_korean-700.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/noto-sans-kr-v21-latin_korean-700.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/noto-sans-kr-v21-latin_korean-700.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/noto-sans-kr-v21-latin_korean-700.svg#NotoSansKR') format('svg'); /* Legacy iOS */
+} 
+/* poppins-300 - latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../fonts/poppins-v15-latin-300.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../fonts/poppins-v15-latin-300.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/poppins-v15-latin-300.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/poppins-v15-latin-300.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/poppins-v15-latin-300.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/poppins-v15-latin-300.svg#Poppins') format('svg'); /* Legacy iOS */
+}
+/* poppins-regular - latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/poppins-v15-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../fonts/poppins-v15-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/poppins-v15-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/poppins-v15-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/poppins-v15-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/poppins-v15-latin-regular.svg#Poppins') format('svg'); /* Legacy iOS */
+}
+/* poppins-500 - latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../fonts/poppins-v15-latin-500.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../fonts/poppins-v15-latin-500.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/poppins-v15-latin-500.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/poppins-v15-latin-500.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/poppins-v15-latin-500.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/poppins-v15-latin-500.svg#Poppins') format('svg'); /* Legacy iOS */
+}
+/* poppins-600 - latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../fonts/poppins-v15-latin-600.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../fonts/poppins-v15-latin-600.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/poppins-v15-latin-600.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/poppins-v15-latin-600.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/poppins-v15-latin-600.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/poppins-v15-latin-600.svg#Poppins') format('svg'); /* Legacy iOS */
+}
+/* poppins-700 - latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/poppins-v15-latin-700.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../fonts/poppins-v15-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/poppins-v15-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/poppins-v15-latin-700.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/poppins-v15-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/poppins-v15-latin-700.svg#Poppins') format('svg'); /* Legacy iOS */
+}
+
+
+*{margin:0;  padding:0; }
+html{font-family: 'Poppins','Noto Sans KR'; font-weight:400; font-size: 14px; color:#515151;}
+
+/*Reset*/
+h1, h2, h3, h4, h5, h6, h7 {clear:both;  font-weight:normal;}
+/*article, aside, canvas, details, figcaption, figure, footer, header, hgroup, nav, menu, nav, section { display: block;  }*/
+textarea, select, input, td { color:#515151;  letter-spacing:-1px; }
+table {border-collapse: collapse;  border-spacing:0;  }
+th, strong {font-weight: normal}
+td {word-break:break-all;  }
+img {vertical-align:middle;  border:0}
+ol, ul, li {list-style: none;  }
+fieldset{border:0;  }
+input[type="text"], input[type="password"]{height:24px;  padding:0 5px;  overflow:hidden;  border:1px solid #bebebe; }
+input[type=radio], input[type=checkbox] { vertical-align:middle;  }
+textarea {padding: 15px; box-sizing: border-box;  border: 1px solid #ddd;}
+button {background: inherit ; border: 0; border:none; box-shadow:none; border-radius:0; padding:0; overflow:visible; cursor:pointer}
+button:hover {opacity:0.8}
+em, i, address{font-style:normal;  }
+input:focus { outline: none; }
+
+/*Common*/
+a {color:#515151; text-decoration:none;  }
+hr{border:0;  border-bottom:1px dashed #b9b9b9;  margin:8px 0 12px;  }
+button:hover{box-shadow:inset 0px 2px 2px rgba(0, 0, 0, .3); }
+
+header, nav, aside, section, article{display:block; }
+body {background:#fff}
+
+select {position: relative; appearance: none; -webkit-appearance: none; display: inline-block; padding: 0 40px 0 15px; height: 40px; border: 1px solid #ddd; border-radius: 5px; background-image: url('../images/etc/bbs_select.svg'); background-size: 12px; background-position : calc(100% - 12px) 50%; background-repeat: no-repeat}
+select::-ms-expand { display:none; opacity: 0}
+
+select {position: relative; appearance: none; -webkit-appearance: none; display: inline-block; padding: 0 40px 0 15px; height: 40px; border: 1px solid #ddd; border-radius: 5px; background-image: url('../images/etc/bbs_select.svg'); background-size: 12px; background-position : calc(100% - 12px) 50%; background-repeat: no-repeat}
+select::-ms-expand { display:none; opacity: 0}
+
+input[type='checkbox']{
+    width: 20px;
+    height: 20px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance:none;
+    outline: none;
+    box-shadow: none;
+    background: url('../images/etc/input_check.svg') no-repeat center center;
+    background-size: contain;
+}
+
+input[type='checkbox']:checked{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance:none;
+    box-shadow: none;
+    background: url('../images/etc/input_check_on.svg') no-repeat center center;
+    background-size: contain;
+}
+.all_check input[type='checkbox'] {background: url('../images/etc/input_check.svg') no-repeat center center; margin-right: 5px}
+.all_check input[type='checkbox']:checked {background: url('../images/etc/input_check_on_wh.svg') no-repeat center center;}
+
+input[type='radio']{
+    width: 20px;
+    height: 20px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance:none;
+    outline: none;
+    box-shadow: none;
+    background: url('../images/etc/input_radio.svg') no-repeat center center;
+    background-size: contain;
+}
+
+input[type='radio']:checked{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance:none;
+    box-shadow: none;
+    background: url('../images/etc/input_radio_on.svg') no-repeat center center;
+    background-size: contain;
+}
+input[type="text"] {width: 100%; box-sizing: border-box; padding:0 15px; height: 40px; border: 1px solid #ddd; border-radius: 5px;}
+
+input[type="textarea"] {width: 100%; box-sizing: border-box; padding: 15px; border: 1px solid #ddd; border-radius: 5px;}
+
+
+.transition {   
+	 -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+
