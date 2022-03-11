@@ -429,7 +429,7 @@ input[type="text"].text_input {width: 100%; box-sizing: border-box; padding:0 15
 
 
 /* 서브페이지 */
-.sub_content {position: relative; margin-top: 90px; padding: 55px 150px 0;  background: url('../../resource/images/bg/bg_rail_right.svg') no-repeat right top; background-size: 110px;}
+.sub_content {position: relative; padding: 55px 150px 0;  background: url('../../resource/images/bg/bg_rail_right.svg') no-repeat right top; background-size: 110px;}
 .page_title {display: block; font-size: 34px; font-weight: 600; color: #080836; margin-bottom: 40px; line-height: 1}
 .page_title_big {display: block; font-size: 36px; font-weight: 600; color: #080836; line-height: 1; letter-spacing: -.05em}
 /*.global_sort input[type='radio'], .global_sort input[type='radio']:checked {appearance: none}*/
@@ -739,7 +739,7 @@ input[type="text"].text_input {width: 100%; box-sizing: border-box; padding:0 15
 
 @media screen and (min-width: 1650px) {
 	.sub_content,
-	.main_content {padding: 70px 10vw}
+	.main_content {}
 	.container.full .header .logo {left: 10vw}
 	.container.full .header .gnb_list {margin-left: calc(10vw + 270px)}
 	.header .spot_menu {margin-right: 10vw}
@@ -747,7 +747,7 @@ input[type="text"].text_input {width: 100%; box-sizing: border-box; padding:0 15
 }
 @media screen and (max-width: 1650px) {
 	.sub_content,
-	.main_content {padding: 55px 100px}
+	.main_content {}
 	.container.full .header .logo {left: 100px}
 	.header .spot_menu {margin-right: 70px}
 	.header .spot_menu .btn {padding: 0 30px}
@@ -820,7 +820,7 @@ input[type="text"].text_input {width: 100%; box-sizing: border-box; padding:0 15
 .tbl_height td.align_left {text-align: left; padding: 0 10px;}
 
 /*관리자모드 레이아웃 정리 20220216*/
-.adm_container .sub_content{padding: 55px 50px}
+.adm_container .sub_content{}
 
 /*ie select 박스 대응 20220216*/
 select{background-image: url('../images/etc/bbs_select.png') !important}
