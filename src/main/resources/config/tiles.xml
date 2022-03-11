@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    <!-- Templates -->
+    <definition name="layout.basic" template="/WEB-INF/layouts/layout.jsp">
+        <put-attribute name="header" value="" />
+        <put-attribute name="sidebar" value="" />
+        <put-attribute name="content" value="" />
+        <put-attribute name="footer" value="" />
+        <put-attribute name="popup" value="" />
+        <put-attribute name="iframe" value="" />
+
+    </definition>
+
+    <!-- Templates Admin -->
+    <definition name="layout.admin" template="/WEB-INF/layouts/layout_admin.jsp">
+        <put-attribute name="header" value="" />
+        <put-attribute name="content" value="" />
+        <put-attribute name="footer" value="" />
+        <put-attribute name="popup" value="" />
+        <put-attribute name="iframe" value="" />
+    </definition>
+
+    <!-- Tier 2 Pages -->
+    <definition name="*/*" extends="layout.admin" preparer="com.hbl.kms.config.MenuPreparer">
+        <put-attribute name="header" value="/WEB-INF/layouts/header_admin.jsp" />
+        <put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/layouts/footer_admin.jsp" />
+        <put-attribute name="popup" value="/WEB-INF/layouts/popup_admin.jsp" />
+        <put-attribute name="iframe" value="/WEB-INF/layouts/iframe.jsp" />
+    </definition>
+
+    <!-- error templates -->
+    <definition name="error.*" template="/WEB-INF/layouts/layout_error.jsp">
+        <put-attribute name="body" value="/WEB-INF/views/error/{1}.jsp" />
+    </definition>
+
+</tiles-definitions>

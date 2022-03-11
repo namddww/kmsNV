@@ -51,7 +51,7 @@
         z-index: 500;
     }
     #searchText{
-        width: 50%;
+
     }
     #deviceTabClose{
         float: left;
@@ -66,11 +66,14 @@
 <body>
 <div id="searchTab">
     <div>
-        <button id="btnSearchArea" type="button" class="btn gray">지도내검색</button>
+        <button id="btnSearchArea" type="button" class="btn_r selected">지도내검색</button>
         <br>
         <span>건물명: </span>
-        <input type="text" id="searchText">
-        <button id="btnSearch" type="button" class="btn gray">검색</button>
+        <div class="in_search">
+            <input type="text" id="searchText">
+            <button id="btnSearch" type="button" class="btn">검색</button>
+        </div>
+
     </div>
     <hr>
     <div>
