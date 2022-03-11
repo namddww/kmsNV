@@ -3,9 +3,12 @@ $(document).ready(function() {
     // 지역 셀렉트박스 그리기.
     typeHtml(typeList);
 
+    // 최초 진입 시 검색
+    iconSearch(1);
+
     // 자산등록 버튼 선택
     $("#a-reg").click(function () {
-        deviceInsert();
+        iconSaveForm();
     });
 
     // 삭제 선택
@@ -14,7 +17,7 @@ $(document).ready(function() {
     });
     // 조회 버튼 선택
     $("#a-search").click(function () {
-        buildingSearch(1);
+        iconSearch(1);
     });
 });
 
@@ -27,7 +30,7 @@ function typeHtml(typeList) {
             .text('전체')
     )
 
-    $.each(areaList, function (i, val) {
+    $.each(typeList, function (i, val) {
         $("#select-type").append(
             $('<option/>')
                 .attr('value', val.codeVal)
@@ -36,24 +39,22 @@ function typeHtml(typeList) {
     });
 }
 
-function buildingSearch(page) {
-    console.log("buildingSearch 진입");
+function iconSearch(page) {
+    console.log("iconSearch 진입");
     var pageNum = page || 1;
 
     var param = {
         pageNum: pageNum,
-        buildName : $("#buildName").val(),
+        iconName : $("#iconName").val(),
         scRegDtSt : $("#scRegDtSt").val().replaceAll('-',''),
         scRegDtEd : $("#scRegDtEd").val().replaceAll('-',''),
-        typeCd : $("#select-type option:selected").val(),
-        floor : $("#select-floor option:selected").val()
+        codeVal : $("#select-type option:selected").val()
     };
 
     $.ajax({
-        type: 'GET',
-        url: '/device/deviceSearch',
+        type: 'POST',
+        url: '/icon/iconSearch',
         async: false,
-        // data: {pageNum : pageNum},
         data: param,
         success: function(res) {
             $("#tbody").empty();
@@ -62,21 +63,20 @@ function buildingSearch(page) {
 
                 $.each(res.result.list, function (i, val) {
                     $("#tbody").append(
-                        $('<tr/>')
-                            .append($('<td/>').text(val.locationCd)) // 지역
-                            .append($('<td/>')
-                                .attr("onClick", "javascript:deviceDetail('" + val.deviceSeq + "');")
-                                .text(val.buildName)
-                            ) // 건물명
-                            .append($('<td/>').text(val.floor)) // 층수
-                            .append($('<td/>').text(val.typeCd)) // 종류
-                            .append($('<td/>').text(val.deviceName)) // 자산명
-                            .append($('<td/>').text(val.point)) // 위치
-                            .append($('<td/>').text(val.stateCd)) // 상태
-                            .append($('<td/>').text(val.regDate)) // 등록일자
+                        $('<tr/>').append(
+                            $('<td/>').append(
+                                $('<a/>')
+                                    .text(val.codeName)
+                                    .attr('href', "/icon/saveForm?iconSeq=" + val.iconSeq)
+                            )
+                        ) // 타입
+                        .append($('<td/>').text(val.iconName)) // 아이콘명
+                        .append($('<td/>').text(val.iconPath)) // 이미지
+                        .append($('<td/>').text(val.regDate)) // 등록일자
+                        .append($('<td/>').text(val.modiDate)) // 수정일자
                     ) // end append_tbody
                 });
-                pagination(res.result, '', 'buildingSearch');
+                pagination(res.result, '', 'iconSearch');
             } else {
                 console.log("사이즈 없음");
                 $("#tbody").append($('<tr/>')
@@ -92,15 +92,9 @@ function buildingSearch(page) {
 
 // 디바이스 등록 페이지
 // location.href
-function deviceInsert() {
-    console.log("deviceInsert");
-    location.href = "/device/saveForm";
-}
-
-// 디바이스 상세 페이지
-function deviceDetail(buildSeq) {
-    console.log("buildSeq : ", buildSeq);
-    alert("디바이스 상세페이지 현재 미구현.");
+function iconSaveForm() {
+    console.log("iconSaveForm");
+    location.href = "/icon/saveForm";
 }
 
 // 디바이스 삭제

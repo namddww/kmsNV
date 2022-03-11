@@ -1,5 +1,6 @@
 package com.hbl.kms.app.icon.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,6 +33,10 @@ public class Icon {
      */
     private String codeVal;
     /**
+     * 코드명
+     */
+    private String codeName;
+    /**
      * 아이콘 파일경로
      */
     private String iconPath;
@@ -42,7 +47,7 @@ public class Icon {
     /**
      * 등록일
      */
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date regDate;
     /**
      * 수정자 SEQ
@@ -51,6 +56,6 @@ public class Icon {
     /**
      * 수정일
      */
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date modiDate;
 }

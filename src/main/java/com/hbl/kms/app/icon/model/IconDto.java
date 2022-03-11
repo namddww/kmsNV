@@ -35,4 +35,25 @@ public class IconDto {
      * 등록자 및 수정자 SEQ
      */
     private int userSeq;
+    /**
+     * 시작일
+     */
+    private String scRegDtSt;
+    /**
+     * 종료일
+     */
+    private String scRegDtEd;
+
+    /**
+     * 한페이지 노출 시작 번호
+     */
+    int pageNum = 1;
+    /**
+     * 한페이지 노출 갯수
+     */
+    int pageSize = 10;
+    /**
+     * 한페이지 노출 종료 번호
+     */
+    int NavigatePages = 10;
 }

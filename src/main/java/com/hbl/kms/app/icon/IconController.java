@@ -12,10 +12,7 @@ import com.hbl.kms.app.icon.service.IconService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -50,6 +47,12 @@ public class IconController {
         return mav;
     }
 
+    @PostMapping(ControllerUrlConstants.IconUrl.Icon.SEARCH_ICON)
+    @ResponseBody
+    public Result selectIconListData(@ModelAttribute IconDto iconDto) {
+        return ResponseUtil.process(iconService.selectIconListData(iconDto));
+    }
+
     /**
      * 아이콘 등록 및 수정 화면
      */
@@ -71,6 +74,7 @@ public class IconController {
 
         // iconSeq가 null 이면 신규 null이 아니면 업데이트
         if (iconSeq != null) {
+            mav.addObject("iconSeq", iconSeq);
             mav.addObject("actionFlag", "UPDATE");
         } else {
             mav.addObject("actionFlag", "INSERT");
@@ -95,6 +99,15 @@ public class IconController {
     @ResponseBody
     public Result insertIcon(IconDto iconDto) {
         return ResponseUtil.process(iconService.insertIcon(iconDto));
+    }
+
+    /**
+     * 아이콘 상세정보 조회
+     */
+    @PostMapping(ControllerUrlConstants.IconUrl.Icon.SELECT_ICON_DETAIL)
+    @ResponseBody
+    public Result selectIconDetail(@RequestParam(value = "iconSeq", required = true) Integer iconSeq) {
+        return ResponseUtil.process(iconService.selectIconDetail(iconSeq));
     }
 
 }

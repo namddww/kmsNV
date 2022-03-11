@@ -3,6 +3,30 @@
 
 <mapper namespace="com.hbl.kms.app.icon.mapper.IconMapper">
 
+    <select id="selectIconListData" resultType="icon">
+        SELECT
+            ICON_SEQ
+             , (SELECT CODE_NAME FROM t_code tc WHERE TI.GROUP_CD = tc.GROUP_CD AND TI.CODE_VAL = tc.CODE_VAL) codeName
+             , ICON_NAME
+             , ICON_PATH
+             , REG_DATE
+             , MODI_DATE
+        FROM t_icon TI
+        WHERE 1=1
+        <if test="iconName != null and iconName != ''">
+            AND TI.ICON_NAME LIKE CONCAT('%', #{iconName}, '%')
+        </if>
+        <if test="scRegDtSt != null and scRegDtSt != ''">
+            AND DATE_FORMAT(TI.REG_DATE, '%Y%m%d') &gt;= #{scRegDtSt}
+        </if>
+        <if test="scRegDtEd != null and scRegDtEd != ''">
+            AND DATE_FORMAT(TI.REG_DATE, '%Y%m%d') &lt;= #{scRegDtEd}
+        </if>
+        <if test="codeVal != null and codeVal != ''">
+            AND TI.CODE_VAL = #{codeVal}
+        </if>
+    </select>
+
     <select id="selectIconCount" resultType="int">
         SELECT COUNT(ICON_SEQ)
         FROM t_icon
@@ -31,5 +55,17 @@
           , NOW()
         )
     </insert>
+
+    <select id="selectIconDetail" resultType="icon">
+        SELECT
+            ICON_SEQ
+             , REG_DATE
+             , MODI_DATE
+             , ICON_NAME
+             , CODE_VAL
+             , ICON_PATH
+        FROM t_icon
+        WHERE ICON_SEQ = #{iconSeq}
+    </select>
 
 </mapper>

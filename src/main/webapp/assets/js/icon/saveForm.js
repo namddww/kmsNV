@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
-    hiddenFalg();
     typeHtml(typeList);
+    hiddenFalg();
 
     // 주소검색 버튼 선택
     $("#btnAddr").click(function () {
@@ -50,7 +50,7 @@ function hiddenFalg() {
         $("#a-reg").show();
     } else {
         $("#a-modify").show();
-        dataBind();
+        dataBind(iconSeq);
     }
 }
 
@@ -141,8 +141,35 @@ function iconSave() {
     })
 }
 
-function dataBind() {
+function dataBind(iconSeq) {
     console.log("아이콘 업데이트시 데이터 바인딩");
+
+    var formData = new FormData();
+    formData.append('iconSeq', iconSeq);
+
+    $.ajax({
+        type: 'POST',
+        processData : false,
+        contentType : false,
+        url: '/icon/selectIconDetail',
+        data: formData,
+        success: function(res) {
+            var resultValue = res.result;
+
+            // 수정화면에서는 파일태그 비활성화 시킨다.
+            $("#iconPath").hide();
+
+            $("#seq").text(resultValue.iconSeq);
+            $("#regDate").text(resultValue.regDate);
+            $("#iconName").val(resultValue.iconName);
+            $("#iconCd").val(resultValue.codeVal);
+            $("#td-image").append($('<span/>').text(resultValue.iconPath));
+            $("#memo").val(resultValue.memo);
+        },
+        error: function(request,status,error) {
+            alert("통신상태가 원활하지 않아 접속이 끊어졌습니다.");
+        }
+    });
 }
 
 function validation() {
