@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     // 지역 셀렉트박스 그리기.
-    areaHtml(areaList);
+    typeHtml(typeList);
 
     // 자산등록 버튼 선택
     $("#a-reg").click(function () {
@@ -18,7 +18,7 @@ $(document).ready(function() {
     });
 });
 
-function areaHtml(areaList) {
+function typeHtml(typeList) {
     $("#select-type").empty();
 
     $("#select-type").append(

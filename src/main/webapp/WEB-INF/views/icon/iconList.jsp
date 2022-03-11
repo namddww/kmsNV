@@ -23,7 +23,7 @@
                             </colgroup>
                             <tbody>
                             <tr>
-                                <th>건물명</th>
+                                <th>아이콘명</th>
                                 <td><input type="text" id="buildName"></td>
                                 <th>등록 일자</th>
                                 <td colspan="3">
@@ -38,16 +38,10 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>자산종류</th>
+                                <th>타입</th>
                                 <td>
                                     <select id="select-type">
                                         <option value="" selected>전체</option>
-                                    </select>
-                                </td>
-                                <th>층</th>
-                                <td>
-                                    <select id="select-floor">
-                                        <option value="0" selected>전체</option>
                                     </select>
                                 </td>
                             </tr>
@@ -63,25 +57,19 @@
                     <div class="data_table st4">
                         <table class="link ">
                             <colgroup>
-                                <col style="width:10%">
-                                <col style="width:10%">
-                                <col style="width:5%">
-                                <col style="width:7%">
                                 <col style="width:20%">
                                 <col style="width:20%">
-                                <col style="width:7%">
-                                <col style="width:25%">
+                                <col style="width:20%">
+                                <col style="width:20%">
+                                <col style="width:20%">
                             </colgroup>
                             <thead>
                             <tr>
-                                <th>지역</th>
-                                <th>건물명</th>
-                                <th>층</th>
-                                <th>종류</th>
-                                <th>자산명</th>
-                                <th>위치</th>
-                                <th>상태</th>
+                                <th>타입</th>
+                                <th>아이콘명</th>
+                                <th>이미지</th>
                                 <th>등록 일자</th>
+                                <th>수정 일자</th>
                             </tr>
                             </thead>
                             <tbody id="tbody">
@@ -114,7 +102,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="/assets/js/device/deviceList.js"></script>
+<script type="text/javascript" src="/assets/js/icon/iconList.js"></script>
 <script>
-    var areaList = ${areaList};
+    var typeList = ${typeList};
 </script>
