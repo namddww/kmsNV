@@ -275,7 +275,7 @@ let _main = {
             });
         } else {
             _this.$deviceList.append(
-                $('<tr/>').append($('<td/>').attr({colspan : 1}).text('검색결과가 없습니다.'))
+                $('<tr/>').append($('<td/>').attr({colspan : 3}).text('검색결과가 없습니다.'))
             );
         }
     },

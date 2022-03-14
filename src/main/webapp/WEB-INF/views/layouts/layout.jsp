@@ -1,5 +1,5 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<%@ include file="../views/common/include/common.jsp"%>
+<%@ include file="../common/include/common.jsp"%>
 
 <!DOCTYPE html>
 <html lang="ko">

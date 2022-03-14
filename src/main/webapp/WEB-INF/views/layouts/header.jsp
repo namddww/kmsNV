@@ -1,5 +1,5 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<%@ include file="../views/common/include/common.jsp"%>
+<%@ include file="../common/include/common.jsp"%>
 
 <div class="header user_header"> <!--20220209 user_header 추가-->
 	<h1 class="logo"><img src="<c:out value='${pageContext.request.contextPath}'/>/assets/resource/images/common/logo_korail.svg" alt="데이터 플레이그라운드" style="cursor:pointer;" onclick="location.href='<c:out value='${pageContext.request.contextPath}'/>/'"></h1><!--20220209 로고 위치 변경-->

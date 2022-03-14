@@ -1,5 +1,5 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<%@ include file="../views/common/include/common.jsp"%>
+<%@ include file="../common/include/common.jsp"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -18,7 +18,7 @@
 	<script src="<c:out value='${pageContext.request.contextPath}'/>/assets/admin/js/common.js"></script>
 	<script src="<c:out value='${pageContext.request.contextPath}'/>/assets/js/jquery-ui.min.js"></script>
 	<script src="<c:out value='${pageContext.request.contextPath}'/>/assets/admin/js/pdfobject.js"></script>
-	<title>데이터플레이그라운드</title>
+	<title>kms</title>
 	<script>
 	var contextPath = "<c:out value='${pageContext.request.contextPath}'/>";
 	var popUpMsg = "<c:out value='${popUpMsg}'/>";
