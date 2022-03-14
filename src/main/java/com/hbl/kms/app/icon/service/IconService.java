@@ -42,4 +42,16 @@ public class IconService {
     public Icon selectIconDetail(int iconSeq) {
         return iconMapper.selectIconDetail(iconSeq);
     }
+
+    public int updateIcon(IconDto iconDto) {
+        try {
+            // 넘겨받은 파일경로를 설정경로에 맞춰서 변경
+            // 설정경로 : C://upload/images/
+            String iconPath = UploadUtil.uploadImage("iconMarker", iconDto.getFile());
+            iconDto.setIconPath(iconPath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return iconMapper.updateIcon(iconDto);
+    }
 }

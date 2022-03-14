@@ -15,6 +15,13 @@ $(document).ready(function() {
         }
     });
 
+    // 수정 버튼 선택
+    $("#a-modify").click(function () {
+        if (validation()) {
+            iconModify();
+        }
+    });
+
     // 취소 버튼 선택
     $("#a-cancel").click(function () {
         location.href = "/icon/list";
@@ -170,6 +177,45 @@ function dataBind(iconSeq) {
             alert("통신상태가 원활하지 않아 접속이 끊어졌습니다.");
         }
     });
+}
+
+function iconModify() {
+    // 타입 셀렉트박스 선택 시 해당 등록여부 확인
+    var groupCd =  $("#iconCd option:selected").data("sub");
+    var codeVal =  $("#iconCd option:selected").val();
+    console.log("iconCd this : ", codeVal, groupCd);
+
+    if (!selectIconCount(groupCd, codeVal)) {
+        return false;
+    }
+
+    var formData = new FormData();
+    formData.append('iconName', $("#iconName").val().trim());
+    formData.append('groupCd', groupCd);
+    formData.append('codeVal', codeVal);
+    formData.append('memo', $("#memo").val());
+    formData.append("file", $("#iconPath")[0].files[0]);
+
+    // formData 확인용
+    // for (var pair of formData.entries()) {
+    //     console.log(pair[0]+ ', ' + pair[1]);
+    // }
+
+    $.ajax({
+        type : "POST",
+        processData : false,
+        contentType : false,
+        url : "/icon/update",
+        data : formData,
+        success : function () {
+            console.log("성공");
+
+            location.href = "/icon/list"
+        },
+        error : function(XMLHttpRequest, textStatus, errorThrown){
+            console.log(XMLHttpRequest, textStatus, errorThrown);
+        }
+    })
 }
 
 function validation() {

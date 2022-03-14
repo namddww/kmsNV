@@ -68,4 +68,14 @@
         WHERE ICON_SEQ = #{iconSeq}
     </select>
 
+    <update id="updateIcon">
+        UPDATE t_icon
+        SET ICON_NAME   = #{iconName}
+          , GROUP_CD    = #{groupCd}
+          , CODE_VAL    = #{codeVal}
+          , ICON_PATH   = #{iconPath}
+          , MODI_SEQ    = #{userSeq}
+          , MODI_DATE   = NOW()
+    </update>
+
 </mapper>

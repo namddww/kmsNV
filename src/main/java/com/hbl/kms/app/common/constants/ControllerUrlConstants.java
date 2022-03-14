@@ -55,6 +55,7 @@ public class ControllerUrlConstants {
             String SAVE_FORM = "/icon/saveForm";
             String SELECT_ICON_COUNT = "/icon/selectIconCount";
             String SAVE = "/icon/save";
+            String UPDATE = "/icon/update";
             String SELECT_ICON_DETAIL = "/icon/selectIconDetail";
         }
     }

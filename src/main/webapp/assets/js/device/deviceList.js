@@ -4,7 +4,7 @@ $(document).ready(function() {
     areaHtml(areaList);
 
     // 자산등록 버튼 선택
-    $("#a-reg").click(function () {
+    $("#btnSaveForm").click(function () {
         deviceInsert();
     });
 
@@ -16,6 +16,10 @@ $(document).ready(function() {
     $("#a-search").click(function () {
         buildingSearch(1);
     });
+
+    // 무조건 진입시 한번 호출해줘야 이미지가 노출됨..
+    $("#scRegDtSt").datepicker();
+    $("#scRegDtEd").datepicker();
 });
 
 function areaHtml(areaList) {
@@ -75,6 +79,23 @@ function buildingSearch(page) {
                             .append($('<td/>').text(val.stateCd)) // 상태
                             .append($('<td/>').text(val.regDate)) // 등록일자
                     ) // end append_tbody
+                    
+                    // 층정보 셀렉트박스 그리기
+                    $("#select-floor").append(
+                        $('<option/>')
+                            .attr('value', val.floor)
+                            .text(val.floor)
+                    )
+
+                    // 층정보 셀렉트박스에서 중복 제거
+                    var foundedinputs = [];
+                    $("#select-floor option").each(function() {
+                        if($.inArray(this.value, foundedinputs) != -1) {
+                            $(this).remove();
+                        }
+                        foundedinputs.push(this.value);
+                    });
+
                 });
                 pagination(res.result, '', 'buildingSearch');
             } else {

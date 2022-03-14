@@ -110,4 +110,13 @@ public class IconController {
         return ResponseUtil.process(iconService.selectIconDetail(iconSeq));
     }
 
+    /**
+     * 아이콘 수정
+     */
+    @PostMapping(ControllerUrlConstants.IconUrl.Icon.UPDATE)
+    @ResponseBody
+    public Result updateIcon(IconDto iconDto) {
+        return ResponseUtil.process(iconService.updateIcon(iconDto));
+    }
+
 }

@@ -15,4 +15,6 @@ public interface IconMapper {
     int insertIcon(IconDto iconDto);
 
     Icon selectIconDetail(int iconSeq);
+
+    int updateIcon(IconDto iconDto);
 }
