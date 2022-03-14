@@ -41,7 +41,7 @@
                         <th>이미지 <span class="red">*</span></th>
                         <td id="td-image"><input type="file" id="iconPath"/></td>
                     </tr>
-                    <tr>
+                    <tr onclick="">
                         <th>메모</th>
                         <td><textarea id="memo" class="textarea_input"></textarea></td>
                     </tr>
@@ -62,6 +62,6 @@
     var typeList = ${typeList};
 
     if (actionFlag == "UPDATE") {
-        var iconSeq = ${iconSeq};
+        var iconSeq = '${iconSeq}';
     }
 </script>

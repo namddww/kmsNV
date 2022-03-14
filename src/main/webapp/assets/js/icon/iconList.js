@@ -7,7 +7,7 @@ $(document).ready(function() {
     iconSearch(1);
 
     // 자산등록 버튼 선택
-    $("#a-reg").click(function () {
+    $("#btnSaveForm").click(function () {
         iconSaveForm();
     });
 
@@ -19,6 +19,10 @@ $(document).ready(function() {
     $("#a-search").click(function () {
         iconSearch(1);
     });
+
+    // 무조건 진입시 한번 호출해줘야 이미지가 노출됨..
+    $("#scRegDtSt").datepicker();
+    $("#scRegDtEd").datepicker();
 });
 
 function typeHtml(typeList) {
@@ -64,12 +68,8 @@ function iconSearch(page) {
                 $.each(res.result.list, function (i, val) {
                     $("#tbody").append(
                         $('<tr/>').append(
-                            $('<td/>').append(
-                                $('<a/>')
-                                    .text(val.codeName)
-                                    .attr('href', "/icon/saveForm?iconSeq=" + val.iconSeq)
-                            )
-                        ) // 타입
+                            $('<td/>').text(val.codeName)
+                        ).attr('onClick', 'javascript:iconDetail('+val.iconSeq+')') // 타입
                         .append($('<td/>').text(val.iconName)) // 아이콘명
                         .append($('<td/>').text(val.iconPath)) // 이미지
                         .append($('<td/>').text(val.regDate)) // 등록일자
@@ -114,4 +114,10 @@ function deviceDelete() {
         return false;
     }
     alert("디바이스 상세페이지 현재 미구현.");
+}
+
+// 아이콘 상세화면
+function iconDetail(iconSeq) {
+    console.log(iconSeq);
+    location.href = "/icon/saveForm?iconSeq=" + iconSeq;
 }
