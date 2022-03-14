@@ -14,15 +14,15 @@
     }
     #btnSave{
         position: absolute;
-        top: 100px;
-        right: 10px;
-        padding: 10px;
+        top: 11%;
+        right: 0.5%;
         z-index: 400;
+        width: 65px;
     }
 </style>
 <body>
     <div id="map">
     </div>
-    <button id="btnSave" class="btn gray">저장</button>
+    <button id="btnSave" class="btn_r selected">저장</button>
 </body>
 <script type="text/javascript" src="/assets/js/building/pointPopup.js"></script>

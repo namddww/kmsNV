@@ -1,5 +1,5 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<%@ include file="../views/common/include/common.jsp"%>
+<%@ include file="../common/include/common.jsp"%>
 
 <!-- 헤더 부분 -->
 <div class="adm_header">

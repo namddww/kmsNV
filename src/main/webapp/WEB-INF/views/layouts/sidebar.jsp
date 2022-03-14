@@ -1,5 +1,5 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<%@ include file="../views/common/include/common.jsp"%>
+<%@ include file="../common/include/common.jsp"%>
 
 <!-- 좌측 메뉴 -->
 <div class="side_gnb">
@@ -9,29 +9,10 @@
 			<c:when test="${fn:length(menuList) > 0}">
 				<c:forEach items="${menuList}" var="row" varStatus="status">
 					<c:if test="${row.JOB_CL_NO2 eq null}">
-						<div class="gnb_unit ico0<c:out value='${row.JOB_CL_NO}'/>" id="category_<c:out value='${row.JOB_CL_NO}'/>" onclick="fnObj.setSelectedCategory('<c:out value='${row.JOB_CL_NO}'/>'); fnObj.changePageTitle('<c:out value='${row.JOB_CL_NM}'/>');">
+						<div class="gnb_unit ico0<c:out value='${row.JOB_CL_NO}'/>" id="category_<c:out value='${row.JOB_CL_NO}'/>" onclick="location.href='<c:out value='${pageContext.request.contextPath}'/>/data/dtstList?category=<c:out value='${row.JOB_CL_NO}'/>'">
 <%-- 						<div class="gnb_unit ico0${row.JOB_CL_NO}" id="category_${row.JOB_CL_NO}"> --%>
 							<span><c:out value='${row.JOB_CL_NM}'/></span>
 						</div>
-					</c:if>
-					<c:if test="${row.JOB_CL_NO2 ne null}">
-						<c:if test="${menuList[status.index - 1].JOB_CL_NO2 eq null}">
-							<div class="gnb_unit_open" id="category_<c:out value='${row.JOB_CL_NO2}'/>_ul">
-								<ul>
-						</c:if>
-						<li><a href="javascript:void(0);" id="category_<c:out value='${row.JOB_CL_NO}'/>" onclick="fnObj.setSelectedCategory('<c:out value='${row.JOB_CL_NO}'/>'); fnObj.changePageTitle('<c:out value='${row.JOB_CL_NM}'/>')"><c:out value='${row.JOB_CL_NM}'/></a></li>
-						<c:choose>
-							<c:when test="${fn:length(menuList) eq status.index}">
-									</ul>
-								</div>
-							</c:when>
-							<c:otherwise>
-								<c:if test="${menuList[status.index + 1].JOB_CL_NO2 eq null}">
-										</ul>
-									</div>
-								</c:if>
-							</c:otherwise>
-						</c:choose>
 					</c:if>
 				</c:forEach>
 			</c:when>
@@ -50,4 +31,16 @@
 		  $(this).next(".gnb_unit_open").siblings(".gnb_unit_open").slideUp(300); // 1개씩 펼치기
 		});
 	});
+
+
+	if("<c:out value='${jobClVldMap.JOB_CL_NO}'/>" != ''){
+		if("<c:out value='${jobClVldMap.JOB_CL_NO2}'/>" === ''){
+			$("#category_" + "<c:out value='${jobClVldMap.JOB_CL_NO}'/>").addClass("on");
+			$("#category_" + "<c:out value='${jobClVldMap.JOB_CL_NO}'/>_ul").css("display", "block");
+		}else{
+			$("#category_" + "<c:out value='${jobClVldMap.JOB_CL_NO2}'/>_ul").css("display", "block");
+			$("#category_" + "<c:out value='${jobClVldMap.JOB_CL_NO}'/>").addClass("on");
+		}
+	}
+
 </script>

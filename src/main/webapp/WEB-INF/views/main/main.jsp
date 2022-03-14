@@ -6,7 +6,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" rel="stylesheet" />
 <style>
     html, body{
-        height: 100%;
+        height: 94.3%;
         margin: 0;
     }
     #searchTab{
@@ -45,22 +45,26 @@
         text-align: center;
     }
     #btnPopup{
-        top: 92%;
-        left: 87%;
+        top: 90.5%;
+        left: 91%;
         position: absolute;
         z-index: 500;
+        background: #003bbe;
+        color: #fff;
+        width: 90px;
     }
     #searchText{
 
     }
     #deviceTabClose{
         float: left;
-        z-index: 500;
+        z-index: 450;
         left: 40%;
         position: absolute;
         border: 1px solid;
         background-color: white;
-        top: 0%;
+        top: 11%;
+        width: 70px;
     }
 </style>
 <body>
@@ -77,7 +81,7 @@
     </div>
     <hr>
     <div>
-        <table id="searchListTable">
+        <table id="searchListTable" class="tbl_col">
             <thead>
             </thead>
             <tbody>
@@ -86,7 +90,7 @@
     </div>
 </div>
 <div id="deviceTab">
-    <table>
+    <table class="tbl_col">
         <thead>
             <th>층수</th>
             <th>타입</th>
@@ -95,7 +99,7 @@
         <tbody id="deviceListTable">
         </tbody>
     </table>
-    <button id="deviceTabClose">닫기</button>
+    <button id="deviceTabClose" class="btn_r selected">닫기</button>
 </div>
 <div id="map">
 </div>
@@ -104,7 +108,7 @@
     </ul>
 </div>
 <div>
-    <button id="btnPopup" type="button" class="btn gray">실내확대</button>
+    <button id="btnPopup" type="button" class="btn_r selected">실내확대</button>
 </div>
 </body>
 <script type="text/javascript" src="/assets/js/main/main.js"></script>
