@@ -24,7 +24,10 @@ var _buildingInfo = {
 
         // 건물좌표 직접 등록
         $('#btnDirect').on('click', function () {
-            $('#inputDirect').attr('style', '');
+            $('#inputDirect1').attr('style', '');
+            $('#inputDirect2').attr('style', '');
+            $('#inputDirect3').attr('style', '');
+            $('#inputDirect4').attr('style', '');
             $('#stdPoint1').attr('type', 'text');
             $('#stdPoint2').attr('type', 'text');
             $('#areaPoint1').attr('type', 'text');

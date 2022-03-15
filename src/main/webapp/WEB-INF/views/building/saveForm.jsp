@@ -78,13 +78,13 @@
                         <button type="button" id="btnFloorClear" class="">초기화</button>
                     </td>
                 </tr>
-                </tbody>
                 <tr>
                     <th scope="col">층별정보</th>
                     <td class="dupl_chk" style="padding: 10px 30px;">
                         <button type="button" id="btnFloorPopupChk" class="btn gray">일괄등록 (체크된 층)</button>
                     </td>
                 </tr>
+                </tbody>
             </table>
         </div>
         <br>
