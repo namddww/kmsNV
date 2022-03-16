@@ -25,7 +25,10 @@ var _building = {
 
         // 건물좌표 직접 등록
         $('#btnDirect').on('click', function () {
-            $('#inputDirect').attr('style', '');
+            $('#inputDirect1').attr('style', '');
+            $('#inputDirect2').attr('style', '');
+            $('#inputDirect3').attr('style', '');
+            $('#inputDirect4').attr('style', '');
             $('#stdPoint1').attr('type', 'text');
             $('#stdPoint2').attr('type', 'text');
             $('#areaPoint1').attr('type', 'text');
@@ -90,12 +93,12 @@ var _building = {
                             )
                         ).append(
                             $('<td/>').append(
-                                $('<input>').attr('id', 'dfopacity'+Number((i-1))).attr('type', 'num').val(1)
+                                $('<input>').attr('id', 'dfopacity'+Number((i-1))).attr('type', 'number').val(1)
                             )
                         ).append(
                             $('<td/>').append(
                                 $('<button/>').text('등록').attr('type', 'button').attr('id', 'btnFloorPopup')
-                                .attr('data-num', Number((i-1)))
+                                .attr('data-num', Number((i-1))).attr('class', 'btn_apply')
                             )
                         )
                     )
@@ -118,12 +121,12 @@ var _building = {
                             )
                         ).append(
                             $('<td/>').append(
-                                $('<input>').attr('id', 'dfopacity'+i).attr('type', 'num').val(1)
+                                $('<input>').attr('id', 'dfopacity'+i).attr('type', 'number').val(1)
                             )
                         ).append(
                             $('<td/>').append(
                                 $('<button/>').text('등록').attr('type', 'button').attr('id', 'btnFloorPopup')
-                                    .attr('data-num', i)
+                                    .attr('data-num', i).attr('class', 'btn_apply')
                             )
                         )
                     )
