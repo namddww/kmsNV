@@ -42,6 +42,8 @@ public class ControllerUrlConstants {
             String SEARCH_BUILDING = "/device/buildingSearch";
             String SEARCH_DEVICE = "/device/deviceSearch";
             String SAVE = "/device/save";
+            String UPDATE = "/device/update";
+            String SELECT_DEVICE_DETAIL = "/device/selectDeviceDetail";
             String SEARCH_FLOOR = "/device/search/floor";
             String FLOOR_DEVICEINFO_POPUP = "/device/floorDeviceInfoPopup";
         }

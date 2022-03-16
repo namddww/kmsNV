@@ -68,7 +68,9 @@ public class DeviceController {
      * 자산등록 화면
      */
     @GetMapping(ControllerUrlConstants.DeviceUrl.Device.SAVE_FORM)
-    public ModelAndView saveForm(ModelAndView mav) {
+    public ModelAndView saveForm(@RequestParam(value = "buildSeq", required = false) Integer buildSeq
+                                 , @RequestParam(value = "deviceSeq", required = false) Integer deviceSeq
+                                 , ModelAndView mav) {
         mav.setViewName("device/saveForm");
 
         String json = null;
@@ -81,6 +83,15 @@ public class DeviceController {
             log.error("NoticeController.faqCategoryLists error {}", e);
         }
         mav.addObject("typeList", json);
+
+        // deviceSeq null 이면 신규 null이 아니면 업데이트
+        if (deviceSeq != null) {
+            mav.addObject("buildSeq", buildSeq);
+            mav.addObject("deviceSeq", deviceSeq);
+            mav.addObject("actionFlag", "UPDATE");
+        } else {
+            mav.addObject("actionFlag", "INSERT");
+        }
         return mav;
     }
 
@@ -142,6 +153,24 @@ public class DeviceController {
     @ResponseBody
     public Result deviceListData(@ModelAttribute DeviceDto deviceDto) {
         return ResponseUtil.process(deviceService.selectDeviceListByFloor(deviceDto));
+    }
+
+    /**
+     * 자산 상세정보조회
+     */
+    @PostMapping(ControllerUrlConstants.DeviceUrl.Device.SELECT_DEVICE_DETAIL)
+    @ResponseBody
+    public Result selectDeviceDetail(@ModelAttribute DeviceDto deviceDto) {
+        return ResponseUtil.process(deviceService.selectDeviceDetail(deviceDto));
+    }
+
+    /**
+     * 디바이스 수정
+     */
+    @PostMapping(ControllerUrlConstants.DeviceUrl.Device.UPDATE)
+    @ResponseBody
+    public Result updateDevice(DeviceDto deviceDto) {
+        return ResponseUtil.process(deviceService.updateDevice(deviceDto));
     }
 
     /**

@@ -1,9 +1,6 @@
 package com.hbl.kms.app.device.mapper;
 
-import com.hbl.kms.app.device.model.AreaList;
-import com.hbl.kms.app.device.model.BuildingInfoList;
-import com.hbl.kms.app.device.model.Device;
-import com.hbl.kms.app.device.model.DeviceDto;
+import com.hbl.kms.app.device.model.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -27,4 +24,7 @@ public interface DeviceMapper {
 
     int insertDeviceTracking(DeviceDto deviceDto);
 
+    DeviceDetail selectDeviceDetail(DeviceDto deviceDto);
+
+    int updateDevice(DeviceDto deviceDto);
 }

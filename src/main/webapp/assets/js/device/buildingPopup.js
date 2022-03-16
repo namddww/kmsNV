@@ -10,6 +10,10 @@ $(document).ready(function() {
     $("#a-search").click(function () {
         buildingSearch(1);
     });
+
+    // 무조건 진입시 한번 호출해줘야 이미지가 노출됨..
+    $("#scRegDtSt").datepicker();
+    $("#scRegDtEd").datepicker();
 });
 
 function areaHtml(areaList) {
@@ -83,12 +87,12 @@ function buildingSearch(page) {
                                                                                         + "' , '" + val.areaPoint1
                                                                                         + "' , '" + val.areaPoint2
                                                                                         + "');")
-                                .attr('id', 'buildName')
+                                .attr('id', 'buildName' + val.buildSeq)
                                 .text(val.buildName)
                             ) // 건물명
-                            .append($('<td/>').attr('id', 'locationCd').text(val.locationCd)) // 지역
-                            .append($('<td/>').attr('id', 'address').text(val.address)) // 상세주소
-                            .append($('<td/>').attr('id', 'floorInfo').text(floorInfo)) // 층수
+                            .append($('<td/>').attr('id', 'locationCd' + val.buildSeq).text(val.locationCd)) // 지역
+                            .append($('<td/>').attr('id', 'address' + val.buildSeq).text(val.address)) // 상세주소
+                            .append($('<td/>').attr('id', 'floorInfo' + val.buildSeq).text(floorInfo)) // 층수
                             .append($('<td/>').text(val.point)) // 좌표
                             .append($('<td/>').text(val.regDate)) // 등록일자
                     ) // end append_tbody
@@ -114,10 +118,10 @@ function deviceInsertBuildingInfo(buildSeq, groundFloor, baseFloor, stdPoint1, s
     console.log("buildSeq : ", buildSeq);
 
     $("#buildSeq", opener.document).val(buildSeq);
-    $("#locationCd", opener.document).text($("#locationCd").text());
-    $("#buildName", opener.document).text($("#buildName").text());
-    $("#address", opener.document).text($("#address").text());
-    $("#floorInfo", opener.document).text($("#floorInfo").text());
+    $("#locationCd", opener.document).val($("#locationCd" + buildSeq).text());
+    $("#buildName", opener.document).val($("#buildName" + buildSeq).text());
+    $("#address", opener.document).val($("#address" + buildSeq).text());
+    $("#floorInfo", opener.document).val($("#floorInfo" + buildSeq).text());
 
     $("#stdPoint1", opener.document).val(stdPoint1);
     $("#stdPoint2", opener.document).val(stdPoint2);

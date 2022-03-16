@@ -69,7 +69,7 @@ function buildingSearch(page) {
                         $('<tr/>')
                             .append($('<td/>').text(val.locationCd)) // 지역
                             .append($('<td/>')
-                                .attr("onClick", "javascript:deviceDetail('" + val.deviceSeq + "');")
+                                .attr("onClick", "javascript:deviceDetail('" + val.buildSeq + "' , '" + val.deviceSeq + "');")
                                 .text(val.buildName)
                             ) // 건물명
                             .append($('<td/>').text(val.floor)) // 층수
@@ -119,9 +119,9 @@ function deviceInsert() {
 }
 
 // 디바이스 상세 페이지
-function deviceDetail(buildSeq) {
-    console.log("buildSeq : ", buildSeq);
-    alert("디바이스 상세페이지 현재 미구현.");
+function deviceDetail(buildSeq, deviceSeq) {
+    console.log("buildSeq : " + buildSeq + " / deviceSeq : " + deviceSeq);
+    location.href = "/device/saveForm?buildSeq=" + buildSeq + "&deviceSeq=" + deviceSeq;
 }
 
 // 디바이스 삭제

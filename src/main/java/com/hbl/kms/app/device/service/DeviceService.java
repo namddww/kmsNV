@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.hbl.kms.app.device.mapper.DeviceMapper;
 import com.hbl.kms.app.device.model.AreaList;
 import com.hbl.kms.app.device.model.Device;
+import com.hbl.kms.app.device.model.DeviceDetail;
 import com.hbl.kms.app.device.model.DeviceDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -47,5 +48,13 @@ public class DeviceService {
 
     public List<Device> selectDeviceListByFloor(DeviceDto deviceDto) {
         return deviceMapper.selectDeviceListByFloor(deviceDto);
+    }
+
+    public DeviceDetail selectDeviceDetail(DeviceDto deviceDto) {
+        return deviceMapper.selectDeviceDetail(deviceDto);
+    }
+
+    public int updateDevice(DeviceDto deviceDto) {
+        return deviceMapper.updateDevice(deviceDto);
     }
 }

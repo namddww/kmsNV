@@ -55,6 +55,10 @@ public class DeviceDto {
      */
     private String locationCd;
     /**
+     * 위치설명
+     */
+    private String location;
+    /**
      * 좌표1 (위도)
      */
     private String point1;
