@@ -1,79 +1,106 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="../../views/common/include/common.jsp" %>
 
-<h1>자산 > 자산등록</h1>
-<br>
-<div id="build-info" style="height: auto; width: 100%; border:1px solid;">
-    <form id="deviceForm">
-        <div style="margin-left: 1%;">
-            <h3>자산기본정보</h3>
-            <br>
-            <div id="div-hidden">
-                자산ID : <span id="deviceSeq">등록은 빈값?</span>
-                <br>
-                등록일 : <span id="regDate">2022-02-09(현재날짜?)</span>&emsp;&emsp;&emsp;등록자 : <span id="regUser">1</span>
-            </div> <br>
+<form id="deviceForm">
+    <input type="hidden" id="buildSeq">
+    <input type="hidden" id="stdPoint1">
+    <input type="hidden" id="stdPoint2">
+    <input type="hidden" id="areaPoint1">
+    <input type="hidden" id="areaPoint2">
 
-            <input type="button" id="building-btn" class="btn gray" value="건물 선택">
-        </div> <br> <%-- END_자산기본정보--%>
-
-        <div style="height: auto; width: 70%; border:1px solid; margin-left: 1%;">
-            <div style="margin-left: 1%;">
-                <input type="hidden" id="buildSeq">
-                <input type="hidden" id="stdPoint1">
-                <input type="hidden" id="stdPoint2">
-                <input type="hidden" id="areaPoint1">
-                <input type="hidden" id="areaPoint2">
-                <br>
-                건물명 : <span id="buildName">휴빌론</span>
-                <br>
-                지역 : <span id="locationCd">지역 컬럼없음</span>
-                <br>
-                상세주소 : <span id="address"></span>
-                <br>
-                층정보 : <span id="floorInfo"></span>
-                <br>
-            </div> <br>
-        </div> <br> <%-- END_건물정보--%>
-
-        <div style="height: auto; width: 70%; border:1px solid; margin-left: 1%;">
-            <div style="margin-left: 1%;">
-                <h3>자산 상세정보</h3>
-                <br>
-                자산명 : <input type="text" id="deviceName">
-                <br>
-                층정보 : <select id="floor">
-                            <option>-</option>
-                        </select>
-                <br>
-                타입 : <select id="typeCd">
-                            <option>타입1</option>
-                        </select>
-                <br>
-                위치설명 : <input type="text" id="location">
-                <br>
-                좌표등록 : <input type="text" id="point1" disabled style="width: 25%;">
-                          <input type="text" id="point2" disabled style="width: 25%;">
-                          <button type="button" id="btnPoint" class="btn gray">좌표등록</button>
-            </div> <br>
-        </div> <br> <%-- END_건물정보--%>
-
-        <div style="height: auto; width: 70%; border:1px solid; margin-left: 1%;">
-            <div style="margin-left: 1%;">
-                <br>
-                <h3>메모</h3>
-                <textarea id="memo"></textarea>
+    <div class="side_cont" style="right: 0px;">
+        <div class="head">
+            <h2>자산 등록</h2>
+        </div>
+        <div class="content">
+            <div class="tbl_row_wrap">
+                <table class="tbl_row">
+                    <caption style="display :none;">자산 등록</caption>
+                    <colgroup>
+                        <col style="width:20%">
+                        <col style="width:30%">
+                        <col style="width:20%">
+                        <col style="width:30%">
+                    </colgroup>
+                    <tbody>
+                        <!-- 등록 정보-->
+                        <tr class="tr-hidden">
+                            <th scope="col">자산ID</th>
+                            <td><input type="text" id="deviceSeq" value="0" disabled></td>
+                            <th scope="col">등록일</th>
+                            <td><input type="text" id="regDate" value="9999-01-01" disabled></td>
+                        </tr>
+                        <tr class="tr-hidden">
+                            <th scope="col">등록자</th>
+                            <td><input type="text" id="regUser" value="아무개" disabled></td>
+                        </tr>
+                        <!-- 건물 정보-->
+                        <tr>
+                            <th scope="col">건물명<em class="emp_mark">*</em></th>
+                            <td><input type="text" id="buildName" value="" disabled></td>
+                            <td class="dupl_chk"><button id="building-btn" disabled>건물 선택</button></td>
+                        </tr>
+                        <tr>
+                            <th scope="col">지역<em class="emp_mark">*</em></th>
+                            <td><input type="text" id="locationCd" value="" disabled></td>
+                            <th scope="col">층정보<em class="emp_mark">*</em></th>
+                            <td><input type="text" id="floorInfo" value="" disabled></td>
+                        </tr>
+                        <tr>
+                            <th scope="col">상세주소<em class="emp_mark">*</em></th>
+                            <td colspan="3"><input type="text" id="address" value="" disabled></td>
+                        </tr>
+                        <tr>
+                            <th scope="col">자산명<em class="emp_mark">*</em></th>
+                            <td colspan="3"><input type="text" id="deviceName"></td>
+                        </tr>
+                        <tr>
+                            <th scope="col">층정보<em class="emp_mark">*</em></th>
+                            <td>
+                                <select id="floor">
+                                    <option>층선택</option>
+                                </select>
+                            </td>
+                            <th scope="col">타입<em class="emp_mark">*</em></th>
+                            <td>
+                                <select id="typeCd">
+                                    <option>타입선택</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="col">위치설명</th>
+                            <td colspan="3"><input type="text" id="location"></td>
+                        </tr>
+                        <tr>
+                            <th scope="col">좌표등록<em class="emp_mark">*</em></th>
+                            <td>
+                                <input type="text" id="point1" disabled>
+                                <input type="text" id="point2" disabled>
+                            </td>
+                            <td class="dupl_chk"><button id="btnPoint">좌표등록</button></td>
+                        </tr>
+                        <tr>
+                            <th scope="col">메모</th>
+                            <td colspan="3"><textarea class="textarea_input" id="memo" style="resize: none;"></textarea></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="btn_wrap">
+                    <a href="javascript:void(0);" id="a-reg" class="btn_r selected tr-hidden" style="display:none;">등록</a>
+                    <a href="javascript:void(0);"  id="a-modify" class="btn_r selected" style="display:none;">수정</a>
+                    <a href="javascript:void(0);" id="a-cancel" class="btn_r">취소</a>
+                </div>
             </div>
-        </div> <br> <%-- END_메모--%>
-
-        <div style="margin-left: 1%;">
-            <button type="button" id="btnSave" class="btn gray">등록</button>
-            <button type="button" id="btnList" class="btn gray">목록</button>
-        </div><br>
-
-    </form>
-</div>
+        </div>
+    </div>
+</form>
 <script type="text/javascript" src="/assets/js/device/saveForm.js"></script>
 <script>
     var typeList = ${typeList};
+    var actionFlag = '${actionFlag}';
+    if (actionFlag == "UPDATE") {
+        var deviceSeq = '${deviceSeq}';
+        var buildSeq = '${buildSeq}';
+    }
 </script>

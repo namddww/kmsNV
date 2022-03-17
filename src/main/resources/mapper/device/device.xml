@@ -164,5 +164,39 @@
             d.build_seq = #{buildSeq}
         </if>
     </select>
+    <select id="selectDeviceDetail" resultType="deviceDetail">
+        SELECT
+            TB.BUILD_SEQ
+            , TD.DEVICE_SEQ
+            , TB.BUILD_NAME
+            , (SELECT CODE_NAME FROM t_code tc WHERE TB.LOCATION_CD = tc.CODE_VAL) LOCATION_CD
+            , TB.GROUND_FLOOR
+            , TB.BASE_FLOOR
+            , CONCAT(TB.ADDR1, ' ', TB.ADDR2) AS ADDRESS
+            , TD.DEVICE_NAME
+            , TD.FLOOR
+            , TD.LOCATION
+            , TD.POINT1
+            , TD.POINT2
+            , TD.TYPE_CD
+            , TD.MEMO
+        FROM t_building TB
+            INNER JOIN t_device TD ON TB.BUILD_SEQ = TD.BUILD_SEQ
+        WHERE TB.BUILD_SEQ = #{buildSeq}
+        AND TD.DEVICE_SEQ = #{deviceSeq}
+    </select>
+
+    <update id="updateDevice">
+        UPDATE t_device
+        SET DEVICE_NAME     = #{deviceName}
+            , FLOOR         = #{floor}
+            , TYPE_CD       = #{typeCd}
+            , LOCATION      = #{location}
+            , POINT1        = #{point1}
+            , POINT2        = #{point2}
+            , MEMO          = #{memo}
+        WHERE BUILD_SEQ = #{buildSeq}
+        AND DEVICE_SEQ  = #{deviceSeq}
+    </update>
 
 </mapper>
