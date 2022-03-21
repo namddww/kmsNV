@@ -3,10 +3,7 @@ package com.hbl.kms.app.device.service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hbl.kms.app.device.mapper.DeviceMapper;
-import com.hbl.kms.app.device.model.AreaList;
-import com.hbl.kms.app.device.model.Device;
-import com.hbl.kms.app.device.model.DeviceDetail;
-import com.hbl.kms.app.device.model.DeviceDto;
+import com.hbl.kms.app.device.model.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -22,6 +19,10 @@ public class DeviceService {
 
     public List<AreaList> selectAreaList(String codeGroupCd) {
         return deviceMapper.selectAreaList(codeGroupCd);
+    }
+
+    public List<LocationCd> selectLocationCd() {
+        return deviceMapper.selectLocationCd();
     }
 
     public PageInfo<?> selectDeviceInfoList(DeviceDto deviceDto) {
@@ -57,4 +58,5 @@ public class DeviceService {
     public int updateDevice(DeviceDto deviceDto) {
         return deviceMapper.updateDevice(deviceDto);
     }
+
 }

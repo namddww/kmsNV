@@ -13,13 +13,20 @@
         AND GROUP_CD = #{codeGroupCd}
     </select>
 
+    <select id="selectLocationCd" resultType="locationCd">
+        SELECT
+            LOCATION_CD
+            , LOCATION_NAME
+        FROM t_location
+    </select>
+
     <!-- 자산정보 조회 -->
     <select id="selectDeviceInfoList" resultType="buildingInfoList">
         SELECT
             TB.BUILD_SEQ
             , TD.DEVICE_SEQ
             , TB.BUILD_NAME
-            , (SELECT CODE_NAME FROM t_code tc WHERE TB.LOCATION_CD = tc.CODE_VAL) LOCATION_CD
+            , (SELECT LOCATION_NAME FROM t_location TL WHERE TB.LOCATION_CD = TL.LOCATION_CD) LOCATION_CD
             , TD.FLOOR
             , (SELECT CODE_NAME FROM t_code tc WHERE TD.TYPE_CD = tc.CODE_VAL) TYPE_CD
             , TD.DEVICE_NAME
@@ -51,35 +58,35 @@
     <!-- 건물정보 조회 -->
     <select id="selectBuildingInfoList" resultType="buildingInfoList">
         SELECT
-            BUILD_SEQ
-            , BUILD_NAME
-            , (SELECT CODE_NAME FROM t_code tc WHERE LOCATION_CD = tc.CODE_VAL) LOCATION_CD
-            , CONCAT(ADDR1, ' ', ADDR2) AS ADDRESS
-            , GROUND_FLOOR
-            , BASE_FLOOR
-            , CONCAT(STD_POINT1, ' / ', STD_POINT2) AS POINT
-            , STD_POINT1
-            , STD_POINT2
-            , AREA_POINT1
-            , AREA_POINT2
-            , REG_DATE
-            , REG_USER
-        FROM t_building
+            TB.BUILD_SEQ
+            , TB.BUILD_NAME
+            , (SELECT LOCATION_NAME FROM t_location TL WHERE TB.LOCATION_CD = TL.LOCATION_CD) LOCATION_CD
+            , CONCAT(TB.ADDR1, ' ', TB.ADDR2) AS ADDRESS
+            , TB.GROUND_FLOOR
+            , TB.BASE_FLOOR
+            , CONCAT(TB.STD_POINT1, ' / ', TB.STD_POINT2) AS POINT
+            , TB.STD_POINT1
+            , TB.STD_POINT2
+            , TB.AREA_POINT1
+            , TB.AREA_POINT2
+            , TB.REG_DATE
+            , TB.REG_USER
+        FROM t_building TB
         WHERE 1=1
         <if test="buildName != null and buildName != ''">
-            AND BUILD_NAME LIKE CONCAT('%', #{buildName}, '%')
+            AND TB.BUILD_NAME LIKE CONCAT('%', #{buildName}, '%')
         </if>
         <if test="scRegDtSt != null and scRegDtSt != ''">
-            AND DATE_FORMAT(REG_DATE, '%Y%m%d') &gt;= #{scRegDtSt}
+            AND DATE_FORMAT(TB.REG_DATE, '%Y%m%d') &gt;= #{scRegDtSt}
         </if>
         <if test="scRegDtEd != null and scRegDtEd != ''">
-            AND DATE_FORMAT(REG_DATE, '%Y%m%d') &lt;= #{scRegDtEd}
+            AND DATE_FORMAT(TB.REG_DATE, '%Y%m%d') &lt;= #{scRegDtEd}
         </if>
         <if test="locationCd != null and locationCd != ''">
-            AND LOCATION_CD = #{locationCd}
+            AND TB.LOCATION_CD = #{locationCd}
         </if>
         <if test="isUse != null and isUse != ''">
-            AND IS_USE = #{isUse}
+            AND TB.IS_USE = #{isUse}
         </if>
     </select>
 
@@ -169,7 +176,7 @@
             TB.BUILD_SEQ
             , TD.DEVICE_SEQ
             , TB.BUILD_NAME
-            , (SELECT CODE_NAME FROM t_code tc WHERE TB.LOCATION_CD = tc.CODE_VAL) LOCATION_CD
+            , (SELECT LOCATION_NAME FROM t_location TL WHERE TB.LOCATION_CD = TL.LOCATION_CD) LOCATION_CD
             , TB.GROUND_FLOOR
             , TB.BASE_FLOOR
             , CONCAT(TB.ADDR1, ' ', TB.ADDR2) AS ADDRESS

@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     // 지역 셀렉트박스 그리기.
-    areaHtml(areaList);
+    areaHtml(locationList);
 
     // 진입 후 건물 검색
     buildingSearch(1);
@@ -16,7 +16,7 @@ $(document).ready(function() {
     $("#scRegDtEd").datepicker();
 });
 
-function areaHtml(areaList) {
+function areaHtml(locationList) {
     $("#select-area").empty();
 
     $("#select-area").append(
@@ -25,11 +25,11 @@ function areaHtml(areaList) {
             .text('전체')
     )
 
-    $.each(areaList, function (i, val) {
+    $.each(locationList, function (i, val) {
         $("#select-area").append(
             $('<option/>')
-                .attr('value', val.codeVal)
-                .text(val.codeName)
+                .attr('value', val.locationCd)
+                .text(val.locationName)
         )
     });
 }

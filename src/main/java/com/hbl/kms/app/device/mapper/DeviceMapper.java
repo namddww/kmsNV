@@ -10,6 +10,8 @@ public interface DeviceMapper {
 
     List<AreaList>  selectAreaList(String codeGroupCd);
 
+    List<LocationCd> selectLocationCd();
+
     List<BuildingInfoList> selectBuildingInfoList(DeviceDto deviceDto);
 
     List<BuildingInfoList> selectDeviceInfoList(DeviceDto deviceDto);

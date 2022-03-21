@@ -2,7 +2,7 @@
 
 <div class="sub_content">
     <div class="view_list_head">
-        <h2 class="page_title_big">건물 목록</h2>
+        <h2 class="page_title">건물 목록</h2>
         <div class="search_sort sort">
             <div class="calendar_sort">
                 <span class="date_box">
@@ -76,5 +76,5 @@
 </div>
 <script type="text/javascript" src="/assets/js/device/buildingPopup.js"></script>
 <script>
-    var areaList = ${areaList};
+    var locationList = ${locationList};
 </script>

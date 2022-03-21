@@ -7,6 +7,7 @@ import com.hbl.kms.app.common.model.Result;
 import com.hbl.kms.app.common.model.utils.ResponseUtil;
 import com.hbl.kms.app.device.model.AreaList;
 import com.hbl.kms.app.device.model.DeviceDto;
+import com.hbl.kms.app.device.model.LocationCd;
 import com.hbl.kms.app.device.service.DeviceService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +23,6 @@ import java.util.List;
 public class DeviceController {
 
     private final DeviceService deviceService;
-    private static final String codeAcdGroupCd = "ACD";
     private static final String codeDevGroupCd = "DEV";
 
     /**
@@ -104,14 +104,14 @@ public class DeviceController {
 
         String json = null;
         ObjectMapper mapper = new ObjectMapper();
-        List<AreaList> areaList = deviceService.selectAreaList(codeAcdGroupCd);
+        List<LocationCd> locationList = deviceService.selectLocationCd();
 
         try {
-            json = mapper.writeValueAsString(areaList);
+            json = mapper.writeValueAsString(locationList);
         } catch (JsonProcessingException e) {
             log.error("NoticeController.faqCategoryLists error {}", e);
         }
-        mav.addObject("areaList", json);
+        mav.addObject("locationList", json);
         return mav;
     }
 
