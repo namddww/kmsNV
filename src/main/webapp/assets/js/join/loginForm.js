@@ -62,7 +62,7 @@ function login() {
         type : "POST",
         processData : false,
         contentType : false,
-        url : "/user/login",
+        url : "/join/login",
         data : formData,
         success : function (res) {
             if (!res.result) {

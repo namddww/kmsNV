@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.hbl.kms.app.login.mapper.LoginMapper">
+<mapper namespace="com.hbl.kms.app.login.mapper.UserMapper">
 
     <!-- 사용자 저장 -->
     <insert id="saveUser">
@@ -37,21 +37,5 @@
         , NOW()
         )
     </insert>
-
-    <select id="findByUserId" resultType="user">
-        SELECT
-            USER_SEQ
-            , USER_ID
-            , PASSWORD
-            , USER_NAME
-        FROM t_user
-        WHERE USER_ID = #{userId}
-    </select>
-    
-    <update id="updateUserLastDate">
-        UPDATE t_user
-        SET LOGIN_DATE = NOW()
-        WHERE USER_ID = #{userId}
-    </update>
 
 </mapper>

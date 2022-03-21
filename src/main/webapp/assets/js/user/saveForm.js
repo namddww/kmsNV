@@ -16,7 +16,7 @@ $(document).ready(function() {
 
     // 취소 버튼 선택
     $("#a-cancel").click(function () {
-        location.href = "/user/loginForm";
+        location.href = "/join/loginForm";
     });
 
     // 아이디, 패스워드, 입력 시 영문,숫자만 입력받게.
@@ -89,7 +89,7 @@ function userSave() {
         url : "/user/save",
         data : formData,
         success : function () {
-            location.href = "/user/loginForm"
+            location.href = "/join/loginForm"
         },
         error : function(XMLHttpRequest, textStatus, errorThrown){
             console.log(XMLHttpRequest, textStatus, errorThrown);

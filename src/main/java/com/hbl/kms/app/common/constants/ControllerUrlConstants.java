@@ -6,13 +6,20 @@ package com.hbl.kms.app.common.constants;
 public class ControllerUrlConstants {
 
     // 로그인관련 URL
-    public interface LoginUrl {
-        interface Login {
-            String DEFAULT = "/user/loginForm";
-            String LOGIN = "/user/login";
+    public interface JoinUrl {
+        interface Join {
+            String DEFAULT = "/join/loginForm";
+            String LOGIN = "/join/login";
+            String LOGOUT = "/join/logout";
+        }
+    }
+
+    // 사용자 관련 URL
+    public interface UserUrl {
+        interface User {
+            String DEFAULT = "/user/list";
             String SAVE_FORM = "/user/saveForm";
             String SAVE = "/user/save";
-            String LOGOUT = "/user/logout";
         }
     }
 

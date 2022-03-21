@@ -1,4 +1,4 @@
-package com.hbl.kms.app.login.model;
+package com.hbl.kms.app.user.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

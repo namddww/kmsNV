@@ -19,7 +19,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addRedirectViewController("/", "/user/loginForm");
+        registry.addRedirectViewController("/", "/join/loginForm");
     }
 
     @Override

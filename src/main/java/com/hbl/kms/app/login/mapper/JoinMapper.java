@@ -1,14 +1,14 @@
 package com.hbl.kms.app.login.mapper;
 
-import com.hbl.kms.app.login.model.User;
+import com.hbl.kms.app.login.model.Join;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface LoginMapper {
+public interface JoinMapper {
 
-    int saveUser(User user);
+    int saveUser(Join user);
 
-    User findByUserId(String userId);
+    Join findByUserId(String userId);
 
     int updateUserLastDate(String userId);
 }
