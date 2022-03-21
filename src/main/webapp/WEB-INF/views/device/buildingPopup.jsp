@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="../../views/common/include/common.jsp" %>
 
 <div class="sub_content">
     <div class="view_list_head">
