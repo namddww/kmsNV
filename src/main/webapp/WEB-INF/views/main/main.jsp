@@ -69,6 +69,8 @@
 </style>
 <body>
 <div id="searchTab">
+    <input type="hidden" id="lock" value="${lock}">
+    <input type="hidden" id="key" value="${key}">
     <div>
         <button id="btnSearchArea" type="button" class="btn_r selected">지도내검색</button>
         <br>

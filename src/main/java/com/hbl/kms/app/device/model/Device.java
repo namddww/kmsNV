@@ -64,4 +64,8 @@ public class Device {
      * device_name
      */
     private String deviceName;
+    /**
+     * code_name
+     */
+    private String codeName;
 }

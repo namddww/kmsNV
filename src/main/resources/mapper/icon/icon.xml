@@ -68,6 +68,18 @@
         WHERE ICON_SEQ = #{iconSeq}
     </select>
 
+    <select id="selectIconDetailByCodeVal" resultType="icon">
+        SELECT
+            ICON_SEQ
+             , REG_DATE
+             , MODI_DATE
+             , ICON_NAME
+             , CODE_VAL
+             , ICON_PATH
+        FROM t_icon
+        WHERE CODE_VAL = #{codeVal}
+    </select>
+
     <update id="updateIcon">
         UPDATE t_icon
         SET ICON_NAME   = #{iconName}
