@@ -1,7 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.hbl.kms.app.login.mapper.UserMapper">
+<mapper namespace="com.hbl.kms.app.user.mapper.UserMapper">
+
+    <!-- 사용자 조회 -->
+    <select id="selectUserInfoList" resultType="user">
+        SELECT
+            TU.USER_SEQ
+             , TU.USER_NAME
+             , TU.USER_ID
+             , (SELECT CODE_NAME FROM t_code TL WHERE TU.SEX_CD = TL.CODE_VAL) SEX_CD
+             , TU.REG_DATE
+             , TU.LOGIN_DATE
+        FROM t_user TU
+        WHERE 1=1
+        <if test="userName != null and userName != ''">
+            AND TU.USER_NAME LIKE CONCAT('%', #{userName}, '%')
+        </if>
+        <if test="userId != null and userId != ''">
+            AND TU.USER_ID LIKE CONCAT('%', #{userId}, '%')
+        </if>
+        <if test="scRegDtSt != null and scRegDtSt != ''">
+            AND DATE_FORMAT(TU.REG_DATE, '%Y%m%d') &gt;= #{scRegDtSt}
+        </if>
+        <if test="scRegDtEd != null and scRegDtEd != ''">
+            AND DATE_FORMAT(TU.REG_DATE, '%Y%m%d') &lt;= #{scRegDtEd}
+        </if>
+    </select>
+
+    <!-- 성별 리스트 조회 -->
+    <select id="selectSexCdList" resultType="code">
+        SELECT
+            CODE_NAME
+             , CODE_VAL
+             , GROUP_CD
+        FROM t_code
+        WHERE IS_USE = 'Y'
+          AND GROUP_CD = #{codeSexGroupCd}
+    </select>
 
     <!-- 사용자 저장 -->
     <insert id="saveUser">
@@ -37,5 +73,34 @@
         , NOW()
         )
     </insert>
+
+    <select id="selectUserDetail" resultType="user">
+        SELECT
+            USER_SEQ
+            , REG_DATE
+            , USER_ID
+            , SEX_CD
+            , BIRTHDAY
+            , ADDR1
+            , ADDR2
+            , STATE_CD
+            , IS_USE
+            , MEMO
+        FROM t_user
+        WHERE USER_SEQ = #{userSeq}
+    </select>
+
+    <update id="updateUser">
+        UPDATE t_user
+        SET PASSWORD = #{password}
+            , USER_NAME = #{userName}
+            , SEX_CD = #{sexCd}
+            , BIRTHDAY = #{birthday}
+            , ADDR1 = #{addr1}
+            , ADDR2 = #{addr2}
+            , IS_USE = #{isUse}
+            , MEMO = #{memo}
+        WHERE USER_SEQ = #{userSeq}
+    </update>
 
 </mapper>

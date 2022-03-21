@@ -36,6 +36,7 @@
 			<li><a href="/icon/saveForm">아이콘 등록</a></li>
 		</ul>
 		<ul class="snb_list" id="user">
+			<li><a href="/user/list">사용자 관리</a></li>
 			<li><a href="/user/saveForm">사용자 등록</a></li>
 		</ul>
 	</div>

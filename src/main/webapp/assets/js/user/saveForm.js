@@ -1,6 +1,8 @@
 $(document).ready(function() {
 
-    hiddenFalg();
+    // 타입 셀렉트박스 그리기.
+    typeHtml(sexCdList);
+    hiddenFalg()
 
     // 주소검색 버튼 선택
     $("#btnAddr").click(function () {
@@ -14,9 +16,16 @@ $(document).ready(function() {
         }
     });
 
+    // 수정 버튼 선택
+    $("#a-modify").click(function () {
+        if (validation()) {
+            userUpdate();
+        }
+    })
+
     // 취소 버튼 선택
     $("#a-cancel").click(function () {
-        location.href = "/join/loginForm";
+        location.href = "/user/list";
     });
 
     // 아이디, 패스워드, 입력 시 영문,숫자만 입력받게.
@@ -31,16 +40,39 @@ $(document).ready(function() {
         var inputVal = $(this).val();
         $(this).val((inputVal.replace(/[^(ㄱ-힣a-zA-Z)]/gi,'')));
     });
+
+    // 무조건 진입시 한번 호출해줘야 이미지가 노출됨..
+    $("#scRegDtSt").datepicker();
 });
 
+function typeHtml(sexCdList) {
+    $("#sexCd").empty();
+
+    $("#sexCd").append(
+        $('<option/>')
+            .attr('value', '')
+            .text('선택')
+    )
+
+    $.each(sexCdList, function (i, val) {
+        $("#sexCd").append(
+            $('<option/>')
+                .attr('value', val.codeVal)
+                .text(val.codeName)
+        )
+    });
+}
+
 function hiddenFalg() {
-    // 임시로 무조건 신규등록 화면
-    if ("INSERT" == "INSERT") {
+    // 신규저장 이면 SEQ, 등록일, 수정버튼 미노출
+    if (actionFlag == "INSERT") {
         $(".tr-hidden").hide();
         $("#a-reg").show();
     } else {
+        // 수정버튼 보이기
         $("#a-modify").show();
-        dataBind();
+        $("#userId").prop('disabled', true);
+        dataBind(userSeq);
     }
 }
 
@@ -70,7 +102,7 @@ function userSave() {
     formData.append('password', $("#password").val().trim());
     formData.append('userName', $("#userName").val().trim());
     formData.append('sexCd', $("#sexCd option:selected").val());
-    formData.append('birthday', $("#birthday").val().replaceAll('-',''));
+    formData.append('birthday', $("#scRegDtSt").val().replaceAll('-',''));
     formData.append('addr1', $("#addr1").val());
     formData.append('addr2', $("#addr2").val());
     formData.append('stateCd',$("#stateCd option:selected").val());
@@ -97,8 +129,76 @@ function userSave() {
     })
 }
 
-function dataBind() {
-    console.log("로그인 사용자 시 데이터 바인딩");
+function dataBind(userSeq) {
+    console.log("사용자 업데이트시 데이터 바인딩");
+
+    console.log("userSeq : " + userSeq);
+
+    var formData = new FormData();
+    formData.append('userSeq', userSeq);
+
+    $.ajax({
+        type: 'POST',
+        processData : false,
+        contentType : false,
+        url: '/user/selectUserDetail',
+        data: formData,
+        success: function(res) {
+            var resultValue = res.result;
+
+            $("#userSeq").val(resultValue.userSeq);
+            $("#regDate").text(resultValue.regDate);
+            $("#userId").val(resultValue.userId);
+            $("#regUser").val(resultValue.regUser);
+            $("#userName").val(resultValue.userName);
+            $("#sexCd").val(resultValue.sexCd).prop("selected", true);
+            $("#scRegDtSt").val(resultValue.birthday); //값이 1인 option 선택
+            $("#location").val(resultValue.location);
+            $("#addr1").val(resultValue.addr1);
+            $("#addr2").val(resultValue.addr2);
+            $("#stateCd").val(resultValue.stateCd).prop("selected", true);
+            $("#radio_use" + resultValue.isUse).prop("checked", true)
+            $("#memo").val(resultValue.memo);
+        },
+        error: function(request,status,error) {
+            alert("통신상태가 원활하지 않아 접속이 끊어졌습니다.");
+        }
+    });
+}
+
+function userUpdate() {
+    var formData = new FormData();
+
+    formData.append('userSeq', $("#userSeq").val());
+    formData.append('password', $("#password").val().trim());
+    formData.append('userName', $("#userName").val().trim());
+    formData.append('sexCd', $("#sexCd option:selected").val());
+    formData.append('birthday', $("#scRegDtSt").val().replaceAll('-',''));
+    formData.append('addr1', $("#addr1").val());
+    formData.append('addr2', $("#addr2").val());
+    formData.append('stateCd',$("#stateCd option:selected").val());
+    formData.append('isUse', $("input[name='isUse']:checked").val());
+    formData.append('memo', $("#memo").val());
+
+    // formData 확인용
+    for (var pair of formData.entries()) {
+        console.log(pair[0]+ ', ' + pair[1]);
+    }
+
+    $.ajax({
+        type : "POST",
+        processData : false,
+        contentType : false,
+        url : "/user/update",
+        data : formData,
+        success : function (res) {
+            location.href = "/user/list"
+        },
+        error : function(XMLHttpRequest, textStatus, errorThrown){
+            console.log(XMLHttpRequest, textStatus, errorThrown);
+        }
+    })
+
 }
 
 function validation() {
@@ -127,9 +227,9 @@ function validation() {
         return false;
     }
 
-    if (!$("#birthday").val()) {
+    if (!$("#scRegDtSt").val()) {
         alert("생년월일을 선택해 주세요.");
-        $("#birthday").focus();
+        $("#scRegDtSt").focus();
         return false;
     }
 

@@ -18,8 +18,11 @@ public class ControllerUrlConstants {
     public interface UserUrl {
         interface User {
             String DEFAULT = "/user/list";
+            String SEARCH = "/user/search";
             String SAVE_FORM = "/user/saveForm";
             String SAVE = "/user/save";
+            String SELECT_USER_DETAIL = "/user/selectUserDetail";
+            String UPDATE = "/user/update";
         }
     }
 

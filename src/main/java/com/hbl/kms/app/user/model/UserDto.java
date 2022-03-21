@@ -1,20 +1,17 @@
 package com.hbl.kms.app.user.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.apache.ibatis.type.Alias;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Alias("user")
-public class User {
+public class UserDto {
     /**
      * 사용자 SEQ
      */
@@ -48,18 +45,6 @@ public class User {
      */
     private String addr2;
     /**
-     * 전화번호
-     */
-    private String tel;
-    /**
-     * 이메일
-     */
-    private String email;
-    /**
-     * 상태 코드
-     */
-    private String stateCd;
-    /**
      * 사용여부
      */
     private String isUse;
@@ -68,13 +53,24 @@ public class User {
      */
     private String memo;
     /**
-     * 등록일
+     * 시작일
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    private Date regDate;
+    private String scRegDtSt;
     /**
-     * 마지막 로그인 일자
+     * 종료일
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    private Date loginDate;
+    private String scRegDtEd;
+
+    /**
+     * 한페이지 노출 시작 번호
+     */
+    int pageNum = 1;
+    /**
+     * 한페이지 노출 갯수
+     */
+    int pageSize = 10;
+    /**
+     * 한페이지 노출 종료 번호
+     */
+    int NavigatePages = 10;
 }

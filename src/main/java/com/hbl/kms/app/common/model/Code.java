@@ -2,9 +2,11 @@ package com.hbl.kms.app.common.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.ibatis.type.Alias;
 
 @Getter
 @Setter
+@Alias("code")
 public class Code {
     /**
      * 코드 SEQ
