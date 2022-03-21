@@ -349,7 +349,7 @@ img {max-width: 100%}
 .tbl_height.light td {border-right: 0;}
 
 
-.side_tbl_wrap {height: calc(100vh - 650px); overflow: scroll}
+.side_tbl_wrap {height: calc(100vh - 500px); overflow: scroll}
 .side_tbl_wrap .tbl_height th {height: 40px;}
 .side_tbl_wrap .tbl_height td {height: 40px; border-bottom: 1px solid #eff5ff;}
 .side_tbl_wrap.meta {height: calc(100vh - 220px);}
