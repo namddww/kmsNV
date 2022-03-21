@@ -27,8 +27,8 @@ $(document).ready(function() {
         }
     })
 
-    // 목록 버튼 선택
-    $("#btnList").click(function () {
+    // 취소 버튼 선택
+    $("#a-cancel").click(function () {
         deviceList();
     })
 });
@@ -171,6 +171,12 @@ function dataBind(buildSeq, deviceSeq) {
             $("#point1").val(resultValue.point1)
             $("#point2").val(resultValue.point2)
             $("#memo").val(resultValue.memo);
+
+            // 건물좌표 정보
+            $("#stdPoint1").val(resultValue.stdPoint1);
+            $("#stdPoint2").val(resultValue.stdPoint2);
+            $("#areaPoint1").val(resultValue.areaPoint1);
+            $("#areaPoint2").val(resultValue.areaPoint2);
         },
         error: function(request,status,error) {
             alert("통신상태가 원활하지 않아 접속이 끊어졌습니다.");

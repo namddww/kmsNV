@@ -38,7 +38,7 @@
                         <tr>
                             <th scope="col">건물명<em class="emp_mark">*</em></th>
                             <td><input type="text" id="buildName" value="" disabled></td>
-                            <td class="dupl_chk"><button id="building-btn" disabled>건물 선택</button></td>
+                            <td class="dupl_chk"><button id="building-btn" type="button">건물 선택</button></td>
                         </tr>
                         <tr>
                             <th scope="col">지역<em class="emp_mark">*</em></th>
@@ -78,7 +78,7 @@
                                 <input type="text" id="point1" disabled>
                                 <input type="text" id="point2" disabled>
                             </td>
-                            <td class="dupl_chk"><button id="btnPoint">좌표등록</button></td>
+                            <td class="dupl_chk"><button id="btnPoint" type="button">좌표등록</button></td>
                         </tr>
                         <tr>
                             <th scope="col">메모</th>

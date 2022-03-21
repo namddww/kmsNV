@@ -90,5 +90,20 @@ public class DeviceDetail {
      * 사용여부
      */
     private String isUse;
-
+    /**
+     * 기준좌표1(leftop_위도)
+     */
+    private String stdPoint1;
+    /**
+     * 기준좌표2(leftop_경도)
+     */
+    private String stdPoint2;
+    /**
+     * 영역좌표1(rightbotton_위도)
+     */
+    private String areaPoint1;
+    /**
+     * 영역좌표1(rightbotton_경도)
+     */
+    private String areaPoint2;
 }

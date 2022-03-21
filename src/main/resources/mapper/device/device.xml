@@ -180,6 +180,10 @@
             , TD.POINT2
             , TD.TYPE_CD
             , TD.MEMO
+            , TB.STD_POINT1
+            , TB.STD_POINT2
+            , TB.AREA_POINT1
+            , TB.AREA_POINT2
         FROM t_building TB
             INNER JOIN t_device TD ON TB.BUILD_SEQ = TD.BUILD_SEQ
         WHERE TB.BUILD_SEQ = #{buildSeq}
