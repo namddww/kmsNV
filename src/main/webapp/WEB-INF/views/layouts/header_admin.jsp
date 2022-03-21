@@ -12,10 +12,10 @@
 			<a href="/device/list">자산 관리</a>
 		</li>
 		<li class="depth1" data-targetmenu="common">
-			<a href="/building/list">공통 관리</a>
+			<a href="javascript:void(0);">공통 관리</a>
 		</li>
 		<li class="depth1" data-targetmenu="user">
-			<a href="/building/list">사용자 관리</a>
+			<a href="javascript:void(0);">사용자 관리</a>
 		</li>
 	</ul>
 	<div class="spot_menu">
@@ -32,12 +32,11 @@
 			<li><a href="/device/saveForm">장비 등록</a></li>
 		</ul>
 		<ul class="snb_list" id="common">
-			<li><a href="/device/list">장비 관리</a></li>
-			<li><a href="/device/saveForm">장비 등록</a></li>
+			<li><a href="/icon/list">아이콘 관리</a></li>
+			<li><a href="/icon/saveForm">아이콘 등록</a></li>
 		</ul>
 		<ul class="snb_list" id="user">
-			<li><a href="/device/list">장비 관리</a></li>
-			<li><a href="/device/saveForm">장비 등록</a></li>
+			<li><a href="/user/saveForm">사용자 등록</a></li>
 		</ul>
 	</div>
 </div>
