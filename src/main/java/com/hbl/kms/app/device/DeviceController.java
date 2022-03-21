@@ -124,17 +124,8 @@ public class DeviceController {
             , @RequestParam(value = "floor", required = true) int floor) {
         mav.setViewName("device/devicePointPopup");
 
-        String json = null;
-        ObjectMapper mapper = new ObjectMapper();
-        // buildSeq, floor 정보로 층 파일정보 조회
         String imagePath = deviceService.selectFloorFilePath(buildSeq, floor);
-
-        try {
-            json = mapper.writeValueAsString(imagePath);
-        } catch (JsonProcessingException e) {
-            log.error("NoticeController.faqCategoryLists error {}", e);
-        }
-        mav.addObject("imagePath", json);
+        mav.addObject("imagePath", imagePath);
 
         return mav;
     }

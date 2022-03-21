@@ -58,8 +58,8 @@ let _pointPopup = {
         // var imageUrl = "C:\\upload\\images\\building\\sample_2.jpg";
         // var imageUrl = "file:///C:/upload/images/building/sample_2.jpg";
         // var imageUrl = "D:\\test\\image\\sample_2.jpg";
-        var imageUrl = "https://shop-phinf.pstatic.net/20210915_17/1631709921614RtBYz_PNG/%C3%CA%C4%DA%B3%D7_%B0%A1%B0%D4_%B8%DE%C0%CEPC.png?type=w345";
-        // var imageUrl = $("#imagePath").val();
+        // var imageUrl = "https://shop-phinf.pstatic.net/20210915_17/1631709921614RtBYz_PNG/%C3%CA%C4%DA%B3%D7_%B0%A1%B0%D4_%B8%DE%C0%CEPC.png?type=w345";
+        var imageUrl = $("#imagePath").val();
 
         var imageBounds = [
             [x_1, y_1],
