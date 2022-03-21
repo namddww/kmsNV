@@ -267,7 +267,7 @@ let _main = {
                     $('<tr/>').attr('onclick', '_main.clickDevice('+val.point1+','+val.point2+')').append(
                         $('<td/>').text(val.floor)
                     ).append(
-                        $('<td/>').text(val.typeCd)
+                        $('<td/>').text(val.codeName)
                     ).append(
                         $('<td/>').text(val.deviceName)
                     )
@@ -320,19 +320,25 @@ let _main = {
                     $.each(res.result, function (i, val) {
                         let x1 = val.point1;
                         let y1 = val.point2;
-                        var iconUrl = "/assets/img/chk_atv.png"
-                        var icon = L.icon({
-                            iconUrl: iconUrl,
-                            iconSize: [32, 46], // 모바일에서는 2x 이미지 사용
-                            iconAnchor: [16,46],
-                            popupAnchor: [0,-46]
-                        });
-
+                        var iconUrl = "";
+                        if(val.typeCd == "DEV00010"){
+                            iconUrl = $("#key").val();
+                        }else{
+                            iconUrl = $("#lock").val();
+                        }
                         var latlng = L.latLng(x1, y1);
-                        /*L.marker(latlng, {
-                            icon: icon
-                        }).addTo(_this2.$map);*/
-                        _main.$markers.push(L.marker(latlng).addTo(_main.$map));
+                        if(iconUrl == "default"){
+                            _main.$markers.push(L.marker(latlng).addTo(_main.$map));
+                        }else{
+                            var icon = L.icon({
+                                iconUrl: iconUrl,
+                                iconSize: [32, 46], // 모바일에서는 2x 이미지 사용
+                                iconAnchor: [16,46]
+                            });
+                            _main.$markers.push(L.marker(latlng, {
+                                icon: icon
+                            }).addTo(_main.$map));
+                        }
 
                         if(x1 <= _main.$x_1 && x1 >= _main.$x_2 && y1 >= _main.$y_1 && y1 <= _main.$y_2){
                             let mt = L.point(_main.$x_1, _main.$y_1).distanceTo(L.point(x1, _main.$y_1));
@@ -400,19 +406,25 @@ let _main = {
                     $.each(res.result, function (i, val) {
                         let x1 = val.point1;
                         let y1 = val.point2;
-                        var iconUrl = "/assets/img/chk_atv.png"
-                        var icon = L.icon({
-                            iconUrl: iconUrl,
-                            iconSize: [32, 46], // 모바일에서는 2x 이미지 사용
-                            iconAnchor: [16,46],
-                            popupAnchor: [0,-46]
-                        });
-
+                        var iconUrl = "";
+                        if(val.typeCd == "DEV00010"){
+                            iconUrl = $("#key").val();
+                        }else{
+                            iconUrl = $("#lock").val();
+                        }
                         var latlng = L.latLng(x1, y1);
-                        /*L.marker(latlng, {
-                            icon: icon
-                        }).addTo(_this2.$map);*/
-                        _main.$markers.push(L.marker(latlng).addTo(_main.$map));
+                        if(iconUrl == "default"){
+                            _main.$markers.push(L.marker(latlng).addTo(_main.$map));
+                        }else{
+                            var icon = L.icon({
+                                iconUrl: iconUrl,
+                                iconSize: [32, 46], // 모바일에서는 2x 이미지 사용
+                                iconAnchor: [16,46]
+                            });
+                            _main.$markers.push(L.marker(latlng, {
+                                icon: icon
+                            }).addTo(_main.$map));
+                        }
 
                         if(x1 <= _main.$x_1 && x1 >= _main.$x_2 && y1 >= _main.$y_1 && y1 <= _main.$y_2){
                             let mt = L.point(_main.$x_1, _main.$y_1).distanceTo(L.point(x1, _main.$y_1));

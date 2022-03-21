@@ -43,6 +43,10 @@ public class IconService {
         return iconMapper.selectIconDetail(iconSeq);
     }
 
+    public Icon selectIconDetailByCodeVal(String codeVal) {
+        return iconMapper.selectIconDetailByCodeVal(codeVal);
+    }
+
     public int updateIcon(IconDto iconDto) {
         try {
             // 넘겨받은 파일경로를 설정경로에 맞춰서 변경

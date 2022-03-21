@@ -17,4 +17,6 @@ public interface IconMapper {
     Icon selectIconDetail(int iconSeq);
 
     int updateIcon(IconDto iconDto);
+
+    Icon selectIconDetailByCodeVal(String codeVal);
 }

@@ -161,8 +161,10 @@
             , d.type_cd
             , d.floor
             , d.device_name
+            , c.code_name
         FROM t_device d
         LEFT JOIN t_tracking t ON d.device_seq = t.device_seq
+        LEFT JOIN t_code c ON d.type_cd = c.code_val AND c.group_cd = 'DEV'
         WHERE
         <if test="floorSeq != 0">
             d.floor_seq = #{floorSeq}
