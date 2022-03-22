@@ -70,7 +70,7 @@ function login() {
                 return false;
             }
 
-            location.href = "/main"
+            location.href = "/home"
         },
         error : function(XMLHttpRequest, textStatus, errorThrown){
             console.log(XMLHttpRequest, textStatus, errorThrown);

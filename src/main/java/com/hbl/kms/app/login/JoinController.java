@@ -48,9 +48,10 @@ public class JoinController {
         }
         
         // 세션 저장
-//        HttpSession session = request.getSession();
-//        session.setAttribute("userInfo", "유저정보 넣을까?");
-//        session.setMaxInactiveInterval(1800); // 일단 유지시간 30분 설정
+        HttpSession session = request.getSession();
+        session.setAttribute("userId", user.getUserId());
+        session.setAttribute("userInfo", user);
+        session.setMaxInactiveInterval(1800); // 일단 유지시간 30분 설정
 
         return ResponseUtil.process(true);
     }

@@ -14,6 +14,26 @@ public class MainController {
 
     private final IconService iconService;
 
+    /**
+     * 홈화면
+     */
+    @GetMapping("/home")
+    public ModelAndView home(ModelAndView mav) {
+        mav.setViewName("home/home");
+
+        return mav;
+    }
+
+    /**
+     * 대쉬보드
+     */
+    @GetMapping("/dashboard")
+    public ModelAndView dashboard(ModelAndView mav) {
+        mav.setViewName("dashboard/dashboard");
+
+        return mav;
+    }
+
     @GetMapping("/main")
     public ModelAndView main(ModelAndView mav) {
         String lock = "";
