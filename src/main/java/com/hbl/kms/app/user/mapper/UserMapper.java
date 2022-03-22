@@ -15,6 +15,8 @@ public interface UserMapper {
 
     List<Code> selectSexCdList(String codeSexGroupCd);
 
+    int selectIdCount(UserDto userDto);
+
     int saveUser(User user);
 
     User selectUserDetail(UserDto userDto);

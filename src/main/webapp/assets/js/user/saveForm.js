@@ -28,13 +28,13 @@ $(document).ready(function() {
         location.href = "/user/list";
     });
 
-    // 아이디, 패스워드, 입력 시 영문,숫자만 입력받게.
-    $('#userId, #password').keyup(function() {
+    // 아이디 입력 시 영문,숫자만 입력받게.
+    $('#userId').keyup(function() {
         var inputVal = $(this).val();
         $(this).val((inputVal.replace(/[ㄱ-힣~!@#$%^&*()_+|<>?:{}= ]/g,'')));
     });
 
-    // 아이디, 패스워드, 이름 입력 시 한글, 영문만 입력받게.
+    // 이름 입력 시 한글, 영문만 입력받게.
     $('#userName').keyup(function() {
         console.log("fff")
         var inputVal = $(this).val();
@@ -96,6 +96,12 @@ function addrSearch() {
 }
 
 function userSave() {
+
+    // 아이디 중복 체크
+    if (!selectIdCount()) {
+        return false;
+    }
+
     var formData = new FormData();
 
     formData.append('userId', $("#userId").val().trim());
@@ -120,8 +126,8 @@ function userSave() {
         contentType : false,
         url : "/user/save",
         data : formData,
-        success : function () {
-            location.href = "/join/loginForm"
+        success : function (res) {
+            location.href = "/user/list"
         },
         error : function(XMLHttpRequest, textStatus, errorThrown){
             console.log(XMLHttpRequest, textStatus, errorThrown);
@@ -203,33 +209,46 @@ function userUpdate() {
 
 function validation() {
 
+    // 아이디가 비어 있을시
     if (!$("#userId").val()) {
         alert("아이디를 입력해 주세요.");
         $("#userId").focus();
         return false;
     }
 
+    // 비밀번호가 비어 있을시
     if (!$("#password").val()) {
         alert("비밀번호를 입력해 주세요.");
         $("#password").focus();
         return false;
     }
 
+    // TODO : BANG 개발완료 추후 적용
+    // 비밀번호는 비어 있지 않지만, 형식이 맞지 않을 때
+    // if ($("#password").val()) {
+    //     console.log($("#password").val());
+    //     var regPass = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+    //
+    //     if (!regPass.test($("#password").val())) {
+    //         alert("영문, 숫자, 특수기호 조합으로 8-20자리 이상 입력해주세요.");
+    //         return false;
+    //     }
+    // }
+
+    // 이름이 비어 있을시
     if (!$("#userName").val()) {
         alert("이름을 입력해 주세요.");
         $("#userName").focus();
         return false;
     }
 
-    if (!$("#password").val()) {
-        alert("비밀번호를 입력해 주세요.");
-        $("#password").focus();
+    if (!$("#sexCd option:selected").val()) {
+        alert("성별을 선택해 주세요.");
         return false;
     }
 
     if (!$("#scRegDtSt").val()) {
         alert("생년월일을 선택해 주세요.");
-        $("#scRegDtSt").focus();
         return false;
     }
 
@@ -246,5 +265,39 @@ function validation() {
     }
 
     return true;
+}
+
+function selectIdCount() {
+
+    var resultBoolean;
+
+    var formData = new FormData();
+
+    formData.append('userId', $("#userId").val());
+
+    $.ajax({
+        type : "POST",
+        processData : false,
+        contentType : false,
+        async: false,
+        url : "/user/selectIdCount",
+        data : formData,
+        success : function (res) {
+            console.log("IconCount : ", res.result);
+            if (res.result >= 1) {
+                alert("아이디 [" + $("#userId").val() + "] 는 이미 사용중인 아이디 입니다.");
+                resultBoolean = false;
+                return resultBoolean;
+            }
+            resultBoolean = true;
+        },
+        error : function(XMLHttpRequest, textStatus, errorThrown){
+            console.log(XMLHttpRequest, textStatus, errorThrown);
+        }
+    });
+
+    console.log("selectIconCount resultBoolean : ", resultBoolean);
+    return resultBoolean;
+
 }
 

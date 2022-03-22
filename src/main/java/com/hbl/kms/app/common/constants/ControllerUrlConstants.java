@@ -20,6 +20,7 @@ public class ControllerUrlConstants {
             String DEFAULT = "/user/list";
             String SEARCH = "/user/search";
             String SAVE_FORM = "/user/saveForm";
+            String SELECT_ID_COUNT = "/user/selectIdCount";
             String SAVE = "/user/save";
             String SELECT_USER_DETAIL = "/user/selectUserDetail";
             String UPDATE = "/user/update";

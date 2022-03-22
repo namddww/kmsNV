@@ -30,6 +30,9 @@ public class UserService {
         return userMapper.selectSexCdList(codeSexGroupCd);
     }
 
+    public int selectIdCount(UserDto userDto) {
+        return userMapper.selectIdCount(userDto);
+    }
 
     public int saveUser(User user) {
         return userMapper.saveUser(user);

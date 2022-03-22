@@ -39,6 +39,13 @@
           AND GROUP_CD = #{codeSexGroupCd}
     </select>
 
+    <!-- 아이디 중복 체크 -->
+    <select id="selectIdCount" resultType="int">
+        SELECT COUNT(USER_ID)
+        FROM t_user
+        WHERE USER_ID = #{userId}
+    </select>
+
     <!-- 사용자 저장 -->
     <insert id="saveUser">
         INSERT INTO t_user
@@ -92,15 +99,15 @@
 
     <update id="updateUser">
         UPDATE t_user
-        SET PASSWORD = #{password}
+        SET PASSWORD    = #{password}
             , USER_NAME = #{userName}
-            , SEX_CD = #{sexCd}
-            , BIRTHDAY = #{birthday}
-            , ADDR1 = #{addr1}
-            , ADDR2 = #{addr2}
-            , IS_USE = #{isUse}
-            , MEMO = #{memo}
-        WHERE USER_SEQ = #{userSeq}
+            , SEX_CD    = #{sexCd}
+            , BIRTHDAY  = #{birthday}
+            , ADDR1     = #{addr1}
+            , ADDR2     = #{addr2}
+            , IS_USE    = #{isUse}
+            , MEMO      = #{memo}
+        WHERE USER_SEQ  = #{userSeq}
     </update>
 
 </mapper>

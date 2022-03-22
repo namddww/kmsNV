@@ -7,6 +7,7 @@ import com.hbl.kms.app.common.model.Code;
 import com.hbl.kms.app.common.model.Result;
 import com.hbl.kms.app.common.model.utils.ResponseUtil;
 import com.hbl.kms.app.device.model.DeviceDto;
+import com.hbl.kms.app.icon.model.IconDto;
 import com.hbl.kms.app.login.model.Join;
 import com.hbl.kms.app.user.model.User;
 import com.hbl.kms.app.user.model.UserDto;
@@ -78,9 +79,19 @@ public class UserController {
     }
 
     /**
+     * 아이디 중복 카운트 조회
+     */
+    @PostMapping(ControllerUrlConstants.UserUrl.User.SELECT_ID_COUNT)
+    @ResponseBody
+    public Result selectIdCount(UserDto userDto) {
+        return ResponseUtil.process(userService.selectIdCount(userDto));
+    }
+
+    /**
      * 회원가입
      */
     @PostMapping(ControllerUrlConstants.UserUrl.User.SAVE)
+    @ResponseBody
     public Result saveUser(User user) {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
