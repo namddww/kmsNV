@@ -19,7 +19,7 @@
             , area_point2
         FROM t_building
         WHERE 1=1
-        <if test="buildName != null">
+        <if test="buildName != null and buildName != ''">
             AND build_name LIKE CONCAT('%', #{buildName}, '%')
         </if>
         <if test="scRegDtSt != null and scRegDtSt != ''">

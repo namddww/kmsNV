@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hbl.kms.app.geofence.mapper.GeofenceMapper">
+
+    <!-- geofence정보 조회 -->
+    <select id="selectGeofenceList" resultType="geofence">
+        SELECT
+            g.geofence_seq
+            , g.build_seq
+            , g.floor_seq
+            , g.floor
+            , g.geo_name
+            , c.code_name AS typeCdName
+            , l.location_name
+            , g.state_cd
+            , b.build_name
+            , g.reg_date
+            , g.reg_user
+        FROM t_geofence g
+        LEFT JOIN t_location l ON g.location_cd = l.location_cd
+        LEFT JOIN t_code c ON g.type_cd = c.code_val AND c.group_cd = 'FIG'
+        LEFT JOIN t_building b ON g.build_seq = b.build_seq
+        WHERE 1=1
+        <if test="buildName != null and buildName != ''">
+            AND b.build_name LIKE CONCAT('%', #{buildName}, '%')
+        </if>
+        <if test="scRegDtSt != null and scRegDtSt != ''">
+            AND DATE_FORMAT(g.reg_date, '%Y%m%d') &gt;= #{scRegDtSt}
+        </if>
+        <if test="scRegDtEd != null and scRegDtEd != ''">
+            AND DATE_FORMAT(g.reg_date, '%Y%m%d') &lt;= #{scRegDtEd}
+        </if>
+        <if test="floor != null and floor != ''">
+            AND g.floor = #{floor}
+        </if>
+    </select>
+
+</mapper>

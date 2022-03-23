@@ -73,4 +73,16 @@ public class ControllerUrlConstants {
         }
     }
 
+    // geofence관련 URL
+    public interface GeofenceUrl {
+        interface Geofence {
+            String DEFAULT = "/geofence/list";
+            String SEARCH = "/geofence/search";
+            String SAVE_FORM = "/geofence/saveForm";
+            String SAVE = "/geofence/save";
+            String UPDATE = "/geofence/update";
+            String POINT_POPUP = "/geofence/pointPopup";
+        }
+    }
+
 }
