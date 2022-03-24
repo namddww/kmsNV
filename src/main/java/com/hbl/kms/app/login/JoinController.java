@@ -43,8 +43,9 @@ public class JoinController {
     public Result login(Join user, HttpServletRequest request) {
 
         // 사용자 조회 및 검증
-        if (!validationLogin(user.getUserId(), user.getPassword(), request)) {
-            return ResponseUtil.process(false);
+        String resultMsg = validationLogin(user.getUserId(), user.getPassword(), request);
+        if (!resultMsg.equals("SUCCESS")) {
+            return ResponseUtil.process(resultMsg);
         }
         
         // 세션 저장
@@ -53,7 +54,7 @@ public class JoinController {
         session.setAttribute("userInfo", user);
         session.setMaxInactiveInterval(1800); // 일단 유지시간 30분 설정
 
-        return ResponseUtil.process(true);
+        return ResponseUtil.process(resultMsg);
     }
 
     /**
@@ -68,18 +69,27 @@ public class JoinController {
     /**
      * 회원정보 검증
      */
-    public boolean validationLogin(String id, String password, HttpServletRequest request) {
+    public String validationLogin(String id, String password, HttpServletRequest request) {
         Join loginJoin = joinService.findByUserId(id);
 
         if(loginJoin ==null) {
             log.info("해당 아이디의 유저가 존재하지 않습니다.");
-            return false;
+            return "해당 아이디의 유저가 존재하지 않습니다.";
         }
 
         if(!passwordEncoder.matches(password, loginJoin.getPassword())) {
             log.info("비밀번호가 일치하지 않습니다.");
-            return false;
+            return "비밀번호가 일치하지 않습니다.";
         }
+        
+        // 1. 인증번호 유효시간 체크
+        
+        // 2. 인증번호 체크
+        
+        // 3. 5회 로그인 실패 체크
+        
+        // 4. 6개월 이상 미사용 체크
+        
 
         joinService.updateUserLastDate(id);
         // 세션 저장
@@ -87,6 +97,6 @@ public class JoinController {
         session.setAttribute("loginUser", loginJoin);
         session.setMaxInactiveInterval(1800); // 일단 유지시간 30분 설정
 
-        return true;
+        return "SUCCESS";
     }
 }
