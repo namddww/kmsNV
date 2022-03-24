@@ -26,6 +26,8 @@
 		<ul class="snb_list" id="building">
 			<li><a href="/building/list">건물 관리</a></li>
 			<li><a href="/building/saveForm">건물 등록</a></li>
+			<li><a href="/geofence/list">지오팬스 관리</a></li>
+			<li><a href="/geofence/saveForm">지오팬스 등록</a></li>
 		</ul>
 		<ul class="snb_list" id="device">
 			<li><a href="/device/list">장비 관리</a></li>

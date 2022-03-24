@@ -5,8 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hbl.kms.app.common.constants.ControllerUrlConstants;
 import com.hbl.kms.app.common.model.Result;
 import com.hbl.kms.app.common.model.utils.ResponseUtil;
-import com.hbl.kms.app.device.model.AreaList;
-import com.hbl.kms.app.device.service.DeviceService;
+import com.hbl.kms.app.common.service.CommonService;
+import com.hbl.kms.app.device.model.CodeList;
 import com.hbl.kms.app.icon.model.IconDto;
 import com.hbl.kms.app.icon.service.IconService;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ import java.util.List;
 public class IconController {
 
     private final IconService iconService;
-    private final DeviceService deviceService;
+    private final CommonService commonService;
     private static final String codeDevGroupCd = "DEV";
 
     /**
@@ -35,7 +35,7 @@ public class IconController {
 
         String json = null;
         ObjectMapper mapper = new ObjectMapper();
-        List<AreaList> typeList = deviceService.selectAreaList(codeDevGroupCd);
+        List<CodeList> typeList = commonService.selectCodeListByGroupCd(codeDevGroupCd);
 
         try {
             json = mapper.writeValueAsString(typeList);
@@ -63,7 +63,7 @@ public class IconController {
 
         String json = null;
         ObjectMapper mapper = new ObjectMapper();
-        List<AreaList> typeList = deviceService.selectAreaList(codeDevGroupCd);
+        List<CodeList> typeList = commonService.selectCodeListByGroupCd(codeDevGroupCd);
 
         try {
             json = mapper.writeValueAsString(typeList);

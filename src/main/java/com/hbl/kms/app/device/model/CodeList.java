@@ -6,8 +6,8 @@ import org.apache.ibatis.type.Alias;
 
 @Getter
 @Setter
-@Alias("areaList")
-public class AreaList {
+@Alias("codeList")
+public class CodeList {
     /**
      * 코드명
      */

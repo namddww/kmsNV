@@ -11,15 +11,15 @@
             , g.floor_seq
             , g.floor
             , g.geo_name
-            , c.code_name AS typeCdName
-            , l.location_name
+            , c1.code_name AS typeCdName
+            , c2.code_name AS locationName
             , g.state_cd
             , b.build_name
             , g.reg_date
             , g.reg_user
         FROM t_geofence g
-        LEFT JOIN t_location l ON g.location_cd = l.location_cd
-        LEFT JOIN t_code c ON g.type_cd = c.code_val AND c.group_cd = 'FIG'
+        LEFT JOIN t_code c1 ON g.type_cd = c1.code_val AND c1.group_cd = 'FIG'
+        LEFT JOIN t_code c2 ON g.location_cd = c2.code_val AND c2.group_cd = 'DLO'
         LEFT JOIN t_building b ON g.build_seq = b.build_seq
         WHERE 1=1
         <if test="buildName != null and buildName != ''">

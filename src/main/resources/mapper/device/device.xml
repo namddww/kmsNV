@@ -3,23 +3,6 @@
 
 <mapper namespace="com.hbl.kms.app.device.mapper.DeviceMapper">
 
-    <select id="selectAreaList" resultType="areaList">
-        SELECT
-            CODE_NAME
-            , CODE_VAL
-            , GROUP_CD
-        FROM t_code
-        WHERE IS_USE = 'Y'
-        AND GROUP_CD = #{codeGroupCd}
-    </select>
-
-    <select id="selectLocationCd" resultType="locationCd">
-        SELECT
-            LOCATION_CD
-            , LOCATION_NAME
-        FROM t_location
-    </select>
-
     <!-- 자산정보 조회 -->
     <select id="selectDeviceInfoList" resultType="buildingInfoList">
         SELECT

@@ -139,10 +139,20 @@ function selectFloorHtml(groundFloor, baseFloor) {
     $("#floor", opener.document).empty();
 
     for(i=groundFloor; i>=baseFloor; i--) {
-        $("#floor", opener.document).append(
-            $('<option/>')
-                .attr('value', i)
-                .text(i + " 층")
-        );
+        if(i!=0){
+            if(i>0){
+                $("#floor", opener.document).append(
+                    $('<option/>')
+                        .attr('value', i)
+                        .text(i + " 층")
+                );
+            }else{
+                $("#floor", opener.document).append(
+                    $('<option/>')
+                        .attr('value', i)
+                        .text("지하 "+ (i*-1) + "층")
+                );
+            }
+        }
     }
 }

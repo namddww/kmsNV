@@ -5,7 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hbl.kms.app.common.constants.ControllerUrlConstants;
 import com.hbl.kms.app.common.model.Result;
 import com.hbl.kms.app.common.model.utils.ResponseUtil;
-import com.hbl.kms.app.device.model.AreaList;
+import com.hbl.kms.app.common.service.CommonService;
+import com.hbl.kms.app.device.model.CodeList;
 import com.hbl.kms.app.device.model.DeviceDto;
 import com.hbl.kms.app.device.model.LocationCd;
 import com.hbl.kms.app.device.service.DeviceService;
@@ -23,6 +24,7 @@ import java.util.List;
 public class DeviceController {
 
     private final DeviceService deviceService;
+    private final CommonService commonService;
     private static final String codeDevGroupCd = "DEV";
 
     /**
@@ -34,7 +36,7 @@ public class DeviceController {
 
         String json = null;
         ObjectMapper mapper = new ObjectMapper();
-        List<AreaList> areaList = deviceService.selectAreaList(codeDevGroupCd);
+        List<CodeList> areaList = commonService.selectCodeListByGroupCd(codeDevGroupCd);
 
         try {
             json = mapper.writeValueAsString(areaList);
@@ -75,7 +77,7 @@ public class DeviceController {
 
         String json = null;
         ObjectMapper mapper = new ObjectMapper();
-        List<AreaList> areaList = deviceService.selectAreaList(codeDevGroupCd);
+        List<CodeList> areaList = commonService.selectCodeListByGroupCd(codeDevGroupCd);
 
         try {
             json = mapper.writeValueAsString(areaList);
@@ -104,7 +106,7 @@ public class DeviceController {
 
         String json = null;
         ObjectMapper mapper = new ObjectMapper();
-        List<LocationCd> locationList = deviceService.selectLocationCd();
+        List<LocationCd> locationList = commonService.selectLocationCd();
 
         try {
             json = mapper.writeValueAsString(locationList);

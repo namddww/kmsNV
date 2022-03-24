@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -30,6 +31,20 @@ public class GeofenceController {
     @ResponseBody
     public Result geofenceListData(@ModelAttribute GeofenceDto geofenceDto) {
         return ResponseUtil.process(geofenceService.selectGeofenceList(geofenceDto));
+    }
+
+    //geofence 등록 화면
+    @GetMapping(ControllerUrlConstants.GeofenceUrl.Geofence.SAVE_FORM)
+    public ModelAndView geofenceSaveForm(ModelAndView mav) {
+        mav.setViewName("geofence/saveForm");
+        return mav;
+    }
+
+    //geofence 등록
+    @PostMapping(ControllerUrlConstants.GeofenceUrl.Geofence.SAVE)
+    @ResponseBody
+    public Result insertGeofence(GeofenceDto geofenceDto) {
+        return ResponseUtil.process(geofenceService.insertGeofence(geofenceDto));
     }
 
 }

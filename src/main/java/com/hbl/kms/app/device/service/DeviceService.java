@@ -17,14 +17,6 @@ public class DeviceService {
 
     private final DeviceMapper deviceMapper;
 
-    public List<AreaList> selectAreaList(String codeGroupCd) {
-        return deviceMapper.selectAreaList(codeGroupCd);
-    }
-
-    public List<LocationCd> selectLocationCd() {
-        return deviceMapper.selectLocationCd();
-    }
-
     public PageInfo<?> selectDeviceInfoList(DeviceDto deviceDto) {
         PageHelper.startPage(deviceDto);
         return PageInfo.of(deviceMapper.selectDeviceInfoList(deviceDto), deviceDto.getNavigatePages());

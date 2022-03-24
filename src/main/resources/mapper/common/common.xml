@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hbl.kms.app.common.mapper.CommonMapper">
+
+    <select id="selectCodeListByGroupCd" resultType="codeList">
+        SELECT
+            CODE_NAME
+            , CODE_VAL
+            , GROUP_CD
+        FROM t_code
+        WHERE IS_USE = 'Y'
+        AND GROUP_CD = #{codeGroupCd}
+    </select>
+
+    <select id="selectLocationCd" resultType="locationCd">
+        SELECT
+            LOCATION_CD
+            , LOCATION_NAME
+        FROM t_location
+    </select>
+
+</mapper>

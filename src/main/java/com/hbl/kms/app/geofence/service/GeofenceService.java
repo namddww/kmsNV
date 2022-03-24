@@ -18,4 +18,9 @@ public class GeofenceService {
         PageHelper.startPage(geofenceDto);
         return PageInfo.of(geofenceMapper.selectGeofenceList(geofenceDto), geofenceDto.getNavigatePages());
     }
+
+    public int insertGeofence(GeofenceDto geofenceDto) {
+
+        return 1;
+    }
 }
