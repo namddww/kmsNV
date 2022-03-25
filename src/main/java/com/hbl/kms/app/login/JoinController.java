@@ -41,19 +41,19 @@ public class JoinController {
      */
     @PostMapping(ControllerUrlConstants.JoinUrl.Join.LOGIN)
     @ResponseBody
-    public Result login(Join user, HttpServletRequest request) {
+    public Result login(Join join, HttpServletRequest request) {
 
         // 사용자 조회 및 검증
-        String resultMsg = validationLogin(user.getUserId(), user.getPassword(), request);
+        String resultMsg = validationLogin(join, request);
         if (!resultMsg.equals("SUCCESS")) {
             return ResponseUtil.process(resultMsg);
         }
         
         // 세션 저장
-        HttpSession session = request.getSession();
-        session.setAttribute("userId", user.getUserId());
-        session.setAttribute("userInfo", user);
-        session.setMaxInactiveInterval(1800); // 일단 유지시간 30분 설정
+//        HttpSession session = request.getSession();
+//        session.setAttribute("userId", join.getUserId());
+//        session.setAttribute("userInfo", join);
+//        session.setMaxInactiveInterval(1800); // 일단 유지시간 30분 설정
 
         return ResponseUtil.process(resultMsg);
     }
@@ -70,15 +70,15 @@ public class JoinController {
     /**
      * 회원정보 검증
      */
-    public String validationLogin(String id, String password, HttpServletRequest request) {
-        Join loginJoin = joinService.findByUserId(id);
+    public String validationLogin(Join join, HttpServletRequest request) {
+        Join loginJoin = joinService.findByUserId(join.getUserId());
 
         if(loginJoin ==null) {
             log.info("해당 아이디의 유저가 존재하지 않습니다.");
             return "해당 아이디의 유저가 존재하지 않습니다.";
         }
 
-        if(!passwordEncoder.matches(password, loginJoin.getPassword())) {
+        if(!passwordEncoder.matches(join.getPassword(), loginJoin.getPassword())) {
             log.info("비밀번호가 일치하지 않습니다.");
             return "비밀번호가 일치하지 않습니다.";
         }
@@ -96,9 +96,10 @@ public class JoinController {
         // 4. 6개월 이상 미사용 체크
         
 
-        joinService.updateUserLastDate(id);
+        joinService.updateUserLastDate(join.getUserId());
         // 세션 저장
         HttpSession session = request.getSession();
+        session.setAttribute("userId", join.getUserId());
         session.setAttribute("loginUser", loginJoin);
         session.setMaxInactiveInterval(1800); // 일단 유지시간 30분 설정
 
