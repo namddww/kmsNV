@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="../../views/common/include/common.jsp" %>
 
-<div class="wrapper">
+<div class="content">
     <div class="container full">
             <div class="spot_menu">
                 <span class="user_welcome">
