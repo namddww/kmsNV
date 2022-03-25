@@ -3,6 +3,7 @@ package com.hbl.kms.app.login;
 import com.hbl.kms.app.common.constants.ControllerUrlConstants;
 import com.hbl.kms.app.common.model.Result;
 import com.hbl.kms.app.common.model.utils.ResponseUtil;
+import com.hbl.kms.app.common.model.utils.smsUtil;
 import com.hbl.kms.app.login.model.Join;
 import com.hbl.kms.app.login.service.JoinService;
 import lombok.RequiredArgsConstructor;
@@ -81,7 +82,11 @@ public class JoinController {
             log.info("비밀번호가 일치하지 않습니다.");
             return "비밀번호가 일치하지 않습니다.";
         }
-        
+
+        // 0. 인증번호 생성 (어디서 발급해야할지 고민하기)
+        String smsKey = smsUtil.makeSMSKey(6);
+        log.info("smsKey : {}", smsKey);
+
         // 1. 인증번호 유효시간 체크
         
         // 2. 인증번호 체크
