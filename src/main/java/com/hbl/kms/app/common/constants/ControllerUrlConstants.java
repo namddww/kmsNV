@@ -82,6 +82,7 @@ public class ControllerUrlConstants {
             String SAVE = "/geofence/save";
             String UPDATE = "/geofence/update";
             String POINT_POPUP = "/geofence/pointPopup";
+            String SETPOINT_POPUP = "/geofence/setPointPopup";
         }
     }
 

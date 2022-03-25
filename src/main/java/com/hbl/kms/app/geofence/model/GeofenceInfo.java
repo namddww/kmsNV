@@ -32,9 +32,9 @@ public class GeofenceInfo {
     /**
      * 영역좌표 list
      */
-    private List<PointXY> areaPoint;
+    private List<PointXY> pointList;
     /**
      * 반지름
      */
-    private BigDecimal diameter;
+    private BigDecimal radius;
 }

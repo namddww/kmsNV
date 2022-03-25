@@ -1,12 +1,15 @@
 var _geofence = {
     $scope : null, // 영역
     $contentForm : null, // content form
+    $dloList : null,
+    $staList : null,
 
     init: function () {
 
         this.$scope = $("#geofenceArea");
         this.$contentForm = $('#geofenceForm', this.$scope);
-
+        this.$dloList = dloList;
+        this.$staList = staList;
         this.events();
 
     },
@@ -14,19 +17,44 @@ var _geofence = {
     events: function () {
         const _this = this;
 
+        _geofence.appendSelect(_this.$dloList, 'location');
+        _geofence.appendSelect(_this.$staList, 'stateCd');
+
         // 건물선택
         $('#btnBuilding').on('click', function () {
             let url = '/device/buildingPopup';
             window.open(url, '', '_blank');
         });
 
-        // 건물선택
-        $('#btnPoint').on('click', function () {
-            let url = '/geofence/pointPopup';
+        // 설취 위치등록
+        $('#btnSetPoint').on('click', function () {
+            if($('#buildSeq').val()==''){
+                alert('건물을 선택해주세요');
+                return false;
+            }
+            let url = '/geofence/setPointPopup?'
+                +encodeURIComponent("buildSeq")+"="+$('#buildSeq').val()+"&"
+                +encodeURIComponent("floor")+"="+$('#floor').val();
             window.open(url, '', '_blank');
         });
 
-        // 건물좌표 등록
+        // 좌표등록
+        $('#btnPoint').on('click', function () {
+            if($('#buildSeq').val()==''){
+                alert('건물을 선택해주세요');
+                return false;
+            }
+            if($('#setPointX').val()=='' || $('#setPointY').val()==''){
+                alert('설치위치를 등록해주세요');
+                return false;
+            }
+            let url = '/geofence/pointPopup?'
+                +encodeURIComponent("buildSeq")+"="+$('#buildSeq').val()+"&"
+                +encodeURIComponent("floor")+"="+$('#floor').val();
+            window.open(url, '', '_blank');
+        });
+
+        // geofence 저장
         $('#btnSave').on('click', function () {
             _geofence.save();
         });
@@ -43,53 +71,63 @@ var _geofence = {
 
         let formData = new FormData();
 
-        formData.append('stdPoint1', $('#stdPoint1', _this.$contentForm).val());
-        formData.append('stdPoint2', $('#stdPoint2', _this.$contentForm).val());
-        formData.append('areaPoint1', $('#areaPoint1', _this.$contentForm).val());
-        formData.append('areaPoint2', $('#areaPoint2', _this.$contentForm).val());
-        formData.append('buildName', $('#buildName', _this.$contentForm).val());
-        formData.append('addr1', $('#addr1', _this.$contentForm).val());
-        formData.append('addr2', $('#addr2', _this.$contentForm).val());
-        formData.append('groundFloor', $('#groundFloor', _this.$contentForm).val());
+        formData.append('buildSeq', $('#buildSeq', _this.$contentForm).val());
+        formData.append('floor', $("#floor option:selected", _this.$contentForm).val());
+        formData.append('geoName', $('#geoName', _this.$contentForm).val());
+        formData.append('typeCd', $('#typeCd', _this.$contentForm).val());
+        formData.append('stateCd', $('#stateCd', _this.$contentForm).val());
+        formData.append('locationCd', $('#location', _this.$contentForm).val());
 
-        let baseFloor = $('#baseFloor', _this.$contentForm).val();
-        baseFloor = Number(baseFloor) * -1
-        formData.append('baseFloor', baseFloor);
+        let size = $("input[name=xy]").length/2;
 
-        let size = $('#floorListTable tbody tr').length;
-        let a = baseFloor;
         for(let i=0; i<size; i++){
-            if(a===0){
-                a++;
-            }
-            formData.append("floorInfo["+i+"].floor", a);
-            //파일
-            if($("#dfinput"+a, _this.$contentForm).length > 0){
-                $.each($("#dfinput"+a, _this.$contentForm)[0].files, function (k, value){
-                    formData.append("floorInfo["+i+"].file", value);
-                });
-            }
-            let o = $("#dfopacity"+a, _this.$contentForm).val();
-            formData.append("floorInfo["+i+"].opacity", Number(o*100));
-            a++;
+            formData.append("pointList["+i+"].pointX", $('#x'+i, _this.$contentForm).val());
+            formData.append("pointList["+i+"].pointY", $('#y'+i, _this.$contentForm).val());
         }
-        formData.append('searchInfo', $('#searchInfo', _this.$contentForm).val());
-        formData.append('memo', $('#memo', _this.$contentForm).val());
+        if(size != 1){
+            formData.append("pointList["+size+"].pointX", $('#x0', _this.$contentForm).val());
+            formData.append("pointList["+size+"].pointY", $('#y0', _this.$contentForm).val());
+        }
+        if($('#radius', _this.$contentForm).val() == ''){
+            formData.append('radius', '0');
+        }else{
+            formData.append('radius', $('#radius', _this.$contentForm).val());
+        }
+        formData.append('setPointX', $('#setPointX', _this.$contentForm).val());
+        formData.append('setPointY', $('#setPointY', _this.$contentForm).val());
 
         $.ajax({
             type : "POST",
             processData : false,
             contentType : false,
-            url : "/building/save",
+            url : "/geofence/save",
             data : formData,
             success : function(res){
-                location.href = '/building/list'
+                location.href = '/geofence/list'
             },
             error : function(XMLHttpRequest, textStatus, errorThrown){
 
             }
         });
 
+    },
+
+    appendSelect : function (list, id) {
+        $("#"+id).empty();
+
+        $("#"+id).append(
+            $('<option/>')
+                .attr('value', '')
+                .text('선택')
+        )
+
+        $.each(list, function (i, val) {
+            $("#"+id).append(
+                $('<option/>')
+                    .attr('value', val.codeVal)
+                    .text(val.codeName)
+            )
+        });
     }
 
 };

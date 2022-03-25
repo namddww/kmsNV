@@ -36,4 +36,67 @@
         </if>
     </select>
 
+    <!-- geofence정보 등록 -->
+    <insert id="insertGeofence" useGeneratedKeys="true" keyProperty="geofenceSeq">
+        INSERT INTO t_geofence
+        ( build_seq
+          , floor_seq
+          , floor
+          , geo_name
+          , type_cd
+          , location_cd
+          , state_cd
+          , reg_date
+          , reg_user
+        ) VALUES (
+          #{buildSeq}
+          , #{floorSeq}
+          , #{floor}
+          , #{geoName}
+          , #{typeCd}
+          , #{locationCd}
+          , #{stateCd}
+          , NOW()
+          , 0
+        );
+    </insert>
+
+    <!-- geofenceInfo정보 등록 -->
+    <insert id="insertGeofenceInfo" useGeneratedKeys="true" keyProperty="geofenceInfoSeq">
+        INSERT INTO t_geofence_info
+        ( geofence_seq
+          , set_point
+          , area_point
+          , radius
+        ) VALUES
+
+        ( #{geofenceSeq}
+          , <choose>
+            <when test="setPointX != null and setPointX != '' and setPointY != null and setPointY != ''">
+                ST_GeomFromText(
+                <trim prefix="'POINT(" suffix=")'">
+                    ${setPointX} ${setPointY}
+                </trim>
+                , 3857)
+            </when>
+            <otherwise>
+                null
+            </otherwise>
+            </choose>
+          , ST_GeomFromText (
+            <if test="pointList.size == 1">
+                <foreach collection="pointList" item="item" open="'POINT(" close=")'" separator=",">
+                    ${item.pointX} ${item.pointY}
+                </foreach>
+            </if>
+            <if test="pointList.size != 1">
+                <foreach collection="pointList" item="item" open="'POLYGON((" close="))'" separator=",">
+                    ${item.pointX} ${item.pointY}
+                </foreach>
+            </if>
+            , 3857)
+          , #{radius}
+        )
+    </insert>
+
 </mapper>
