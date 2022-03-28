@@ -5,6 +5,12 @@ package com.hbl.kms.app.common.constants;
  */
 public class ControllerUrlConstants {
 
+    public interface DashBoardUrl {
+        interface DashBoard {
+            String DEFAULT = "/dashboard/dashboard";
+        }
+    }
+
     // 로그인관련 URL
     public interface JoinUrl {
         interface Join {

@@ -984,3 +984,10 @@ body.notScroll{overflow: hidden;}
 .check_row{padding-left:0}
 .check_row input[type='checkbox'] + label {background-position: left;width: 470px;padding-left: 30px;}
 .check_row input[type='checkbox']:checked + label {background-position: left;width: 470px;padding-left: 30px;}
+
+/* 대쉬보드 - 20220328 */
+.direct_list.st2 .unit .box .data{left: 30px}
+.direct_list.st2 .unit .box .unit_list{position: absolute;left: 110px;height:125px;width: 140px;padding: 0 5px 0 0;display: flex;flex-direction: column;justify-content: center}
+.direct_list.st2 .unit .box .unit_list.scroll{ overflow-y: scroll;justify-content: flex-start}
+.direct_list.st2 .unit .box .unit_list li{font-size: 16px;height: 30px;line-height: 30px;display: flex;justify-content:space-between;align-items: center;border-bottom: 1px solid #e5f0fd;padding: 0 5px}
+.direct_list.st2 .unit .box .unit_list li span { font-size: 15px;font-weight: 500}

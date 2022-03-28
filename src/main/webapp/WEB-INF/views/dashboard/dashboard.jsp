@@ -22,18 +22,16 @@
                 </h2>
             </div>
             <div class="main_direct">
-                <ul class="direct_list">
+                <ul class="direct_list st2" id="ul-dashboard">
                     <li class="unit">
                         <a href="javascript:void(0);" class="box shape02">
-                            <strong class="title">1번 데이터</strong>
-                            <p class="txt">
-                                1번 관련
-                                <br>
-                                데이터 입니다.
-                            </p>
+                            <ul class="unit_list">
+                                <li>사용중 10대</li>
+                                <li>미사용중 20대</li>
+                            </ul>
                             <div class="data">
                                 <span class="icon unit01"></span>
-                                <p class="num">01</p>
+                                <p class="num">20대</p>
                             </div>
                         </a>
                     </li>
@@ -128,3 +126,9 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="/assets/js/dashboard/dashboard.js"></script>
+<script>
+    var allCount = ${allCount};
+    var inCount = ${inCount};
+    var outCount = ${outCount};
+</script>

@@ -24,16 +24,6 @@ public class MainController {
         return mav;
     }
 
-    /**
-     * 대쉬보드
-     */
-    @GetMapping("/dashboard")
-    public ModelAndView dashboard(ModelAndView mav) {
-        mav.setViewName("dashboard/dashboard");
-
-        return mav;
-    }
-
     @GetMapping("/monitoring")
     public ModelAndView main(ModelAndView mav) {
         String lock = "";

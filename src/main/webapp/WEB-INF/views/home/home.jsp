@@ -27,7 +27,7 @@
             <div class="main_direct">
                 <ul class="direct_list">
                     <li class="unit">
-                        <a href="/dashboard" class="box shape03">
+                        <a href="/dashboard/dashboard" class="box shape03">
                             <strong class="title">창고관리 시스템</strong>
                             <p class="txt">
                                 창고관리 시스템

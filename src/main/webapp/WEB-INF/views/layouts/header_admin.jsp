@@ -6,7 +6,7 @@
 	<%--<h1 class="logo"><img src="<c:out value='${pageContext.request.contextPath}'/>/assets/resource/images/common/logo.svg" alt="데이터 플레이그라운드" onclick="location.href='/'" style="cursor:pointer;"></h1>--%>
 	<ul class="gnb_list">
 		<li class="depth1" data-targetmenu="dashboard">
-			<a href="/dashboard">메인</a>
+			<a href="/dashboard/dashboard">메인</a>
 		</li>
 		<li class="depth1" data-targetmenu="building">
 			<a href="/building/list">건물 관리</a>
@@ -30,7 +30,7 @@
 	</div>
 	<div class="snb_wrap" style="display:none;z-index: 500">
 		<ul class="snb_list" id="dashboard">
-			<li><a href="/dashboard">대시보드</a></li>
+			<li><a href="/dashboard/dashboard">대시보드</a></li>
 		</ul>
 		<ul class="snb_list" id="building">
 			<li><a href="/building/list">건물 관리</a></li>
