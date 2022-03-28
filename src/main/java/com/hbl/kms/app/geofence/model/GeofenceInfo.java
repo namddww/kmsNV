@@ -37,4 +37,7 @@ public class GeofenceInfo {
      * 반지름
      */
     private BigDecimal radius;
+
+    private String setPoint;
+    private String areaPoint;
 }

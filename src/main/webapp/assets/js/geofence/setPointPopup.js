@@ -16,6 +16,9 @@ let _setPointPopup = {
         var x_2 = $("#areaPoint1", opener.document).val();
         var y_2 = $("#areaPoint2", opener.document).val();
 
+        var setPointX = $("#setPointX", opener.document).val();
+        var setPointY = $("#setPointY", opener.document).val();
+
         let map = L.map('map').setView([x_1,y_1],15);
 
         let osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
@@ -52,9 +55,12 @@ let _setPointPopup = {
         ];
         L.imageOverlay(imageUrl, imageBounds).addTo(map);
 
+        var marker = L.marker([setPointX, setPointY]).addTo(map);
+
         var type;
         var object;
         map.on(L.Draw.Event.CREATED, function (e) {
+            marker.remove();
             type = e.layerType,
                 layer = e.layer;
             if(editableLayers && editableLayers.getLayers().length!==0){

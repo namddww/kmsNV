@@ -70,4 +70,10 @@ public class Geofence {
     private int regUser;
 
     private String address;
+    private String stdPoint1;
+    private String stdPoint2;
+    private String areaPoint1;
+    private String areaPoint2;
+    private int groundFloor;
+    private int baseFloor;
 }

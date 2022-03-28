@@ -17,6 +17,8 @@ let _pointPopup = {
         var y_2 = $("#areaPoint2", opener.document).val();
         var setPointX = $("#setPointX", opener.document).val();
         var setPointY = $("#setPointY", opener.document).val();
+        var typeCd = $("#typeCd", opener.document).val();
+        var radius = $("#radius", opener.document).val();
 
         let map = L.map('map').setView([x_1,y_1],15);
 
@@ -32,7 +34,10 @@ let _pointPopup = {
             draw: {
                 polyline: false,
                 polygon: true,
-                circle: true, // Turns off this drawing tool
+                circle: {
+                    metric: false,
+                    feet: false
+                }, // Turns off this drawing tool
                 rectangle: {
                     shapeOptions: {
                         clickable: false
@@ -60,9 +65,35 @@ let _pointPopup = {
 
         L.marker([setPointX, setPointY]).addTo(map);
 
+        var rectangle;
+        var circle;
+        var polygon;
+        if(typeCd == 'FIG00010'){ //사각형
+            let latlngs = [[$("#x1", opener.document).val(), $("#y1", opener.document).val()]
+                , [$("#x3", opener.document).val(), $("#y3", opener.document).val()]];
+            rectangle = L.rectangle(latlngs).addTo(map);
+        }else if(typeCd == 'FIG00020'){ //원
+            let circleCenter = [$("#x0", opener.document).val(), $("#y0", opener.document).val()];
+            circle = L.circle(circleCenter, {radius: radius}).addTo(map);
+        }else if(typeCd == 'FIG00030'){ //폴리곤
+            let size = $("input[name=xy]", opener.document).length/2;
+            let latlngs = [];
+            for(let i=0; i<size; i++){
+                latlngs.push([$('#x'+i, opener.document).val(),$('#y'+i, opener.document).val()]);
+            }
+            polygon = L.polygon(latlngs).addTo(map);
+        }
+
         var type;
         var object;
         map.on(L.Draw.Event.CREATED, function (e) {
+            if(typeCd == 'FIG00010'){
+                rectangle.remove();
+            }else if(typeCd == 'FIG00020'){
+                circle.remove();
+            }else if(typeCd == 'FIG00030'){
+                polygon.remove();
+            }
             type = e.layerType,
                 layer = e.layer;
             if(editableLayers && editableLayers.getLayers().length!==0){

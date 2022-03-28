@@ -1,30 +1,17 @@
-var _geofence = {
+var _geofenceInfo = {
     $scope : null, // 영역
     $contentForm : null, // content form
-    $dloList : null,
-    $staList : null,
 
     init: function () {
 
         this.$scope = $("#geofenceArea");
         this.$contentForm = $('#geofenceForm', this.$scope);
-        this.$dloList = dloList;
-        this.$staList = staList;
         this.events();
 
     },
 
     events: function () {
         const _this = this;
-
-        _geofence.appendSelect(_this.$dloList, 'location');
-        _geofence.appendSelect(_this.$staList, 'stateCd');
-
-        // 건물선택
-        $('#btnBuilding').on('click', function () {
-            let url = '/device/buildingPopup';
-            window.open(url, '', '_blank');
-        });
 
         // 설취 위치등록
         $('#btnSetPoint').on('click', function () {
@@ -44,6 +31,10 @@ var _geofence = {
                 alert('건물을 선택해주세요');
                 return false;
             }
+            if($('#setPointX').val()=='' || $('#setPointY').val()==''){
+                alert('설치위치를 등록해주세요');
+                return false;
+            }
             let url = '/geofence/pointPopup?'
                 +encodeURIComponent("buildSeq")+"="+$('#buildSeq').val()+"&"
                 +encodeURIComponent("floor")+"="+$('#floor').val();
@@ -52,7 +43,7 @@ var _geofence = {
 
         // geofence 저장
         $('#btnSave').on('click', function () {
-            _geofence.save();
+            _geofenceInfo.save();
         });
 
         // 목록
@@ -68,7 +59,9 @@ var _geofence = {
         let formData = new FormData();
 
         formData.append('buildSeq', $('#buildSeq', _this.$contentForm).val());
-        formData.append('floor', $("#floor option:selected", _this.$contentForm).val());
+        formData.append('geofenceSeq', $('#geofenceSeq', _this.$contentForm).val());
+        formData.append('geofenceInfoSeq', $('#geofenceInfoSeq', _this.$contentForm).val());
+        formData.append('floor', $("#floor", _this.$contentForm).val());
         formData.append('geoName', $('#geoName', _this.$contentForm).val());
         formData.append('typeCd', $('#typeCd', _this.$contentForm).val());
         formData.append('stateCd', $('#stateCd', _this.$contentForm).val());
@@ -93,10 +86,10 @@ var _geofence = {
         formData.append('setPointY', $('#setPointY', _this.$contentForm).val());
 
         $.ajax({
-            type : "POST",
+            type : "PUT",
             processData : false,
             contentType : false,
-            url : "/geofence/save",
+            url : "/geofence/update",
             data : formData,
             success : function(res){
                 location.href = '/geofence/list'
@@ -106,30 +99,11 @@ var _geofence = {
             }
         });
 
-    },
-
-    appendSelect : function (list, id) {
-        $("#"+id).empty();
-
-        $("#"+id).append(
-            $('<option/>')
-                .attr('value', '')
-                .text('선택')
-        )
-
-        $.each(list, function (i, val) {
-            $("#"+id).append(
-                $('<option/>')
-                    .attr('value', val.codeVal)
-                    .text(val.codeName)
-            )
-        });
     }
-
 };
 
 // onload
 $(document).ready(function() {
-    _geofence.init();
+    _geofenceInfo.init();
 });
 

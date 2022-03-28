@@ -107,16 +107,81 @@
             , g.floor_seq
             , g.floor
             , g.geo_name
+            , g.type_cd
             , (SELECT CODE_NAME FROM t_code tc WHERE g.type_cd = tc.CODE_VAL) typeCdName
+            , (SELECT LOCATION_NAME FROM t_location TL WHERE b.LOCATION_CD = TL.LOCATION_CD) locationName
             , g.location_cd
             , g.state_cd
             , b.build_name
             , g.reg_date
             , g.reg_user
             , CONCAT(b.addr1, ' ', b.addr2) AS address
+            , b.std_point1
+            , b.std_point2
+            , b.area_point1
+            , b.area_point2
+            , b.ground_floor
+            , b.base_floor
         FROM t_geofence g
         LEFT JOIN t_building b ON g.build_seq = b.build_seq
         WHERE g.geofence_seq = #{geofenceSeq}
     </select>
+
+    <!-- geofenceInfo정보 조회 -->
+    <select id="selectGeofenceInfo" resultType="geofenceInfo">
+        SELECT
+            g.geofence_info_seq
+            , g.geofence_seq
+            , ST_AsText(g.set_point) AS setPoint
+            , ST_AsText(g.area_point) AS areaPoint
+            , g.radius
+        FROM t_geofence_info g
+        WHERE g.geofence_seq = #{geofenceSeq}
+    </select>
+
+    <!-- geofence update -->
+    <update id="updateGeofence">
+        UPDATE t_geofence
+        SET
+            geo_name = #{geoName}
+            , state_cd = #{stateCd}
+            , location_cd = #{locationCd}
+            , type_cd = #{typeCd}
+        WHERE geofence_seq = #{geofenceSeq}
+    </update>
+
+    <!-- geofence update -->
+    <update id="updateGeofenceInfo">
+        UPDATE t_geofence_info
+        SET
+            set_point =
+            <choose>
+                <when test="setPointX != null and setPointX != '' and setPointY != null and setPointY != ''">
+                    ST_GeomFromText(
+                    <trim prefix="'POINT(" suffix=")'">
+                        ${setPointX} ${setPointY}
+                    </trim>
+                    , 3857)
+                </when>
+                <otherwise>
+                    null
+                </otherwise>
+            </choose>
+            , area_point =
+                ST_GeomFromText (
+                <if test="pointList.size == 1">
+                    <foreach collection="pointList" item="item" open="'POINT(" close=")'" separator=",">
+                        ${item.pointX} ${item.pointY}
+                    </foreach>
+                </if>
+                <if test="pointList.size != 1">
+                    <foreach collection="pointList" item="item" open="'POLYGON((" close="))'" separator=",">
+                        ${item.pointX} ${item.pointY}
+                    </foreach>
+                </if>
+                , 3857)
+            , radius = #{radius}
+        WHERE geofence_info_seq = #{geofenceInfoSeq}
+    </update>
 
 </mapper>
