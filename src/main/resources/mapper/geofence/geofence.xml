@@ -100,7 +100,7 @@
     </insert>
 
     <!-- geofence정보 조회 -->
-    <select id="selectGeofenceList" resultType="geofence">
+    <select id="selectGeofence" resultType="geofence">
         SELECT
             g.geofence_seq
             , g.build_seq
