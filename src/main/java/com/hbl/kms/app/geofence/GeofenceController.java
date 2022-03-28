@@ -10,7 +10,9 @@ import com.hbl.kms.app.common.service.CommonService;
 import com.hbl.kms.app.device.model.CodeList;
 import com.hbl.kms.app.device.model.LocationCd;
 import com.hbl.kms.app.device.service.DeviceService;
+import com.hbl.kms.app.geofence.model.Geofence;
 import com.hbl.kms.app.geofence.model.GeofenceDto;
+import com.hbl.kms.app.geofence.model.GeofenceInfo;
 import com.hbl.kms.app.geofence.service.GeofenceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -91,6 +93,15 @@ public class GeofenceController {
     @ResponseBody
     public Result insertGeofence(GeofenceDto geofenceDto) {
         return ResponseUtil.process(geofenceService.insertGeofence(geofenceDto));
+    }
+
+    //geofence 상세페이지
+    @GetMapping(ControllerUrlConstants.GeofenceUrl.Geofence.INFO)
+    public ModelAndView geofenceInfo(ModelAndView mav, @PathVariable("geofenceSeq") int geofenceSeq) {
+        Geofence geofence = geofenceService.selectGeofence(geofenceSeq);
+        GeofenceInfo geofenceInfo = geofenceService.selectGeofenceInfo(geofenceSeq);
+        mav.setViewName("geofence/geofenceInfo");
+        return mav;
     }
 
 }

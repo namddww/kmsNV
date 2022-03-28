@@ -15,4 +15,6 @@ public interface GeofenceMapper {
     int insertGeofence(Geofence geofence);
 
     int insertGeofenceInfo(GeofenceInfo geofenceInfo);
+
+    Geofence selectGeofence(int geofenceSeq);
 }

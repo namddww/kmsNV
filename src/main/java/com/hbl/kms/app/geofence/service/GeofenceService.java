@@ -53,4 +53,12 @@ public class GeofenceService {
 
         return 1;
     }
+
+    public Geofence selectGeofence(int geofenceSeq) {
+        return geofenceMapper.selectGeofence(geofenceSeq);
+    }
+
+    public GeofenceInfo selectGeofenceInfo(int geofenceSeq) {
+        return null;
+    }
 }

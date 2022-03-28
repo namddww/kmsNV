@@ -34,7 +34,7 @@ public class MainController {
         return mav;
     }
 
-    @GetMapping("/main")
+    @GetMapping("/monitoring")
     public ModelAndView main(ModelAndView mav) {
         String lock = "";
         String key = "";

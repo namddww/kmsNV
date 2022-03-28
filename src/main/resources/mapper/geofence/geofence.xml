@@ -99,4 +99,24 @@
         )
     </insert>
 
+    <!-- geofence정보 조회 -->
+    <select id="selectGeofenceList" resultType="geofence">
+        SELECT
+            g.geofence_seq
+            , g.build_seq
+            , g.floor_seq
+            , g.floor
+            , g.geo_name
+            , (SELECT CODE_NAME FROM t_code tc WHERE g.type_cd = tc.CODE_VAL) typeCdName
+            , g.location_cd
+            , g.state_cd
+            , b.build_name
+            , g.reg_date
+            , g.reg_user
+            , CONCAT(b.addr1, ' ', b.addr2) AS address
+        FROM t_geofence g
+        LEFT JOIN t_building b ON g.build_seq = b.build_seq
+        WHERE g.geofence_seq = #{geofenceSeq}
+    </select>
+
 </mapper>

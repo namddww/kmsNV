@@ -68,4 +68,6 @@ public class Geofence {
      * 등록자 (회원 번호)
      */
     private int regUser;
+
+    private String address;
 }

@@ -3,13 +3,19 @@
 
 <!-- 헤더 부분 -->
 <div class="adm_header">
-	<h1 class="logo"><img src="<c:out value='${pageContext.request.contextPath}'/>/assets/resource/images/common/logo.svg" alt="데이터 플레이그라운드" onclick="location.href='/'" style="cursor:pointer;"></h1>
+	<%--<h1 class="logo"><img src="<c:out value='${pageContext.request.contextPath}'/>/assets/resource/images/common/logo.svg" alt="데이터 플레이그라운드" onclick="location.href='/'" style="cursor:pointer;"></h1>--%>
 	<ul class="gnb_list">
+		<li class="depth1" data-targetmenu="dashboard">
+			<a href="/dashboard">메인</a>
+		</li>
 		<li class="depth1" data-targetmenu="building">
 			<a href="/building/list">건물 관리</a>
 		</li>
 		<li class="depth1" data-targetmenu="device">
 			<a href="/device/list">자산 관리</a>
+		</li>
+		<li class="depth1" data-targetmenu="monitoring">
+			<a href="/monitoring">모니터링</a>
 		</li>
 		<li class="depth1" data-targetmenu="common">
 			<a href="javascript:void(0);">공통 관리</a>
@@ -20,9 +26,12 @@
 	</ul>
 	<div class="spot_menu">
 		<%-- <a href="#" class="btn join"><span>로그아웃</span></a> --%>
-		<a href="<c:out value='${pageContext.request.contextPath}'/>/main" class="btn login"><span>main</span></a>
+		<%--<a href="<c:out value='${pageContext.request.contextPath}'/>/main" class="btn login"><span>main</span></a>--%>
 	</div>
 	<div class="snb_wrap" style="display:none;z-index: 500">
+		<ul class="snb_list" id="dashboard">
+			<li><a href="/dashboard">대시보드</a></li>
+		</ul>
 		<ul class="snb_list" id="building">
 			<li><a href="/building/list">건물 관리</a></li>
 			<li><a href="/building/saveForm">건물 등록</a></li>
@@ -32,6 +41,9 @@
 		<ul class="snb_list" id="device">
 			<li><a href="/device/list">장비 관리</a></li>
 			<li><a href="/device/saveForm">장비 등록</a></li>
+		</ul>
+		<ul class="snb_list" id="monitoring">
+			<li><a href="/monitoring">통합조회</a></li>
 		</ul>
 		<ul class="snb_list" id="common">
 			<li><a href="/icon/list">아이콘 관리</a></li>
