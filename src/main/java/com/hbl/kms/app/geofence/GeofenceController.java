@@ -2,13 +2,13 @@ package com.hbl.kms.app.geofence;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hbl.kms.app.building.model.FloorInfoDto;
 import com.hbl.kms.app.building.service.BuildingService;
 import com.hbl.kms.app.common.constants.ControllerUrlConstants;
 import com.hbl.kms.app.common.model.Result;
 import com.hbl.kms.app.common.model.utils.ResponseUtil;
 import com.hbl.kms.app.common.service.CommonService;
 import com.hbl.kms.app.device.model.CodeList;
-import com.hbl.kms.app.device.model.LocationCd;
 import com.hbl.kms.app.device.service.DeviceService;
 import com.hbl.kms.app.geofence.model.Geofence;
 import com.hbl.kms.app.geofence.model.GeofenceDto;
@@ -28,6 +28,7 @@ public class GeofenceController {
     private final GeofenceService geofenceService;
     private final CommonService commonService;
     private final DeviceService deviceService;
+    private final BuildingService buildingService;
 
     //geofence list 조회 화면
     @GetMapping(ControllerUrlConstants.GeofenceUrl.Geofence.DEFAULT)
@@ -98,10 +99,26 @@ public class GeofenceController {
     //geofence 상세페이지
     @GetMapping(ControllerUrlConstants.GeofenceUrl.Geofence.INFO)
     public ModelAndView geofenceInfo(ModelAndView mav, @PathVariable("geofenceSeq") int geofenceSeq) {
+
         Geofence geofence = geofenceService.selectGeofence(geofenceSeq);
         GeofenceInfo geofenceInfo = geofenceService.selectGeofenceInfo(geofenceSeq);
+
+        List<CodeList> dloList = commonService.selectCodeListByGroupCd("DLO");
+        List<CodeList> staList = commonService.selectCodeListByGroupCd("STA");
+
+        mav.addObject("geofence", geofence);
+        mav.addObject("geofenceInfo", geofenceInfo);
+        mav.addObject("dloList", dloList);
+        mav.addObject("staList", staList);
         mav.setViewName("geofence/geofenceInfo");
         return mav;
+    }
+
+    //geofence 수정
+    @PutMapping(ControllerUrlConstants.GeofenceUrl.Geofence.UPDATE)
+    @ResponseBody
+    public Result updateGeofence(GeofenceDto geofenceDto) {
+        return ResponseUtil.process(geofenceService.updateGeofence(geofenceDto));
     }
 
 }

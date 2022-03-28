@@ -8,10 +8,17 @@ import com.hbl.kms.app.geofence.mapper.GeofenceMapper;
 import com.hbl.kms.app.geofence.model.Geofence;
 import com.hbl.kms.app.geofence.model.GeofenceDto;
 import com.hbl.kms.app.geofence.model.GeofenceInfo;
+import com.hbl.kms.app.geofence.model.PointXY;
 import lombok.RequiredArgsConstructor;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.io.ParseException;
+import org.locationtech.jts.io.WKTReader;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -59,6 +66,63 @@ public class GeofenceService {
     }
 
     public GeofenceInfo selectGeofenceInfo(int geofenceSeq) {
-        return null;
+
+        GeofenceInfo geofenceInfo = geofenceMapper.selectGeofenceInfo(geofenceSeq);
+
+        try {
+            //setPoint
+            if (geofenceInfo.getSetPoint() != null){
+                Geometry gSetPoint = new WKTReader().read(geofenceInfo.getSetPoint());
+                Coordinate[] c1 = gSetPoint.getCoordinates();
+                Coordinate setPoint = c1[0];
+                geofenceInfo.setSetPointX(String.valueOf(setPoint.getX()));
+                geofenceInfo.setSetPointY(String.valueOf(setPoint.getY()));
+            }
+
+            //areaPoint
+            Geometry gAreaPoint = new WKTReader().read(geofenceInfo.getAreaPoint());
+            List<PointXY> list = new ArrayList<>();
+            Coordinate[] c2 = gAreaPoint.getCoordinates();
+            for (int i=0; i<c2.length; i++){
+                Coordinate setAreaPoint = c2[i];
+                PointXY pointXY = new PointXY();
+                pointXY.setPointX(String.valueOf(setAreaPoint.getX()));
+                pointXY.setPointY(String.valueOf(setAreaPoint.getY()));
+                list.add(pointXY);
+            }
+            if(c2.length > 1){
+                list.remove(list.size() - 1);
+            }
+            geofenceInfo.setPointList(list);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return geofenceInfo;
+    }
+
+    public int updateGeofence(GeofenceDto geofenceDto) {
+        DeviceDto deviceDto = new DeviceDto();
+        deviceDto.setBuildSeq(geofenceDto.getBuildSeq());
+        deviceDto.setFloor(geofenceDto.getFloor());
+
+        Geofence geofence = new Geofence();
+        geofence.setGeofenceSeq(geofenceDto.getGeofenceSeq());
+        geofence.setGeoName(geofenceDto.getGeoName());
+        geofence.setStateCd(geofenceDto.getStateCd());
+        geofence.setLocationCd(geofenceDto.getLocationCd());
+        geofence.setTypeCd(geofenceDto.getTypeCd());
+
+        geofenceMapper.updateGeofence(geofence);
+
+        GeofenceInfo geofenceInfo = new GeofenceInfo();
+        geofenceInfo.setGeofenceInfoSeq(geofenceDto.getGeofenceInfoSeq());
+        BigDecimal bigDecimal = new BigDecimal(geofenceDto.getRadius());
+        geofenceInfo.setRadius(bigDecimal);
+        geofenceInfo.setSetPointX(geofenceDto.getSetPointX());
+        geofenceInfo.setSetPointY(geofenceDto.getSetPointY());
+        geofenceInfo.setPointList(geofenceDto.getPointList());
+        geofenceMapper.updateGeofenceInfo(geofenceInfo);
+
+        return 1;
     }
 }

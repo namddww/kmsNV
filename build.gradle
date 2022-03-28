@@ -38,6 +38,8 @@ dependencies {
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     // 암호화
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security'
+    //geometry 관련
+    implementation group: 'org.locationtech.jts', name: 'jts-core', version: '1.18.2'
 }
 
 tasks.named('test') {

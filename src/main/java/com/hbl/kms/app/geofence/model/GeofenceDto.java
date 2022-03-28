@@ -1,10 +1,8 @@
 package com.hbl.kms.app.geofence.model;
 
-import com.hbl.kms.app.building.model.FloorInfoDto;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -74,6 +72,8 @@ public class GeofenceDto {
      * 반지름
      */
     private String radius;
+
+    private int geofenceInfoSeq;
 
     int pageNum = 1;
     int pageSize = 5;
