@@ -15,7 +15,7 @@
 			<a href="/device/list">자산 관리</a>
 		</li>
 		<li class="depth1" data-targetmenu="monitoring">
-			<a href="/monitoring">모니터링</a>
+			<a href="javascript:void(0);">모니터링</a>
 		</li>
 		<li class="depth1" data-targetmenu="common">
 			<a href="javascript:void(0);">공통 관리</a>
@@ -43,7 +43,8 @@
 			<li><a href="/device/saveForm">장비 등록</a></li>
 		</ul>
 		<ul class="snb_list" id="monitoring">
-			<li><a href="/monitoring">통합조회</a></li>
+			<li><a href="/monitoringDevice">장비 통합조회</a></li>
+			<li><a href="/monitoringGeofence">지오팬스 통합조회</a></li>
 		</ul>
 		<ul class="snb_list" id="common">
 			<li><a href="/icon/list">아이콘 관리</a></li>

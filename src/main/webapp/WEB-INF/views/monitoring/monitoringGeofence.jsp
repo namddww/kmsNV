@@ -14,7 +14,7 @@
         width: 20%;
         z-index: 500;
     }
-    #deviceTab{
+    #geofenceTab{
         float: left;
         width: 20%;
         height: 100%;
@@ -44,19 +44,10 @@
         background-color: #f5f8ff;
         text-align: center;
     }
-    #btnPopup{
-        top: 90.5%;
-        left: 91%;
-        position: absolute;
-        z-index: 500;
-        background: #003bbe;
-        color: #fff;
-        width: 90px;
-    }
     #searchText{
 
     }
-    #deviceTabClose{
+    #geofenceTabClose{
         float: left;
         z-index: 450;
         left: 40%;
@@ -91,17 +82,17 @@
         </table>
     </div>
 </div>
-<div id="deviceTab">
+<div id="geofenceTab">
     <table class="tbl_col">
         <thead>
             <th>층수</th>
             <th>타입</th>
-            <th>장비명</th>
+            <th>지오팬스명</th>
         </thead>
-        <tbody id="deviceListTable">
+        <tbody id="geofenceListTable">
         </tbody>
     </table>
-    <button id="deviceTabClose" class="btn_r selected">닫기</button>
+    <button id="geofenceTabClose" class="btn_r selected">닫기</button>
 </div>
 <div id="map">
 </div>
@@ -109,8 +100,5 @@
     <ul id="floorInfoList">
     </ul>
 </div>
-<div>
-    <button id="btnPopup" type="button" class="btn_r selected">실내확대</button>
-</div>
 </body>
-<script type="text/javascript" src="/assets/js/main/main.js"></script>
+<script type="text/javascript" src="/assets/js/monitoring/monitoringGeofence.js"></script>

@@ -125,4 +125,42 @@ public class GeofenceService {
 
         return 1;
     }
+
+    public List<Geofence> selectGeofenceListByFloor(GeofenceDto geofenceDto) {
+        List<Geofence> geofence = geofenceMapper.selectGeofenceListByFloor(geofenceDto);
+
+        for(int i=0; i<geofence.size(); i++){
+            try {
+                //setPoint
+                if (geofence.get(i).getSetPoint() != null){
+                    Geometry gSetPoint = new WKTReader().read(geofence.get(i).getSetPoint());
+                    Coordinate[] c1 = gSetPoint.getCoordinates();
+                    Coordinate setPoint = c1[0];
+                    geofence.get(i).setSetPointX(String.valueOf(setPoint.getX()));
+                    geofence.get(i).setSetPointY(String.valueOf(setPoint.getY()));
+                }
+
+                //areaPoint
+                if(geofence.get(i).getAreaPoint() != null){
+                    Geometry gAreaPoint = new WKTReader().read(geofence.get(i).getAreaPoint());
+                    List<PointXY> list = new ArrayList<>();
+                    Coordinate[] c2 = gAreaPoint.getCoordinates();
+                    for (int j=0; j<c2.length; j++){
+                        Coordinate setAreaPoint = c2[j];
+                        PointXY pointXY = new PointXY();
+                        pointXY.setPointX(String.valueOf(setAreaPoint.getX()));
+                        pointXY.setPointY(String.valueOf(setAreaPoint.getY()));
+                        list.add(pointXY);
+                    }
+                    if(c2.length > 1){
+                        list.remove(list.size() - 1);
+                    }
+                    geofence.get(i).setPointList(list);
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return geofence;
+    }
 }

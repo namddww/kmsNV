@@ -121,4 +121,11 @@ public class GeofenceController {
         return ResponseUtil.process(geofenceService.updateGeofence(geofenceDto));
     }
 
+    //geofence 정보 조회 데이터
+    @GetMapping(ControllerUrlConstants.GeofenceUrl.Geofence.SEARCH_FLOOR)
+    @ResponseBody
+    public Result geofenceListDataByFloor(@ModelAttribute GeofenceDto geofenceDto) {
+        return ResponseUtil.process(geofenceService.selectGeofenceListByFloor(geofenceDto));
+    }
+
 }
