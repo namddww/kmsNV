@@ -17,12 +17,17 @@
                 </tr>
                 <tr>
                     <th scope="col">비밀번호</th>
-                    <td><input type="password" id="password" placeholder="비밀번호"></td>
+                    <td>
+                        <div class="inner_inputbox">
+                        <input type="password" id="password" placeholder="비밀번호">
+                        <button id="authBtn" type="button" class="btn_reset">인증번호 요청</button>
+                        </div>
+                    </td>
                 </tr>
-                <tr class="tr-authCall">
-                    <th scope="col">인증번호 요청</th>
-                    <td><button id="authBtn" type="button" class="btn_small">인증번호 요청</button></td>
-                </tr>
+<%--                <tr class="tr-authCall">--%>
+<%--                    <th scope="col">인증번호 요청</th>--%>
+<%--                    <td><button id="authBtn" type="button" class="btn_small">인증번호 요청</button></td>--%>
+<%--                </tr>--%>
                 <tr class="tr-hidden" style="display: none">
                     <th scope="col">인증번호</th>
                     <td>

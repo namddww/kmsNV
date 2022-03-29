@@ -85,7 +85,7 @@ function login() {
             }
 
             // 로그인 성공 시 인증번호 전송.
-            $(".tr-authCall").hide();
+            $("#authBtn").hide();
             authKey();
             // location.href = "/home"
         },
@@ -209,7 +209,7 @@ function startTimer(count, display) {
             clearInterval(timer);
             alert("인증번호 입력시간이 초과 하였습니다.");
 
-            $(".tr-authCall").show();
+            $("#authBtn").show();
             $(".tr-hidden").hide();
             isRunning = false;
         }
