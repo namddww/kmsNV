@@ -23,4 +23,6 @@ public interface GeofenceMapper {
     int updateGeofence(Geofence geofence);
 
     int updateGeofenceInfo(GeofenceInfo geofenceInfo);
+
+    List<Geofence> selectGeofenceListByFloor(GeofenceDto geofenceDto);
 }

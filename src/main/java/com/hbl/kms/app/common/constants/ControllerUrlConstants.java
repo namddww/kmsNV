@@ -90,6 +90,7 @@ public class ControllerUrlConstants {
             String POINT_POPUP = "/geofence/pointPopup";
             String SETPOINT_POPUP = "/geofence/setPointPopup";
             String INFO = "/geofence/geofenceInfo/{geofenceSeq}";
+            String SEARCH_FLOOR = "/geofence/search/floor";
         }
     }
 

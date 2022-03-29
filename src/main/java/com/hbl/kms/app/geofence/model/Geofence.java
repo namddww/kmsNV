@@ -5,7 +5,9 @@ import lombok.*;
 import org.apache.ibatis.type.Alias;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -76,4 +78,11 @@ public class Geofence {
     private String areaPoint2;
     private int groundFloor;
     private int baseFloor;
+    private BigDecimal radius;
+    private String setPoint;
+    private String areaPoint;
+    private List<PointXY> pointList;
+    private String setPointX;
+    private String setPointY;
+
 }

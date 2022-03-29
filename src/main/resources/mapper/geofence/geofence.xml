@@ -184,4 +184,22 @@
         WHERE geofence_info_seq = #{geofenceInfoSeq}
     </update>
 
+    <!-- 층별 geofence정보 조회 -->
+    <select id="selectGeofenceListByFloor" resultType="geofence">
+        SELECT
+            g.geofence_seq
+            , g.geo_name
+            , g.floor
+            , g.type_cd
+            , ST_AsText(gi.set_point) AS setPoint
+            , ST_AsText(gi.area_point) AS areaPoint
+            , gi.radius
+        FROM t_geofence g
+        LEFT JOIN t_geofence_info gi ON g.geofence_seq = gi.geofence_seq
+        WHERE 1=1
+        <if test="floorSeq != 0">
+            AND g.floor_seq = #{floorSeq}
+        </if>
+    </select>
+
 </mapper>
