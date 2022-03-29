@@ -15,6 +15,7 @@ public class ControllerUrlConstants {
     public interface JoinUrl {
         interface Join {
             String DEFAULT = "/join/loginForm";
+            String AUTH_KEY = "/join/authKey";
             String LOGIN = "/join/login";
             String LOGOUT = "/join/logout";
         }

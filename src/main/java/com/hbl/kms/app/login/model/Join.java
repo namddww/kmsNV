@@ -68,6 +68,10 @@ public class Join {
      */
     private String memo;
     /**
+     * 인증번호
+     */
+    private int authKey;
+    /**
      * 등록일
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd")

@@ -37,6 +37,27 @@ public class JoinController {
     }
 
     /**
+     * 인증번호 전송
+     */
+    @PostMapping(ControllerUrlConstants.JoinUrl.Join.AUTH_KEY)
+    @ResponseBody
+    public Result authKey(Join join) {
+
+        // 1. 인증번호 생성
+        String smsKey = smsUtil.makeSMSKey(6);
+        log.info("smsKey : {}", smsKey);
+        // TODO : BANG 임시로 1234 설정
+        smsKey = "1234";
+
+        // 2. DB에 사용자 ID와 인증번호 저장
+        log.info("join UserId : {}", join.getUserId());
+
+        // 3. 인증번호 전송
+
+        return ResponseUtil.process(smsKey);
+    }
+
+    /**
      * 로그인
      */
     @PostMapping(ControllerUrlConstants.JoinUrl.Join.LOGIN)
@@ -46,15 +67,13 @@ public class JoinController {
         // 사용자 조회 및 검증
         String resultMsg = validationLogin(join, request);
         if (!resultMsg.equals("SUCCESS")) {
+            // TODO : BANG 실패카운트 업데이트
+            // 1. 실패카운트 업데이트
+            // DB테이블 없음
+//            joinService.updateFailCount(join.getUserId());
+
             return ResponseUtil.process(resultMsg);
         }
-        
-        // 세션 저장
-//        HttpSession session = request.getSession();
-//        session.setAttribute("userId", join.getUserId());
-//        session.setAttribute("userInfo", join);
-//        session.setMaxInactiveInterval(1800); // 일단 유지시간 30분 설정
-
         return ResponseUtil.process(resultMsg);
     }
 
@@ -73,27 +92,33 @@ public class JoinController {
     public String validationLogin(Join join, HttpServletRequest request) {
         Join loginJoin = joinService.findByUserId(join.getUserId());
 
+        // 1. 유저 체크
         if(loginJoin ==null) {
             log.info("해당 아이디의 유저가 존재하지 않습니다.");
             return "해당 아이디의 유저가 존재하지 않습니다.";
         }
 
+        // 2. 비밀번호 체크
         if(!passwordEncoder.matches(join.getPassword(), loginJoin.getPassword())) {
             log.info("비밀번호가 일치하지 않습니다.");
             return "비밀번호가 일치하지 않습니다.";
         }
 
-        // 0. 인증번호 생성 (어디서 발급해야할지 고민하기)
-        String smsKey = smsUtil.makeSMSKey(6);
-        log.info("smsKey : {}", smsKey);
+        // 3. 인증번호 체크
+        if(join.getAuthKey() != 0) {
+            // DB테이블 없음
+//            int authDbValue = joinService.selectAuthKey(join.getUserId(), join.getAuthKey());
+            // TODO : BANG 임시로 1234 설정
+            int authDbValue = 1234;
+            if (join.getAuthKey() != authDbValue) {
+                log.info("인증번호가 일치하지 않습니다.");
+                return "인증번호가 일치하지 않습니다.";
+            }
+        }
 
-        // 1. 인증번호 유효시간 체크
+        // 2. 5회 로그인 실패 체크
         
-        // 2. 인증번호 체크
-        
-        // 3. 5회 로그인 실패 체크
-        
-        // 4. 6개월 이상 미사용 체크
+        // 3. 6개월 이상 미사용 체크
         
 
         joinService.updateUserLastDate(join.getUserId());

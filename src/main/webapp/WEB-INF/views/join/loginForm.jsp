@@ -9,6 +9,7 @@
                 <col style="width: 20%">
                 <col style="width: 20%">
             </colgroup>
+            <input type="checkbox"></input>
             <tbody>
                 <tr>
                     <th scope="col">아이디</th>
@@ -17,6 +18,20 @@
                 <tr>
                     <th scope="col">비밀번호</th>
                     <td><input type="password" id="password" placeholder="비밀번호"></td>
+                </tr>
+                <tr class="tr-authCall">
+                    <th scope="col">인증번호 요청</th>
+                    <td><button id="authBtn" type="button" class="btn_small">인증번호 요청</button></td>
+                </tr>
+                <tr class="tr-hidden" style="display: none">
+                    <th scope="col">인증번호</th>
+                    <td>
+                        <div class="in_search">
+                            <input type="number" id="authKey" placeholder="인증번호">
+                            <button id="authCheckBtn" type="button" class="btn">확인</button>
+                        </div>
+                        <span class="time"></span>
+                    </td>
                 </tr>
             </tbody>
         </table>
