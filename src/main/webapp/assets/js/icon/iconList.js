@@ -61,20 +61,32 @@ function iconSearch(page) {
         async: false,
         data: param,
         success: function(res) {
-            $("#tbody").empty();
+            $("#view_content").empty();
             if (res.result.list.length > 0) {
                 console.log("사이즈 있다 : " + res.result.list.length);
 
                 $.each(res.result.list, function (i, val) {
-                    $("#tbody").append(
-                        $('<tr/>').append(
-                            $('<td/>').text(val.codeName)
-                        ).attr('onClick', 'javascript:iconDetail('+val.iconSeq+')') // 타입
-                        .append($('<td/>').text(val.iconName)) // 아이콘명
-                        .append($('<td/>').text(val.iconPath)) // 이미지
-                        .append($('<td/>').text(val.regDate)) // 등록일자
-                        .append($('<td/>').text(val.modiDate)) // 수정일자
-                    ) // end append_tbody
+                    $("#view_content").append(
+                        $('<a/>')
+                            .attr('class', 'card')
+                            .attr('onClick', 'javascript:iconDetail('+val.iconSeq+')')
+                        .append(
+                            $('<div/>').attr('class', 'pic')
+                                .append(
+                                    $('<img/>')
+                                        .attr('src', val.iconPath)
+                                        .attr('style', 'width: 300px; height: 200px;')
+                                )
+                        )
+                        .append(
+                            $('<div/>').attr('class', 'preview_txt')
+                                .append($('<dt/>').text('[' + val.codeName + ']' + val.iconName))
+                        )
+                        .append(
+                            $('<div/>').attr('class', 'info_data')
+                                .append($('<span/>').attr('class', 'date').text(val.modiDate))
+                        )
+                    )
                 });
                 pagination(res.result, '', 'iconSearch');
             } else {
@@ -91,7 +103,6 @@ function iconSearch(page) {
 }
 
 // 디바이스 등록 페이지
-// location.href
 function iconSaveForm() {
     console.log("iconSaveForm");
     location.href = "/icon/saveForm";

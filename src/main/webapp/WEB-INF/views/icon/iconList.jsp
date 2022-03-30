@@ -24,52 +24,44 @@
         </div>
     </div>
 </div>
-<div class="view_detail list">
-    <div class="tbl_col_wrap">
-        <div id="buildingList">
-            <table class="tbl_col">
-                <thead>
-                <tr>
-                    <th>타입</th>
-                    <th>아이콘명</th>
-                    <th>이미지</th>
-                    <th>등록 일자</th>
-                    <th>수정 일자</th>
-                </tr>
-                </thead>
-                <tbody id="tbody">
-                <tr>
-                    <td onClick="javascript:void(0);" colspan="8">검색결과가 없습니다.</td>
-                </tr>
-                </tbody>
-            </table>
-
-            <div class="btn_wrap">
-                <div class="pagingBox">
-                    <div class="paging">
-                        <nav>
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item">
-                                    <a class="page-link" href="javascript: void(0);" aria-label="Previous">
-                                        <span aria-hidden="true">«</span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="javascript: void(0);">1</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="javascript: void(0);" aria-label="Next">
-                                        <span aria-hidden="true">»</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="pix_right">
-                        <button type="button" id="btnSaveForm" class="btn_r selected">
-                            아이콘등록
-                        </button>
-                    </div>
-                </div>
+<div class="view_detail card">
+    <div class="view_card_cont" id="view_content">
+        <a class="card">
+            <div class="pic">
+                <img src="https://shop-phinf.pstatic.net/20210915_17/1631709921614RtBYz_PNG/%C3%CA%C4%DA%B3%D7_%B0%A1%B0%D4_%B8%DE%C0%CEPC.png?type=w345" style="width: 300px; height: 200px;">
             </div>
+            <div class="preview_txt">
+                <dt>[자산타입] 자산명</dt>
+            </div>
+            <div class="info_data">
+                <span class="date">9999.01.01</span>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="btn_wrap">
+    <div class="pagingBox">
+        <div class="paging">
+            <nav>
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                        <a class="page-link" href="javascript: void(0);" aria-label="Previous">
+                            <span aria-hidden="true">«</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="javascript: void(0);">1</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="javascript: void(0);" aria-label="Next">
+                            <span aria-hidden="true">»</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="pix_right">
+            <button type="button" id="btnSaveForm" class="btn_r selected">
+                아이콘등록
+            </button>
         </div>
     </div>
 </div>
