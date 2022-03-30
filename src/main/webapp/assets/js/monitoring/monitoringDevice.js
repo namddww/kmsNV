@@ -68,7 +68,7 @@ let _monitoringDevice = {
             _monitoringDevice.$y_1 = $("#"+i+'-stdPoint2').val();
             _monitoringDevice.$x_2 = $("#"+i+'-areaPoint1').val();
             _monitoringDevice.$y_2 = $("#"+i+'-areaPoint2').val();
-            _monitoringDevice.$map.setView(new L.LatLng(_monitoringDevice.$x_1, _monitoringDevice.$y_1), 18);
+            _monitoringDevice.$map.setView(new L.LatLng(_monitoringDevice.$x_1, _monitoringDevice.$y_1), 17);
 
             _monitoringDevice.searchFloorInfo(i);
             $("#deviceTab").show();
@@ -105,34 +105,64 @@ let _monitoringDevice = {
         $('#deviceTabClose').on('click', function(){
             $("#deviceTab").attr('style', 'display:none;');
             _this.$floorInfoList.empty();
+            _this.$deviceList.empty();
+            _monitoringDevice.$trigger = '';
         });
 
         // 검색
         $('#btnSearch').on('click', function(){
-            _monitoringDevice.searchBuilding(1, 't');
+            _monitoringDevice.searchBuilding(1);
+            $("#deviceTab").attr('style', 'display:none;');
+            _this.$floorInfoList.empty();
+            _this.$deviceList.empty();
+            _monitoringDevice.$trigger = '';
         });
 
         // 지도내검색
         $('#btnSearchArea').on('click', function(){
-            _monitoringDevice.searchBuilding(1, 'a');
+            _monitoringDevice.searchBuildingArea(1);
+            $("#deviceTab").attr('style', 'display:none;');
+            _this.$floorInfoList.empty();
+            _this.$deviceList.empty();
+            _monitoringDevice.$trigger = '';
         });
 
     },
 
-    searchBuilding : function(page, type) {
+    searchBuilding : function(page) {
+        const _this = this;
+        var param = {
+            buildName : $('#searchText').val(),
+            pageNum: page
+        };
+        $.ajax({
+            type : "GET",
+            url : "/building/search",
+            data : param,
+            success : function(res){
+                _this.dataBindBuilding(res.result);
+                pagination(res.result, '', '_monitoringDevice.searchBuilding');
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown){
+
+            }
+        });
+
+    },
+
+    searchBuildingArea : function(page) {
         const _this = this;
         let x1;
         let x2;
         let y1;
         let y2;
-        if(type == 'a'){
-            x1 = _monitoringDevice.$map.getBounds()._southWest.lat;
-            y1 = _monitoringDevice.$map.getBounds()._southWest.lng;
-            x2 = _monitoringDevice.$map.getBounds()._northEast.lat;
-            y2 = _monitoringDevice.$map.getBounds()._northEast.lng;
-        }
+        x1 = _monitoringDevice.$map.getBounds()._southWest.lat;
+        y1 = _monitoringDevice.$map.getBounds()._southWest.lng;
+        x2 = _monitoringDevice.$map.getBounds()._northEast.lat;
+        y2 = _monitoringDevice.$map.getBounds()._northEast.lng;
         var param = {
             buildName : $('#searchText').val(),
+            pageNum: page,
             x1 : x1,
             y1 : y1,
             x2 : x2,
@@ -144,6 +174,7 @@ let _monitoringDevice = {
             data : param,
             success : function(res){
                 _this.dataBindBuilding(res.result);
+                pagination(res.result, '', '_monitoringDevice.searchBuildingArea');
             },
             error : function(XMLHttpRequest, textStatus, errorThrown){
 
@@ -154,6 +185,12 @@ let _monitoringDevice = {
 
     dataBindBuilding : function(result) {
         const _this = this;
+        if(_monitoringDevice.$map.hasLayer(_monitoringDevice.$image)){
+            _monitoringDevice.$map.removeLayer(_monitoringDevice.$image);
+        }
+        if(_monitoringDevice.$map.hasLayer(_monitoringDevice.$rect)){
+            _monitoringDevice.$map.removeLayer(_monitoringDevice.$rect);
+        }
         _this.$tableList.find('tbody').empty();
         if (result.list.length > 0) {
             if (_monitoringDevice.$markers != undefined) {
@@ -186,7 +223,11 @@ let _monitoringDevice = {
                 /*L.marker(latlng, {
                     icon: icon
                 }).addTo(_this2.$map);*/
-                _monitoringDevice.$markers.push(L.marker(latlng).addTo(_monitoringDevice.$map));
+                var markerClick = L.marker(latlng).addTo(_monitoringDevice.$map);
+                markerClick.on('click', function (e) {
+                   _monitoringDevice.markerOnClick(val.buildSeq)
+                });
+                _monitoringDevice.$markers.push(markerClick);
             });
         } else {
             if (_monitoringDevice.$markers != undefined) {
@@ -222,6 +263,7 @@ let _monitoringDevice = {
 
     dataBindFloorInfo : function(result) {
         const _this = this;
+        _this.$deviceList.empty();
         _this.$floorInfoList.empty();
         if (result.length > 0) {
             _this.$floorInfoList.append(
@@ -463,7 +505,21 @@ let _monitoringDevice = {
     //장비 클릭
     clickDevice : function(point1, point2) {
         _monitoringDevice.$map.setView(new L.LatLng(point1, point2), 18);
+    },
+
+    //건물조회 후 marker click
+    markerOnClick : function (buildSeq) {
+        let i = buildSeq;
+        _monitoringDevice.$x_1 = $("#"+i+'-stdPoint1').val();
+        _monitoringDevice.$y_1 = $("#"+i+'-stdPoint2').val();
+        _monitoringDevice.$x_2 = $("#"+i+'-areaPoint1').val();
+        _monitoringDevice.$y_2 = $("#"+i+'-areaPoint2').val();
+        _monitoringDevice.$map.setView(new L.LatLng(_monitoringDevice.$x_1, _monitoringDevice.$y_1), 17);
+
+        _monitoringDevice.searchFloorInfo(i);
+        $("#deviceTab").show();
     }
+
 };
 
 // onload
