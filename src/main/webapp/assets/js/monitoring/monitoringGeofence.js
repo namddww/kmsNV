@@ -60,7 +60,7 @@ let _monitoringGeofence = {
             _monitoringGeofence.$y_1 = $("#"+i+'-stdPoint2').val();
             _monitoringGeofence.$x_2 = $("#"+i+'-areaPoint1').val();
             _monitoringGeofence.$y_2 = $("#"+i+'-areaPoint2').val();
-            _monitoringGeofence.$map.setView(new L.LatLng(_monitoringGeofence.$x_1, _monitoringGeofence.$y_1), 18);
+            _monitoringGeofence.$map.setView(new L.LatLng(_monitoringGeofence.$x_1, _monitoringGeofence.$y_1), 17);
 
             _monitoringGeofence.searchFloorInfo(i);
             $("#geofenceTab").show();
@@ -78,34 +78,61 @@ let _monitoringGeofence = {
         $('#geofenceTabClose').on('click', function(){
             $("#geofenceTab").attr('style', 'display:none;');
             _this.$floorInfoList.empty();
+            _this.$geofenceList.empty();
         });
 
         // 검색
         $('#btnSearch').on('click', function(){
-            _monitoringGeofence.searchBuilding(1, 't');
+            _monitoringGeofence.searchBuilding(1);
+            $("#geofenceTab").attr('style', 'display:none;');
+            _this.$floorInfoList.empty();
+            _this.$geofenceList.empty();
         });
 
         // 지도내검색
         $('#btnSearchArea').on('click', function(){
-            _monitoringGeofence.searchBuilding(1, 'a');
+            _monitoringGeofence.searchBuildingArea(1);
+            $("#geofenceTab").attr('style', 'display:none;');
+            _this.$floorInfoList.empty();
+            _this.$geofenceList.empty();
         });
 
     },
 
-    searchBuilding : function(page, type) {
+    searchBuilding : function(page) {
+        const _this = this;
+        var param = {
+            buildName : $('#searchText').val(),
+            pageNum: page
+        };
+        $.ajax({
+            type : "GET",
+            url : "/building/search",
+            data : param,
+            success : function(res){
+                _this.dataBindBuilding(res.result);
+                pagination(res.result, '', '_monitoringGeofence.searchBuilding');
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown){
+
+            }
+        });
+
+    },
+
+    searchBuildingArea : function(page) {
         const _this = this;
         let x1;
         let x2;
         let y1;
         let y2;
-        if(type == 'a'){
-            x1 = _monitoringGeofence.$map.getBounds()._southWest.lat;
-            y1 = _monitoringGeofence.$map.getBounds()._southWest.lng;
-            x2 = _monitoringGeofence.$map.getBounds()._northEast.lat;
-            y2 = _monitoringGeofence.$map.getBounds()._northEast.lng;
-        }
+        x1 = _monitoringGeofence.$map.getBounds()._southWest.lat;
+        y1 = _monitoringGeofence.$map.getBounds()._southWest.lng;
+        x2 = _monitoringGeofence.$map.getBounds()._northEast.lat;
+        y2 = _monitoringGeofence.$map.getBounds()._northEast.lng;
         var param = {
             buildName : $('#searchText').val(),
+            pageNum: page,
             x1 : x1,
             y1 : y1,
             x2 : x2,
@@ -117,6 +144,7 @@ let _monitoringGeofence = {
             data : param,
             success : function(res){
                 _this.dataBindBuilding(res.result);
+                pagination(res.result, '', '_monitoringGeofence.searchBuildingArea');
             },
             error : function(XMLHttpRequest, textStatus, errorThrown){
 
@@ -127,6 +155,14 @@ let _monitoringGeofence = {
 
     dataBindBuilding : function(result) {
         const _this = this;
+        if(_monitoringGeofence.$map.hasLayer(_monitoringGeofence.$image)){
+            _monitoringGeofence.$map.removeLayer(_monitoringGeofence.$image);
+        }
+        if (_monitoringGeofence.$geofenceAreaObject != undefined) {
+            for(let i=0; i<_monitoringGeofence.$geofenceAreaObject.length; i++){
+                _monitoringGeofence.$map.removeLayer(_monitoringGeofence.$geofenceAreaObject[i]);
+            }
+        };
         _this.$tableList.find('tbody').empty();
         if (result.list.length > 0) {
             if (_monitoringGeofence.$markers != undefined) {
@@ -159,7 +195,11 @@ let _monitoringGeofence = {
                 /*L.marker(latlng, {
                     icon: icon
                 }).addTo(_this2.$map);*/
-                _monitoringGeofence.$markers.push(L.marker(latlng).addTo(_monitoringGeofence.$map));
+                var markerClick = L.marker(latlng).addTo(_monitoringGeofence.$map);
+                markerClick.on('click', function (e) {
+                    _monitoringGeofence.markerOnClick(val.buildSeq)
+                });
+                _monitoringGeofence.$markers.push(markerClick);
             });
         } else {
             if (_monitoringGeofence.$markers != undefined) {
@@ -195,6 +235,7 @@ let _monitoringGeofence = {
 
     dataBindFloorInfo : function(result) {
         const _this = this;
+        _this.$geofenceList.empty();
         _this.$floorInfoList.empty();
         if (result.length > 0) {
             $.each(result, function (i, val) {
@@ -353,13 +394,22 @@ let _monitoringGeofence = {
     //지오팬스 클릭
     clickGeofence : function(point1, point2, typeCd, geofenceSeq) {
         _monitoringGeofence.$map.setView(new L.LatLng(point1, point2), 18);
+        if (_monitoringGeofence.$markers != undefined) {
+            for(let i=0; i<_monitoringGeofence.$markers.length; i++){
+                _monitoringGeofence.$map.removeLayer(_monitoringGeofence.$markers[i]);
+            }
+        };
         if (_monitoringGeofence.$geofenceAreaObject != undefined) {
             for(let i=0; i<_monitoringGeofence.$geofenceAreaObject.length; i++){
                 _monitoringGeofence.$map.removeLayer(_monitoringGeofence.$geofenceAreaObject[i]);
             }
         };
+        _monitoringGeofence.$markers = [];
         _monitoringGeofence.$geofenceAreaObject = [];
-
+        if(point1 != null && point2 != null){
+            var latlng = L.latLng(point1, point2);
+            _monitoringGeofence.$markers.push(L.marker(latlng).addTo(_monitoringGeofence.$map));
+        }
         if(typeCd == 'FIG00010'){ //사각형
             let latlngs = [[$('#g'+geofenceSeq+'x1').val(), $('#g'+geofenceSeq+'y1').val()]
                 , [$('#g'+geofenceSeq+'x3').val(), $('#g'+geofenceSeq+'y3').val()]];
@@ -378,6 +428,19 @@ let _monitoringGeofence = {
             let polygon = L.polygon(latlngs).addTo(_monitoringGeofence.$map)
             _monitoringGeofence.$geofenceAreaObject.push(polygon);
         }
+    },
+
+    //건물조회 후 marker click
+    markerOnClick : function (buildSeq) {
+        let i = buildSeq;
+        _monitoringGeofence.$x_1 = $("#"+i+'-stdPoint1').val();
+        _monitoringGeofence.$y_1 = $("#"+i+'-stdPoint2').val();
+        _monitoringGeofence.$x_2 = $("#"+i+'-areaPoint1').val();
+        _monitoringGeofence.$y_2 = $("#"+i+'-areaPoint2').val();
+        _monitoringGeofence.$map.setView(new L.LatLng(_monitoringGeofence.$x_1, _monitoringGeofence.$y_1), 17);
+
+        _monitoringGeofence.searchFloorInfo(i);
+        $("#geofenceTab").show();;
     }
 };
 
