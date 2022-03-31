@@ -97,6 +97,12 @@ let _monitoringGeofence = {
             _this.$geofenceList.empty();
         });
 
+        // geofence 상세페이지 이동
+        $(document).on("click", "#btnGeofenceInfo", function() {
+            let seq = $('#btnGeofenceInfo').attr('data-seq');
+            location.href = '/geofence/geofenceInfo/'+seq;
+        });
+
     },
 
     searchBuilding : function(page) {
@@ -354,20 +360,18 @@ let _monitoringGeofence = {
                     $.each(res.result, function (i, val) {
                         let x1 = val.setPointX;
                         let y1 = val.setPointY;
-
-                        if(x1 != null && y1 != null){
-                            var latlng = L.latLng(x1, y1);
-                            _monitoringGeofence.$markers.push(L.marker(latlng).addTo(_monitoringGeofence.$map));
-                        }
+                        let leafletId;
                         if(val.pointList != null){
                             if(val.typeCd == 'FIG00010'){ //사각형
                                 let latlngs = [[val.pointList[1].pointX, val.pointList[1].pointY]
                                     , [val.pointList[3].pointX, val.pointList[3].pointY]];
                                 let rectangle = L.rectangle(latlngs).addTo(_monitoringGeofence.$map);
+                                leafletId = rectangle._leaflet_id;
                                 _monitoringGeofence.$geofenceAreaObject.push(rectangle);
                             }else if(val.typeCd == 'FIG00020'){ //원
                                 let circleCenter = [val.pointList[0].pointX, val.pointList[0].pointY];
-                                let circle = L.circle(circleCenter, {radius: val.radius}).addTo(_monitoringGeofence.$map)
+                                let circle = L.circle(circleCenter, {radius: val.radius}).addTo(_monitoringGeofence.$map);
+                                leafletId = circle._leaflet_id;
                                 _monitoringGeofence.$geofenceAreaObject.push(circle);
                             }else if(val.typeCd == 'FIG00030'){ //폴리곤
                                 let size = val.pointList.length;
@@ -375,9 +379,19 @@ let _monitoringGeofence = {
                                 for(let i=0; i<size; i++){
                                     latlngs.push([val.pointList[i].pointX, val.pointList[i].pointY]);
                                 }
-                                let polygon = L.polygon(latlngs).addTo(_monitoringGeofence.$map)
+                                let polygon = L.polygon(latlngs).addTo(_monitoringGeofence.$map);
+                                leafletId = polygon._leaflet_id;
                                 _monitoringGeofence.$geofenceAreaObject.push(polygon);
                             }
+                        }
+                        if(x1 != null && y1 != null){
+                            var latlng = L.latLng(x1, y1);
+                            var geofenceMarkerClick = L.marker(latlng).addTo(_monitoringGeofence.$map);
+                            geofenceMarkerClick.bindPopup("<button id='btnGeofenceInfo' data-seq="+val.geofenceSeq+">수정</button>");
+                            geofenceMarkerClick.on('click', function (e) {
+                                _monitoringGeofence.geofenceMarkerClick(leafletId)
+                            });
+                            _monitoringGeofence.$markers.push(geofenceMarkerClick);
                         }
                     });
                 } else {
@@ -406,18 +420,17 @@ let _monitoringGeofence = {
         };
         _monitoringGeofence.$markers = [];
         _monitoringGeofence.$geofenceAreaObject = [];
-        if(point1 != null && point2 != null){
-            var latlng = L.latLng(point1, point2);
-            _monitoringGeofence.$markers.push(L.marker(latlng).addTo(_monitoringGeofence.$map));
-        }
+        let leafletId;
         if(typeCd == 'FIG00010'){ //사각형
             let latlngs = [[$('#g'+geofenceSeq+'x1').val(), $('#g'+geofenceSeq+'y1').val()]
                 , [$('#g'+geofenceSeq+'x3').val(), $('#g'+geofenceSeq+'y3').val()]];
             let rectangle = L.rectangle(latlngs).addTo(_monitoringGeofence.$map);
+            leafletId = rectangle._leaflet_id;
             _monitoringGeofence.$geofenceAreaObject.push(rectangle);
         }else if(typeCd == 'FIG00020'){ //원
             let circleCenter = [$('#g'+geofenceSeq+'x0').val(), $('#g'+geofenceSeq+'y0').val()];
-            let circle = L.circle(circleCenter, {radius: $('#g'+geofenceSeq+'radius').val()}).addTo(_monitoringGeofence.$map)
+            let circle = L.circle(circleCenter, {radius: $('#g'+geofenceSeq+'radius').val()}).addTo(_monitoringGeofence.$map);
+            leafletId = circle._leaflet_id;
             _monitoringGeofence.$geofenceAreaObject.push(circle);
         }else if(typeCd == 'FIG00030'){ //폴리곤
             let size = $("input[name=xy"+geofenceSeq+"]").length/2;
@@ -425,8 +438,19 @@ let _monitoringGeofence = {
             for(let i=0; i<size; i++){
                 latlngs.push([$('#g'+geofenceSeq+'x'+i).val(), $('#g'+geofenceSeq+'y'+i).val()]);
             }
-            let polygon = L.polygon(latlngs).addTo(_monitoringGeofence.$map)
+            let polygon = L.polygon(latlngs).addTo(_monitoringGeofence.$map);
+            leafletId = polygon._leaflet_id;
             _monitoringGeofence.$geofenceAreaObject.push(polygon);
+        }
+
+        if(point1 != null && point2 != null){
+            var latlng = L.latLng(point1, point2);
+            var geofenceMarkerClick = L.marker(latlng).addTo(_monitoringGeofence.$map);
+            geofenceMarkerClick.bindPopup("<button id='btnGeofenceInfo' data-seq="+geofenceSeq+">수정</button>");
+            geofenceMarkerClick.on('click', function (e) {
+                _monitoringGeofence.geofenceMarkerClick(leafletId)
+            });
+            _monitoringGeofence.$markers.push(geofenceMarkerClick);
         }
     },
 
@@ -441,7 +465,22 @@ let _monitoringGeofence = {
 
         _monitoringGeofence.searchFloorInfo(i);
         $("#geofenceTab").show();;
+    },
+
+    geofenceMarkerClick : function (leafletId) {
+        for(let i=0; i<_monitoringGeofence.$geofenceAreaObject.length; i++){
+            if(_monitoringGeofence.$geofenceAreaObject[i]._leaflet_id == leafletId) {
+                _monitoringGeofence.$geofenceAreaObject[i].setStyle({
+                   color: 'red'
+                });
+            }else{
+                _monitoringGeofence.$geofenceAreaObject[i].setStyle({
+                    color: '#3388ff'
+                });
+            }
+        }
     }
+
 };
 
 // onload
