@@ -7,7 +7,8 @@
 <%--<script src='https://unpkg.com/leaflet-draw-drag@0.1.7/dist/Leaflet.draw.drag.js'></script>--%>
 <%--<script src="https://unpkg.com/leaflet-path-transform@1.1.3/dist/L.Path.Transform.js"></script>--%>
 <%--<script src="../../../assets/js/common/edit.rectangle.rotate.js"></script>--%>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js" ></script>
+<link rel="stylesheet" href="../../../assets/js/common/Leaflet.BigImage.min.css">
+<script src="../../../assets/js/common/Leaflet.BigImage.js" ></script>
 <style>
     html, body, #map{
         height: 100vh;
