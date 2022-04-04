@@ -283,9 +283,11 @@ let _monitoringGeofence = {
                         $('<tr/>').attr('onclick', '_monitoringGeofence.clickGeofence('+val.setPointX+','+val.setPointY+',"'+val.typeCd+'",'+val.geofenceSeq+')').append(
                             $('<td/>').text(val.floor)
                         ).append(
-                            $('<td/>').text('')
-                        ).append(
                             $('<td/>').text(val.geoName)
+                        ).append(
+                            $('<td/>').append(
+                                $('<a/>').attr('href', '/geofence/geofenceInfo/'+val.geofenceSeq).text('수정')
+                            )
                         )
                     )
                 }else{
@@ -293,9 +295,11 @@ let _monitoringGeofence = {
                         $('<tr/>').attr('onclick', '_monitoringGeofence.clickGeofence('+val.setPointX+','+val.setPointY+',"'+val.typeCd+'",'+val.geofenceSeq+')').append(
                             $('<td/>').text('지하 '+(val.floor*-1))
                         ).append(
-                            $('<td/>').text('')
-                        ).append(
                             $('<td/>').text(val.geoName)
+                        ).append(
+                            $('<td/>').append(
+                                $('<a/>').attr('href', '/geofence/geofenceInfo/'+val.geofenceSeq).text('수정')
+                            )
                         )
                     )
                 }

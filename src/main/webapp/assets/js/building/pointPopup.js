@@ -69,6 +69,7 @@ let _pointPopup = {
         var y2 = '';
 
         var rectangle;
+        var mapBounds;
         map.on(L.Draw.Event.CREATED, function (e) {
             var type = e.layerType,
                 layer = e.layer;
@@ -80,7 +81,7 @@ let _pointPopup = {
             }*/
             rectangle = layer;
             editableLayers.addLayer(layer);
-
+            mapBounds = map.getBounds();
         });
 
         // 건물좌표 등록
@@ -98,8 +99,57 @@ let _pointPopup = {
             $("#stdPoint2", opener.document).val(y1);
             $("#areaPoint1", opener.document).val(x2);
             $("#areaPoint2", opener.document).val(y2);
-            window.close();
+            console.log(mapBounds);
+            let zero = [mapBounds._northEast.lat, mapBounds._southWest.lng];
+            let zeroPoint = map.latLngToLayerPoint(zero);
+            let startPoint = map.latLngToLayerPoint(arr[0][1]);
+            let endPoint = map.latLngToLayerPoint(arr[0][arr[0].length - 1]);
+            let width = Math.abs(startPoint.x - endPoint.x);
+            let height = Math.abs(startPoint.y - endPoint.y);
+            html2canvas(document.getElementById("map"), {
+                useCORS: true,
+                onrendered: function (canvas) {
+                    // canvas is the final rendered <canvas> element
+                    _pointPopup.downloadImage(
+                        canvas,
+                        startPoint.x - zeroPoint.x,
+                        startPoint.y - zeroPoint.y,
+                        width,
+                        height
+                    );
+                }
+            });
+            //window.close();
         });
+    },
+
+    downloadImage : function (canvas, capture_x, capture_y, capture_width, capture_height) {
+        // 创建一个用于截取的canvas
+        var clipCanvas = document.createElement("canvas");
+        clipCanvas.width = capture_width;
+        clipCanvas.height = capture_height;
+        // 截取图片
+        clipCanvas
+            .getContext("2d")
+            .drawImage(
+                canvas,
+                capture_x,
+                capture_y,
+                capture_width,
+                capture_height,
+                0,
+                0,
+                capture_width,
+                capture_height
+            );
+        var clipImgBase64 = clipCanvas.toDataURL();
+        let link = document.createElement("a");
+        link.href = clipImgBase64;
+        link.setAttribute("download", new Date().toLocaleString() + "capture.png");
+        link.style.display = "none";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }
 };
 

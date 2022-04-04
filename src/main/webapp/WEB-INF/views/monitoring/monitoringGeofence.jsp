@@ -105,8 +105,8 @@
     <table class="tbl_col">
         <thead>
             <th>층수</th>
-            <th>타입</th>
             <th>지오팬스명</th>
+            <th></th>
         </thead>
         <tbody id="geofenceListTable">
         </tbody>
