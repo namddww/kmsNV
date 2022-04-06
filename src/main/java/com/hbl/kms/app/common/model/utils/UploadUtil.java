@@ -10,7 +10,7 @@ public class UploadUtil {
     public static String uploadImage(String path, MultipartFile multipartFile) throws IOException {
 
         if(!multipartFile.isEmpty()){
-            String uploadPath = "C:"+File.separator+"upload"+File.separator+"images";
+            String uploadPath = File.separator+"upload"+File.separator+"images";
             uploadPath = uploadPath +File.separator + path;
             File folder = new File(uploadPath);
             if(!folder.exists()){

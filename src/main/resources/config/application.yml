@@ -30,7 +30,7 @@ spring:
 
 file:
 #  resourcePath: /images/
-  resourcePath: file:///C:/upload/images/
+  resourcePath: file:///upload/images/
   uploadPath: /images/**
 #  resourcePath: file:///test/image/
 #  uploadPath: /image/**
@@ -54,4 +54,4 @@ mybatis:
 
 kms:
   logging:
-    dir: C:\\logs\\logback
+    dir: \logs\\logback
