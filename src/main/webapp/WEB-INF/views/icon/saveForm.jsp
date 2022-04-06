@@ -31,7 +31,7 @@
                         <tr>
                             <th>타입 <span class="red">*</span></th>
                             <td id="td-type">
-                                <input type="hidden" id="groupCd">
+                                <input type="hidden" id="oldCodeVal">
                                 <select id="iconCd" class="select_input">
                                     <option value="" data-sub="">선택</option>
                                 </select>

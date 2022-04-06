@@ -164,7 +164,7 @@ function dataBind(iconSeq) {
             var resultValue = res.result;
 
             // 수정화면에서는 파일태그 비활성화 시킨다.
-            $("#iconPath").hide();
+            // $("#iconPath").hide();
 
             $("#seq").text(resultValue.iconSeq);
             $("#regDate").text(resultValue.regDate);
@@ -172,6 +172,7 @@ function dataBind(iconSeq) {
             $("#iconCd").val(resultValue.codeVal);
             $("#td-image").append($('<span/>').text(resultValue.iconPath));
             $("#memo").val(resultValue.memo);
+            $("#oldCodeVal").val(resultValue.codeVal);
         },
         error: function(request,status,error) {
             alert("통신상태가 원활하지 않아 접속이 끊어졌습니다.");
@@ -185,8 +186,10 @@ function iconModify() {
     var codeVal =  $("#iconCd option:selected").val();
     console.log("iconCd this : ", codeVal, groupCd);
 
-    if (!selectIconCount(groupCd, codeVal)) {
-        return false;
+    if ($("#oldCodeVal").val() != codeVal) {
+        if (!selectIconCount(groupCd, codeVal)) {
+            return false;
+        }
     }
 
     var formData = new FormData();
