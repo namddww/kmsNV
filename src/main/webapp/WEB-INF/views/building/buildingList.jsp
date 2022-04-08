@@ -36,6 +36,15 @@
     <div class="tbl_col_wrap">
         <div id="buildingList">
             <table class="tbl_col" id="buildingListTable">
+                <colgroup> <!--col : 7-->
+                    <col style="width: 13%">
+                    <col style="width: 13%">
+                    <col style="width: 20%">
+                    <col style="width: 13%">
+                    <col style="width: 13%">
+                    <col style="width: 15%">
+                    <col style="width: 13%">
+                </colgroup>
                 <thead>
                 <tr>
                     <th>건물명</th>

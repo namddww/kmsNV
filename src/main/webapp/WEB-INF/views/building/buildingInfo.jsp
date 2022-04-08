@@ -3,6 +3,13 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <div class="side_cont" id="buildingArea">
+    <div class="s_nav">
+        <ul>
+            <li><a href="#">HOME</a></li>
+            <li><a href="#">건물관리</a></li>
+            <li class="at">건물관리 상세</li>
+        </ul>
+    </div>
     <div class="head">
         <h2>건물 상세페이지</h2>
     </div>
@@ -92,7 +99,7 @@
                 <tr>
                     <th scope="col">층별정보</th>
                     <td class="dupl_chk" style="padding: 10px 30px;">
-                        <button type="button" id="btnFloorPopupChk" class="btn gray">일괄등록 (체크된 층)</button>
+                        <button type="button" id="btnFloorPopupChk" class="btn gray mid">일괄등록 (체크된 층)</button>
                     </td>
                 </tr>
                 </tbody>
@@ -101,6 +108,15 @@
         <br>
         <div class="side_tbl_wrap">
             <table id="floorListTable" class="tbl_height">
+                <colgroup>
+                    <!--col : 6-->
+                    <col style="width: 10%">
+                    <col style="width: 13%">
+                    <col style="width: 36%">
+                    <col style="width: 13%">
+                    <col style="width: 13%">
+                    <col style="width: 15%">
+                </colgroup>
                 <thead>
                 <tr>
                     <th>체크</th>

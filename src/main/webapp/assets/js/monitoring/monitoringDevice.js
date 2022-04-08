@@ -37,6 +37,11 @@ let _monitoringDevice = {
     events : function () {
         const _this = this;
 
+        $("#deviceTab").attr('style', 'display:none;');
+        _this.$floorInfoList.empty();
+        _this.$deviceList.empty();
+        _monitoringDevice.$trigger = '';
+
         setInterval(function() {
             if(_monitoringDevice.$trigger == 'f'){
                 _monitoringDevice.clickFloor(_monitoringDevice.$f, _monitoringDevice.$o);

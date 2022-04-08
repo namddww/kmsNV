@@ -14,32 +14,36 @@
     <c:forEach var="data" items="${num.list}" varStatus="status">
         <input type="hidden" id="num${data}" value="${data}">
     </c:forEach>
-    <h1>파일등록</h1>
-    <div id="floorPopupArea">
-        <div>
-            <span>층 정보:</span>
-            <c:forEach var="data" items="${num.list}" varStatus="status">
-                <c:if test="${data < 0}">
-                    <span>지하${(data*-1)}층 / </span>
-                </c:if>
-                <c:if test="${data > 0}">
-                    <span>${data}층 / </span>
-                </c:if>
-            </c:forEach>
+    <div class="pop_info_box">
+        <h1>파일등록</h1>
+        <div id="floorPopupArea">
+            <div>
+                <span>층 정보:</span>
+                <c:forEach var="data" items="${num.list}" varStatus="status">
+                    <c:if test="${data < 0}">
+                        <span>지하${(data*-1)}층 / </span>
+                    </c:if>
+                    <c:if test="${data > 0}">
+                        <span>${data}층 / </span>
+                    </c:if>
+                </c:forEach>
+            </div>
+            <div>
+                <span>도면파일: </span>
+                <input type="file" name="floorFile" id="floorFile">
+            </div>
         </div>
         <div>
-            <span>도면파일: </span>
-            <input type="file" name="floorFile" id="floorFile">
+            <span>투명도: </span>
+            <input id="opacity" type="range" min="0" max="1" step="0.01" value="1" onchange="_floorPopup.updateOpacity(this.value)">
+        </div>
+        <div>
+            <button id="btnSave" class="btn_r selected">등록</button>
         </div>
     </div>
-    <div>
-        <span>투명도: </span>
-        <input id="opacity" type="range" min="0" max="1" step="0.01" value="1" onchange="_floorPopup.updateOpacity(this.value)">
-    </div>
-    <div id="map">
-    </div>
-    <div>
-        <button id="btnSave" class="btn gray">등록</button>
+    <div class="pop_map_wrap">
+        <div id="map">
+        </div>
     </div>
 </body>
 <script type="text/javascript" src="/assets/js/building/floorPopup.js"></script>

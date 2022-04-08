@@ -75,6 +75,7 @@ cmmFnObj = {
             return $(window).scrollTop() < hh;
         }
 
+        /* 20220401 gnb 마우스 이벤트 개선 : 마우스 빠르게 움직이거나 브라우저 탭 쪽으로 이동 시 닫히지 않음
         $gnb.on('mouseleave', function () {
             $gnb.stop().animate(
                 { height: 0 },
@@ -85,6 +86,20 @@ cmmFnObj = {
                     },
                 }
             );
+        });
+        */
+
+        //20220401 gnb 마우스 이벤트 개선
+        $header.on('mouseleave', function (e) {
+            e.preventDefault();
+            $header.removeClass('on');
+            $gnb.stop().animate(
+                { height: 0 },
+                {
+                    duration: 200,
+                }
+            );
+            $gnb.find('.snb_list').hide();
         });
 
         // datepicker

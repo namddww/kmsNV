@@ -2,6 +2,13 @@
 <%@ include file="../../views/common/include/common.jsp" %>
 
 <div class="side_cont" id="geofenceArea">
+    <div class="s_nav">
+        <ul>
+            <li><a href="#">HOME</a></li>
+            <li><a href="#">건물관리</a></li>
+            <li class="at">지오팬스 등록</li>
+        </ul>
+    </div>
     <div class="head">
         <h2>지오팬스 등록</h2>
     </div>
@@ -10,8 +17,8 @@
         <div class="tbl_row_wrap">
             <table class="tbl_row">
                 <colgroup>
-                    <col style="width: 15%">
-                    <col style="width: 85%">
+                    <col style="width: 20%">
+                    <col style="width: 80%">
                 </colgroup>
                 <tbody>
                 <tr>
@@ -41,7 +48,7 @@
                 <tr>
                     <th scope="col">층정보</th>
                     <td>
-                        <select id="floor">
+                        <select id="floor" class="st_w280">
                             <option>층선택</option>
                         </select>
                     </td>
@@ -57,7 +64,7 @@
                     <td class="dupl_chk" style="padding: 10px 30px;">
                         <input type="text" id="setPointX" value="" disabled style="width: 32%;">
                         <input type="text" id="setPointY" value="" disabled style="width: 32%;">
-                        <button type="button" id="btnSetPoint" class="">설치위치 등록</button>
+                        <button type="button" id="btnSetPoint" class="btn mid">설치위치 등록</button>
                     </td>
                 </tr>
                 <tr>
@@ -70,14 +77,14 @@
                 <tr>
                     <th scope="col">상태</th>
                     <td>
-                        <select id="stateCd">
+                        <select id="stateCd" class="st_w280">
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <th scope="col">위치</th>
                     <td>
-                        <select id="location">
+                        <select id="location" class="st_w280">
                         </select>
                     </td>
                 </tr>

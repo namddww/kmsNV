@@ -2,8 +2,8 @@
 <%@ include file="../common/include/common.jsp"%>
 
 <!-- 헤더 부분 -->
-<div class="adm_header">
-	<%--<h1 class="logo"><img src="<c:out value='${pageContext.request.contextPath}'/>/assets/resource/images/common/logo.svg" alt="데이터 플레이그라운드" onclick="location.href='/'" style="cursor:pointer;"></h1>--%>
+<div class="adm_header on">
+		<h1 class="logo"><img src="<c:out value='${pageContext.request.contextPath}'/>/assets/resource/images/common/logo-w.png" alt="창고관리시스템"></h1>
 	<ul class="gnb_list">
 		<li class="depth1" data-targetmenu="dashboard">
 			<a href="/dashboard/dashboard">메인</a>
@@ -25,6 +25,8 @@
 		</li>
 	</ul>
 	<div class="spot_menu">
+		<span class="user_welcome">'<em>홍길동</em>' 님 환영합니다</span>
+		<a href="#" class="btn login"><span>로그아웃</span></a>
 		<%-- <a href="#" class="btn join"><span>로그아웃</span></a> --%>
 		<%--<a href="<c:out value='${pageContext.request.contextPath}'/>/main" class="btn login"><span>main</span></a>--%>
 	</div>

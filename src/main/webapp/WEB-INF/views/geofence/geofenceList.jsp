@@ -27,6 +27,16 @@
     <div class="tbl_col_wrap">
         <div id="geofenceList">
             <table class="tbl_col" id="geofenceListTable">
+                <colgroup>
+                    <!--col : 7-->
+                    <col style="width: 13%">
+                    <col style="width: 13%">
+                    <col style="width: 13%">
+                    <col style="width: 22%">
+                    <col style="width: 13%">
+                    <col style="width: 13%">
+                    <col style="width: 13%">
+                </colgroup>
                 <thead>
                 <tr>
                     <th>지역</th>

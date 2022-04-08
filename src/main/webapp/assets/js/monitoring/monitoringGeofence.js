@@ -37,6 +37,10 @@ let _monitoringGeofence = {
     events : function () {
         const _this = this;
 
+        $("#geofenceTab").attr('style', 'display:none;');
+        _this.$floorInfoList.empty();
+        _this.$geofenceList.empty();
+
         _monitoringGeofence.$map = L.map('map').setView([37.5,127.5],11);
 
         let osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
