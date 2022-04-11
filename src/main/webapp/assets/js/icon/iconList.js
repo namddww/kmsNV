@@ -70,20 +70,17 @@ function iconSearch(page) {
                         $('<a/>')
                             .attr('class', 'card')
                             .attr('onClick', 'javascript:iconDetail('+val.iconSeq+')')
+                        .append($('<em/>').attr('class', 'cate').text(val.codeName))
                         .append(
                             $('<div/>').attr('class', 'pic')
                                 .append(
                                     $('<img/>')
                                         .attr('src', val.iconPath)
-                                        .attr('style', 'width: 300px; height: 200px;')
                                 )
                         )
                         .append(
-                            $('<div/>').attr('class', 'preview_txt')
-                                .append($('<dt/>').text('[' + val.codeName + ']' + val.iconName))
-                        )
-                        .append(
                             $('<div/>').attr('class', 'info_data')
+                                .append($('<h4/>').text(val.iconName))
                                 .append($('<span/>').attr('class', 'date').text(val.modiDate))
                         )
                     )

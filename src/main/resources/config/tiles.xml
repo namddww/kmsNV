@@ -28,6 +28,11 @@
         <put-attribute name="iframe" value="" />
     </definition>
 
+    <!-- 로그인 화면 blank layout 사용 -->
+    <definition name="*/loginForm" extends="layout.blank">
+        <put-attribute name="content" value="/WEB-INF/views/{1}/loginForm.jsp"/>
+    </definition>
+
     <!-- blank layout 사용 -->
     <definition name="*/*Popup" extends="layout.blank">
         <put-attribute name="content" value="/WEB-INF/views/{1}/{2}Popup.jsp"/>

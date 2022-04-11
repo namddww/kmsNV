@@ -27,13 +27,15 @@
 <div class="view_detail card">
     <div class="view_card_cont" id="view_content">
         <a class="card">
+            <em class="cate">자산타입</em>
             <div class="pic">
-                <img src="https://shop-phinf.pstatic.net/20210915_17/1631709921614RtBYz_PNG/%C3%CA%C4%DA%B3%D7_%B0%A1%B0%D4_%B8%DE%C0%CEPC.png?type=w345" style="width: 300px; height: 200px;">
+                <img src="/assets/resource/images/etc/315345_click_finger_icon.png">
             </div>
-            <div class="preview_txt">
-                <dt>[자산타입] 자산명</dt>
-            </div>
+<%--            <div class="preview_txt">--%>
+<%--                <dt>[자산타입] 자산명</dt>--%>
+<%--            </div>--%>
             <div class="info_data">
+                <h4>자산명</h4>
                 <span class="date">9999.01.01</span>
             </div>
         </a>
