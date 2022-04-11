@@ -3,22 +3,10 @@
 
 <div class="content">
     <div class="container full">
-            <div class="spot_menu">
-                <span class="user_welcome">
-                    <%
-                        String id = (String)session.getAttribute("userId");
-                    %>
-                    <em><%=id %></em>
-                    님 환영합니다.
-                </span>
-            </div>
-        <div class="main_content">
+        <div class="main_content dashboard">
             <div class="main_top">
                 <h2 class="title">
-                    <p class="copy">대시보드</p>
-                    <strong class="logo">
-                        <img src="https://shop-phinf.pstatic.net/20210915_17/1631709921614RtBYz_PNG/%C3%CA%C4%DA%B3%D7_%B0%A1%B0%D4_%B8%DE%C0%CEPC.png?type=w345" alt="초코네가게">
-                    </strong>
+                    <p class="copy">Dash board</p>
                 </h2>
             </div>
             <div class="main_direct">
