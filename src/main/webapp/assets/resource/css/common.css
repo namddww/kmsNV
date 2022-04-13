@@ -1042,6 +1042,7 @@ input[type="password"]{width: 100%;height: 40px;padding: 0 15px;box-sizing: bord
 .direct_list.st2 .unit .st_title{top: 15px}
 .dashboard .direct_list .unit .box .data{top: 60px;}
 .direct_list.st2 .unit .box .unit_list{margin-top: 27px;width: 180px;left: 120px}
+.direct_list.st2{display: flex;justify-content: space-around}
 
 /* 공통 : 테이블 레이아웃 */
 .adm_container .sub_content{padding: 70px 0 0}
