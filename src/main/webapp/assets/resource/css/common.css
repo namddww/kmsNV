@@ -1139,6 +1139,16 @@ input[type="text"].st_half{width: 50%}
 
 /* e: 20220401 */
 
+/*로그인 개선 - 인증번호 */
+.inner_inputbox,
+.in_search{border: 1px solid #ddd; box-sizing: border-box;height: 40px;line-height: 40px;border-radius: 5px; position: relative;margin: 0;}
+.inner_inputbox input[type="password"],
+.in_search input[type="number"]{border: none;height: 38px;line-height: 38px;padding-right: 120px}
+.inner_inputbox button{position: absolute; display: block;padding: 0 10px;height: 30px;line-height: 28px;right: 3px;top: 4px; color: #003bbe;border-color: #003bbe;}
+.inner_inputbox button:hover{opacity: 1;}
+.tbl_row_wrap.login .time{position: absolute;display: block;height: 40px;line-height: 40px;right: 80px;top: 10px; color: #003bbe}
+.tbl_row_wrap.login table tbody tr:last-child th::before{display: none}
+.in_search .btn{line-height: 38px;}
 
 
 
