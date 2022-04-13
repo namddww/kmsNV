@@ -107,7 +107,16 @@
 <body>
 	<div class="wrapper">
 			<tiles:insertAttribute name="header" />
-		<div class="adm_container">
+		<div id="divAdmContainer" class="">
+		<script>
+			var currentUrlPath = $(location).attr('pathname');
+
+			var cl = "adm_container";
+			if(currentUrlPath == '/monitoringDevice' || currentUrlPath == '/monitoringGeofence'){
+				cl = "adm_container st_full";
+			}
+			$('#divAdmContainer').attr('class', cl);
+		</script>
 			<tiles:insertAttribute name="content"/>
 		</div>
 

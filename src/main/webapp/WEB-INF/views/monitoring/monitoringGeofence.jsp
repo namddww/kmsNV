@@ -6,7 +6,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" rel="stylesheet" />
 
 <body>
-<div class="adm_container st_full">
+<div class="">
     <div id="searchTab">
         <input type="hidden" id="lock" value="${lock}">
         <input type="hidden" id="key" value="${key}">
