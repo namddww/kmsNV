@@ -44,9 +44,9 @@ let _monitoringDevice = {
 
         setInterval(function() {
             if(_monitoringDevice.$trigger == 'f'){
-                _monitoringDevice.clickFloor(_monitoringDevice.$f, _monitoringDevice.$o);
+                _monitoringDevice.clickFloor(_monitoringDevice.$f, _monitoringDevice.$o, 2);
             }else if(_monitoringDevice.$trigger == 'fAll'){
-                _monitoringDevice.clickFloorAll(_monitoringDevice.$b);
+                _monitoringDevice.clickFloorAll(_monitoringDevice.$b, 2);
             }
         }, 10000);
 
@@ -83,14 +83,14 @@ let _monitoringDevice = {
         $(document).on("click", ".btnFloor", function() {
             _monitoringDevice.$f = $(this).attr('data-f');
             _monitoringDevice.$o = $(this).attr('data-o');
-            _monitoringDevice.clickFloor(_monitoringDevice.$f, _monitoringDevice.$o);
+            _monitoringDevice.clickFloor(_monitoringDevice.$f, _monitoringDevice.$o, 1);
             _monitoringDevice.$trigger = 'f';
         });
 
         //층 전체 클릭
         $(document).on("click", ".btnFloorAll", function() {
             _monitoringDevice.$b = $(this).attr('data-b');
-            _monitoringDevice.clickFloorAll(_monitoringDevice.$b);
+            _monitoringDevice.clickFloorAll(_monitoringDevice.$b, 1);
             _monitoringDevice.$trigger = 'fAll';
         });
 
@@ -340,20 +340,23 @@ let _monitoringDevice = {
     },
 
     //층 클릭
-    clickFloor : function(f, o) {
-        if(_monitoringDevice.$map.hasLayer(_monitoringDevice.$image)){
-            _monitoringDevice.$map.removeLayer(_monitoringDevice.$image);
+    clickFloor : function(f, o, num) {
+
+        if(num == 1){
+            if(_monitoringDevice.$map.hasLayer(_monitoringDevice.$image)){
+                _monitoringDevice.$map.removeLayer(_monitoringDevice.$image);
+            }
+            if(_monitoringDevice.$map.hasLayer(_monitoringDevice.$rect)){
+                _monitoringDevice.$map.removeLayer(_monitoringDevice.$rect);
+            }
+            _monitoringDevice.$imageUrl = $('#F'+f).val();
+            //_monitoringDevice.$imageUrl = 'https://www.codingfactory.net/wp-content/uploads/abc.jpg';
+            var imageBounds = [
+                [_monitoringDevice.$x_1, _monitoringDevice.$y_1],
+                [_monitoringDevice.$x_2, _monitoringDevice.$y_2]
+            ];
+            _monitoringDevice.$image = L.imageOverlay(_monitoringDevice.$imageUrl, imageBounds, {opacity: o*0.01}).addTo(_monitoringDevice.$map);
         }
-        if(_monitoringDevice.$map.hasLayer(_monitoringDevice.$rect)){
-            _monitoringDevice.$map.removeLayer(_monitoringDevice.$rect);
-        }
-        _monitoringDevice.$imageUrl = $('#F'+f).val();
-        //_monitoringDevice.$imageUrl = 'https://www.codingfactory.net/wp-content/uploads/abc.jpg';
-        var imageBounds = [
-            [_monitoringDevice.$x_1, _monitoringDevice.$y_1],
-            [_monitoringDevice.$x_2, _monitoringDevice.$y_2]
-        ];
-        _monitoringDevice.$image = L.imageOverlay(_monitoringDevice.$imageUrl, imageBounds, {opacity: o*0.01}).addTo(_monitoringDevice.$map);
 
         let param = {
             floorSeq: f
@@ -422,24 +425,26 @@ let _monitoringDevice = {
     },
 
     //층 전체 클릭
-    clickFloorAll : function(b) {
-        if(_monitoringDevice.$map.hasLayer(_monitoringDevice.$image)){
-            _monitoringDevice.$map.removeLayer(_monitoringDevice.$image);
+    clickFloorAll : function(b, num) {
+        if(num == 1){
+            if(_monitoringDevice.$map.hasLayer(_monitoringDevice.$image)){
+                _monitoringDevice.$map.removeLayer(_monitoringDevice.$image);
+            }
+            if(_monitoringDevice.$map.hasLayer(_monitoringDevice.$rect)){
+                _monitoringDevice.$map.removeLayer(_monitoringDevice.$rect);
+            }
+            var rectBounds = [
+                [_monitoringDevice.$x_1, _monitoringDevice.$y_1],
+                [_monitoringDevice.$x_2, _monitoringDevice.$y_2]
+            ];
+            _monitoringDevice.$rect = L.rectangle(rectBounds, {color: 'red', weight: 1}).on('click', function (e) {
+                // There event is event object
+                // there e.type === 'click'
+                // there e.lanlng === L.LatLng on map
+                // there e.target.getLatLngs() - your rectangle coordinates
+                // but e.target !== rect
+            }).addTo(_monitoringDevice.$map);
         }
-        if(_monitoringDevice.$map.hasLayer(_monitoringDevice.$rect)){
-            _monitoringDevice.$map.removeLayer(_monitoringDevice.$rect);
-        }
-        var rectBounds = [
-            [_monitoringDevice.$x_1, _monitoringDevice.$y_1],
-            [_monitoringDevice.$x_2, _monitoringDevice.$y_2]
-        ];
-        _monitoringDevice.$rect = L.rectangle(rectBounds, {color: 'red', weight: 1}).on('click', function (e) {
-            // There event is event object
-            // there e.type === 'click'
-            // there e.lanlng === L.LatLng on map
-            // there e.target.getLatLngs() - your rectangle coordinates
-            // but e.target !== rect
-        }).addTo(_monitoringDevice.$map);
 
         let param = {
             buildSeq: b
