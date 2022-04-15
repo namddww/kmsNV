@@ -20,7 +20,7 @@
                 <h2 class="title">
                     <p class="copy">자산 관리 시스템 홈화면</p>
                     <strong class="logo">
-                        <img src="https://shop-phinf.pstatic.net/20210915_17/1631709921614RtBYz_PNG/%C3%CA%C4%DA%B3%D7_%B0%A1%B0%D4_%B8%DE%C0%CEPC.png?type=w345" alt="초코네가게">
+                        <img src="/assets/resource/images/common/logo-default.png" alt="자산관리시스템">
                     </strong>
                 </h2>
             </div>
