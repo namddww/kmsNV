@@ -102,8 +102,10 @@ function outCountHtml(outCount) {
             )
     )
 
+    var allCount = 0;
     $.each(outCount, function (i, val) {
+        allCount += val.count;
         $("#ul-outdata").append(($('<li/>').text(val.name + ' ' + val.count + ' 대')))
-        $("#p-outdata").text(val.allCount + ' 대')
     });
+        $("#p-outdata").text(allCount + ' 대')
 }

@@ -10,5 +10,7 @@ public interface DashBoardMapper {
 
     DashBoard selectAllCount();
 
-    List<DashBoard> selectInOutCount(String codeVal);
+    List<DashBoard> selectInCount(String codeVal);
+
+    List<DashBoard> selectOutCount();
 }

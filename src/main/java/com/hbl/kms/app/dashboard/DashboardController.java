@@ -36,10 +36,10 @@ public class DashboardController {
         DashBoard allCount = dashBoardService.selectAllCount();
 
         // 실내 장비현황 카운트
-        List<DashBoard> inCount = dashBoardService.selectInOutCount(IN_CODE);
+        List<DashBoard> inCount = dashBoardService.selectInCount(IN_CODE);
 
         // 실외 장비현황 카운트
-        List<DashBoard> outCount = dashBoardService.selectInOutCount(OUT_CODE);
+        List<DashBoard> outCount = dashBoardService.selectOutCount();
 
         try {
             json = mapper.writeValueAsString(allCount);

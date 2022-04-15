@@ -12,7 +12,7 @@
             INNER JOIN t_device TD ON TB.BUILD_SEQ = TD.BUILD_SEQ
     </select>
 
-    <select id="selectInOutCount" resultType="dashBoard">
+    <select id="selectInCount" resultType="dashBoard">
         SELECT
             TD.FLOOR
             , (SELECT
@@ -20,7 +20,7 @@
                 FROM t_building TB
                          INNER JOIN t_device TD ON TB.BUILD_SEQ = TD.BUILD_SEQ
                          INNER JOIN t_tracking TT ON TD.DEVICE_SEQ = TT.DEVICE_SEQ
-                    AND TT.TRACK_TYPE_CD = 'DLO00010'
+                    AND TT.TRACK_TYPE_CD = #{codeVal}
               ) AS allCount
             , COUNT(DISTINCT IFNULL(TD.DEVICE_SEQ,0)) AS count
             , (SELECT CODE_NAME FROM t_code TC WHERE TT.TRACK_TYPE_CD = TC.CODE_VAL) AS name
@@ -29,6 +29,27 @@
             INNER JOIN t_tracking TT ON TD.DEVICE_SEQ = TT.DEVICE_SEQ
                 AND TT.TRACK_TYPE_CD = #{codeVal}
         GROUP BY TB.BUILD_SEQ, TD.DEVICE_SEQ
+    </select>
+
+    <select id="selectOutCount" resultType="dashBoard">
+        SELECT
+                (SELECT CODE_NAME FROM t_code TC WHERE D.TRACK_TYPE_CD = TC.CODE_VAL) AS name
+             , IFNULL(C.cnt, 0) AS count
+        FROM (	SELECT DISTINCT TRACK_TYPE_CD
+            FROM t_tracking
+            ) D
+                , (SELECT
+            A.TRACK_TYPE_CD
+                , count(*) AS cnt
+            FROM t_tracking A
+            WHERE A.TRACK_SEQ = (	SELECT MAX(B.TRACK_SEQ)
+            FROM t_tracking B
+            WHERE B.DEVICE_SEQ = A.DEVICE_SEQ
+            )
+            GROUP BY TRACK_TYPE_CD
+            ) C
+        WHERE D.TRACK_TYPE_CD = C.TRACK_TYPE_CD
+        ORDER BY name
     </select>
 
 </mapper>

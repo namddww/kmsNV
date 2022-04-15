@@ -19,7 +19,11 @@ public class DashBoardService {
         return dashBoardMapper.selectAllCount();
     }
 
-    public List<DashBoard> selectInOutCount(String codeVal) {
-        return dashBoardMapper.selectInOutCount(codeVal);
+    public List<DashBoard> selectInCount(String codeVal) {
+        return dashBoardMapper.selectInCount(codeVal);
+    }
+
+    public List<DashBoard> selectOutCount() {
+        return dashBoardMapper.selectOutCount();
     }
 }
