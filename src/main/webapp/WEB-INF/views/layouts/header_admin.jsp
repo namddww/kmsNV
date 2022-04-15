@@ -26,7 +26,7 @@
 	</ul>
 	<div class="spot_menu">
 		<span class="user_welcome">'<em>홍길동</em>' 님 환영합니다</span>
-		<a href="#" class="btn login"><span>로그아웃</span></a>
+		<a href="/join/logout" class="btn login"><span>로그아웃</span></a>
 		<%-- <a href="#" class="btn join"><span>로그아웃</span></a> --%>
 		<%--<a href="<c:out value='${pageContext.request.contextPath}'/>/main" class="btn login"><span>main</span></a>--%>
 	</div>

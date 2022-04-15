@@ -82,8 +82,10 @@ public class JoinController {
      * @param session
      */
     @GetMapping(ControllerUrlConstants.JoinUrl.Join.LOGOUT)
-    public void logOut(HttpSession session) {
+    public ModelAndView loginForm(ModelAndView mav, HttpSession session) {
+        mav.setViewName("join/loginForm");
         session.invalidate();
+        return mav;
     }
 
     /**
