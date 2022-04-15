@@ -18,7 +18,7 @@
         <div class="main_content">
             <div class="main_top">
                 <h2 class="title">
-                    <p class="copy">창고관리 시스템 홈화면</p>
+                    <p class="copy">자산 관리 시스템 홈화면</p>
                     <strong class="logo">
                         <img src="https://shop-phinf.pstatic.net/20210915_17/1631709921614RtBYz_PNG/%C3%CA%C4%DA%B3%D7_%B0%A1%B0%D4_%B8%DE%C0%CEPC.png?type=w345" alt="초코네가게">
                     </strong>
@@ -28,9 +28,9 @@
                 <ul class="direct_list">
                     <li class="unit">
                         <a href="/dashboard/dashboard" class="box shape03">
-                            <strong class="title">창고관리 시스템</strong>
+                            <strong class="title">자산관리 시스템</strong>
                             <p class="txt">
-                                창고관리 시스템
+                                자산관리 시스템
                                 <br>
                                 관련 데이터 입니다.
                             </p>

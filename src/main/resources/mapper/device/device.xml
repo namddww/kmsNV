@@ -139,15 +139,18 @@
     <!-- 층별 자산정보 조회 -->
     <select id="selectDeviceListByFloor" resultType="device">
         SELECT
-            t.point1
-            , t.point2
+            t2.point1
+            , t2.point2
             , d.type_cd
             , d.floor
             , d.device_name
             , c.code_name
-        FROM t_device d
-        LEFT JOIN t_tracking t ON d.device_seq = t.device_seq
-        LEFT JOIN t_code c ON d.type_cd = c.code_val AND c.group_cd = 'DEV'
+        FROM (select  MAX(t.track_seq) AS track_seq , t.device_seq
+                from t_tracking t group by t.device_seq
+            ) T
+            LEFT JOIN t_tracking t2 ON T.track_seq = t2.track_seq
+            LEFT JOIN t_device d ON t2.device_seq = d.device_seq
+            LEFT JOIN t_code c ON d.type_cd = c.code_val AND c.group_cd = 'DEV'
         WHERE
         <if test="floorSeq != 0">
             d.floor_seq = #{floorSeq}

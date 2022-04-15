@@ -5,9 +5,9 @@
     <div class="adm_container">
         <div class="content">
             <div class="tbl_row_wrap login"> <!--20220401 class : login 추가-->
-                <h1 class="logo"><img src="/assets/resource/images/common/logo-default.png" alt="창고관리시스템"></h1>
+                <h1 class="logo"><img src="/assets/resource/images/common/logo-default.png" alt="자산관리시스템"></h1>
                 <table class="tbl_row">
-                    <caption>창고 관리 시스템</caption>
+                    <caption>자산 관리 시스템</caption>
                     <colgroup><!--20220401 width 수정-->
                         <col style="width: 35%">
                         <col style="width: *">
